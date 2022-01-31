@@ -1,0 +1,52 @@
+{% extends 'app/bootstrap.html' %}
+
+{% load bootstrap5 %}
+
+{% block bootstrap5_content %}
+
+    <div class="col-lg-8 mx-auto p-3 py-md-5">
+        <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-md-center">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="home">{% block title %}BU Tools{% endblock %}</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Calculators
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="gearscore_cal">Gear Scores</a></li>
+                                    <li><a class="dropdown-item" href="baseatkcal">Base Attack</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Info
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="skill_level_progression">Skill Level Progression</a></li>
+                                    <li><a class="dropdown-item" href="#">Useful Recipes</a></li>
+                                </ul>
+                            </li>
+                            <a class="nav-link" href="runes_dreaming">Runes-Dreaming</a>
+                            <a class="nav-link" href="#">Timers</a>
+                            <a class="nav-link" href="#">Donate</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        {% autoescape off %}{% bootstrap_messages %}{% endautoescape %}
+
+
+        {% block content %}(no content){% endblock %}
+
+    <footer class="pt-5 my-5 text-muted border-top">made with <em>love</em> by <strong>ForeztGump</strong>.</footer>
+
+    </div>
+
+{% endblock %}

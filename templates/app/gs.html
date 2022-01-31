@@ -1,0 +1,251 @@
+{% extends 'app/base.html' %}
+{% load bootstrap5 %}
+
+
+{% block content %}
+<div class="container text-center">
+
+    <h3>Gear Score Calculator</h3>
+      <br/>
+
+    <form role="form" method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <table class="table table-success table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Gear</th>
+              <th scope="col">Rank</th>
+              <th scope="col">Fortify Rank</th>
+              <th scope="col">Fortify Level</th>
+              <th scope="col">Gear Scores</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Weapon</th>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.w_gear_rank.errors }}
+                    {{ form.w_gear_rank }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.w_fort_rank.errors }}
+                    {{ form.w_fort_rank }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.w_fort_level.errors }}
+                    {{ form.w_fort_level }}
+                  </div>
+              </td>
+              <td>
+                  {{ w_gear_score }}
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Off-Hand Weapon</th>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.off_gear_rank.errors }}
+                    {{ form.off_gear_rank }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.off_fort_rank.errors }}
+                    {{ form.off_fort_rank }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.off_fort_level.errors }}
+                    {{ form.off_fort_level }}
+                  </div>
+              </td>
+              <td>
+                  {{ oh_gear_score }}
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Helm</th>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.head_gear_rank.errors }}
+                    {{ form.head_gear_rank }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.head_fort_rank.errors }}
+                    {{ form.head_fort_rank }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.head_fort_level.errors }}
+                    {{ form.head_fort_level }}
+                  </div>
+              </td>
+              <td>
+                  {{ head_gear_score }}
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Chest</th>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.chest_gear_rank.errors }}
+                    {{ form.chest_gear_rank }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.chest_fort_rank.errors }}
+                    {{ form.chest_fort_rank }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.chest_fort_level.errors }}
+                    {{ form.chest_fort_level }}
+                  </div>
+              </td>
+              <td>
+                  {{ chest_gear_score }}
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Legs</th>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.pants_gear_rank.errors }}
+                    {{ form.pants_gear_rank }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.pants_fort_rank.errors }}
+                    {{ form.pants_fort_rank }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.pants_fort_level.errors }}
+                    {{ form.pants_fort_level }}
+                  </div>
+              </td>
+              <td>
+                  {{ pants_gear_score }}
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Shoes</th>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.boots_gear_rank.errors }}
+                    {{ form.boots_gear_rank }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.boots_fort_rank.errors }}
+                    {{ form.boots_fort_rank }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.boots_fort_level.errors }}
+                    {{ form.boots_fort_level }}
+                  </div>
+              </td>
+              <td>
+                  {{ boots_gear_score }}
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Gloves</th>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.gloves_gear_rank.errors }}
+                    {{ form.gloves_gear_rank }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.gloves_fort_rank.errors }}
+                    {{ form.gloves_fort_rank }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.gloves_fort_level.errors }}
+                    {{ form.gloves_fort_level }}
+                  </div>
+              </td>
+              <td>
+                  {{ gloves_gear_score }}
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Shoulder</th>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.shoulder_gear_rank.errors }}
+                    {{ form.shoulder_gear_rank }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.shoulder_fort_rank.errors }}
+                    {{ form.shoulder_fort_rank }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.shoulder_fort_level.errors }}
+                    {{ form.shoulder_fort_level }}
+                  </div>
+              </td>
+              <td>
+                  {{ shoulder_gear_score }}
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Waist</th>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.belt_gear_rank.errors }}
+                    {{ form.belt_gear_rank }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.belt_fort_rank.errors }}
+                    {{ form.belt_fort_rank }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.belt_fort_level.errors }}
+                    {{ form.belt_fort_level }}
+                  </div>
+              </td>
+              <td>
+                  {{ belt_gear_score }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <br/>
+        <button type="submit" name="calculate" class="btn btn-secondary">Calculate Gear Score</button>
+        <br/>
+        <br/>
+        <h2>Your Total Gear Scores:  {{ result }}</h2>
+    </form>
+</div>
+{% endblock %}
+

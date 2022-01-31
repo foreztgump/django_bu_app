@@ -1,0 +1,437 @@
+{% extends 'app/base.html' %}
+{% load bootstrap5 %}
+
+
+{% block content %}
+
+<div class="container-md">
+    <h3>Baseline Damage Calculator</h3>
+    <p>*calculate button is on the buttom of the form</p>
+    <br/>
+    <form role="form" method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="row">
+            <p>1. First, enter your "base" stats that you want to use as a baseline into the yellow cells below</p>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td><p>Base Attack</p></td>
+                                <td>
+                                    {{ form.base_atk.errors }}
+                                    {{ form.base_atk }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><p>Attack Bonus %</p></td>
+                                <td>
+                                    {{ form.atk_bonus.errors }}
+                                    {{ form.atk_bonus }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><p>Total Attack</p></td>
+                                <td>
+                                    <p>{{ result_attack }}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td><p>Crit Rate %</p></td>
+                                <td>
+                                    {{ form.crit_rate.errors }}
+                                    {{ form.crit_rate }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><p>Crit Damage %</p></td>
+                                <td>
+                                    {{ form.crit_dmg.errors }}
+                                    {{ form.crit_dmg }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><p>All Damage %</p></td>
+                                <td>
+                                    {{ form.all_dmg.errors }}
+                                    {{ form.all_dmg }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col">
+                <br/>
+                <h5 class="text-center">Average Baseline Damage Output</h5>
+                <h5 class="text-center">{{ result_attack_output }}</h5>
+            </div>
+        </div>
+
+        <br/>
+        <div class="row">
+            <p>2a. If interested in comparing gear, set the stats of the gear you want to compare between below.</p>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td><p>Equipement Piece A</p></td>
+                                <td><p>&nbsp;</p></td>
+                            </tr>
+                            <tr>
+                                <td><p>Plus Attack</p></td>
+                                <td>
+                                    {{ form.plus_atk_1.errors }}
+                                    {{ form.plus_atk_1 }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><p>Plus Attack %</p></td>
+                                <td>
+                                    {{ form.plus_atk_pct_1.errors }}
+                                    {{ form.plus_atk_pct_1 }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><p>Plus Cri Rate</p></td>
+                                <td>
+                                    {{ form.plus_cr_1.errors }}
+                                    {{ form.plus_cr_1 }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><p>Plus Cri Damage</p></td>
+                                <td>
+                                    {{ form.plus_cd_1.errors }}
+                                    {{ form.plus_cd_1 }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><p>Plus All Damage</p></td>
+                                <td>
+                                    {{ form.plus_all_dmg_1.errors }}
+                                    {{ form.plus_all_dmg_1 }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td><p>&nbsp;</p></td>
+                                <td><p>&nbsp;</p></td>
+                            </tr>
+
+                            <tr>
+                                <td><p>Attack</p></td>
+                                <td><p>{{ result_attack_e_1 }}</p></td>
+                            </tr>
+                            <tr>
+                                <td><p>Crit Rate %</p></td>
+                                <td><p>{{ result_cr_e_1 }}</p></td>
+                            </tr>
+                            <tr>
+                                <td><p>Crit Damage %</p></td>
+                                <td><p>{{ result_cd_e_1 }}</p></td>
+                            </tr>
+                            <tr>
+                                <td><p>All Damage %</p></td>
+                                <td><p>{{ result_ad_e_1 }}</p></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col">
+                <br/>
+                <br/>
+                <h5 class="text-center">New Average Baseline Damage Output</h5>
+                <h5 class="text-center">{{result_attack_e_1_output}}</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td><p>Equipement Piece B</p></td>
+                                <td><p>&nbsp;</p></td>
+                            </tr>
+                            <tr>
+                                <td><p>Plus Attack</p></td>
+                                <td>
+                                    {{ form.plus_atk_2.errors }}
+                                    {{ form.plus_atk_2 }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><p>Plus Attack %</p></td>
+                                <td>
+                                    {{ form.plus_atk_pct_2.errors }}
+                                    {{ form.plus_atk_pct_2 }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><p>Plus Cri Rate</p></td>
+                                <td>
+                                    {{ form.plus_cr_2.errors }}
+                                    {{ form.plus_cr_2 }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><p>Plus Cri Damage</p></td>
+                                <td>
+                                    {{ form.plus_cd_2.errors }}
+                                    {{ form.plus_cd_2 }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><p>Plus All Damage</p></td>
+                                <td>
+                                    {{ form.plus_all_dmg_2.errors }}
+                                    {{ form.plus_all_dmg_2 }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td><p>&nbsp;</p></td>
+                                <td><p>&nbsp;</p></td>
+                            </tr>
+
+                            <tr>
+                                <td><p>Attack</p></td>
+                                <td><p>{{ result_attack_e_2 }}</p></td>
+                            </tr>
+                            <tr>
+                                <td><p>Crit Rate %</p></td>
+                                <td><p>{{ result_cr_e_2 }}</p></td>
+                            </tr>
+                            <tr>
+                                <td><p>Crit Damage %</p></td>
+                                <td><p>{{ result_cd_e_2 }}</p></td>
+                            </tr>
+                            <tr>
+                                <td><p>All Damage %</p></td>
+                                <td><p>{{ result_ad_e_2 }}</p></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col">
+                <br/>
+                <br/>
+                <h5 class="text-center">New Average Baseline Damage Output</h5>
+                <h5 class="text-center">{{result_attack_e_2_output}}</h5>
+            </div>
+        </div>
+
+        <br/>
+        <div class="row">
+            <p>2b. If interested in comparing Elixir/Panacea/Food buffs, choose from the three yellow drop-downs below. The total buffs and new output will be below.</p>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td><p>Elixer</p></td>
+                                <td>
+                                    {{ form.elixir.errors }}
+                                    {{ form.elixir }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><p>Panacea</p></td>
+                                <td>
+                                    {{ form.panacea.errors }}
+                                    {{ form.panacea }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><p>Food</p></td>
+                                <td>
+                                    {{ form.food.errors }}
+                                    {{ form.food }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td><p>Plus Attack</p></td>
+                                <td><p>{{ result_attack_buff_plus }}</p></td>
+                            </tr>
+                            <tr>
+                                <td><p>Plus Crit Rate %</p></td>
+                                <td><p>{{ result_cr_buff_plus }}</p></td>
+                            </tr>
+                            <tr>
+                                <td><p>Plus Crit Damage %</p></td>
+                                <td><p>{{ result_cd_buff_plus }}</p></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td><p>Attack</p></td>
+                                <td><p>{{ result_attack_buff }}</p></td>
+                            </tr>
+                            <tr>
+                                <td><p>Total Crit Rate %</p></td>
+                                <td><p>{{ result_cr_buff }}</p></td>
+                            </tr>
+                            <tr>
+                                <td><p>Total Crit Damage %</p></td>
+                                <td><p>{{ result_cd_buff }}</p></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col">
+                <br/>
+                <h5 class="text-center">New Average Baseline Damage Output</h5>
+                <h5 class="text-center">{{result_attack_buff_output}}</h5>
+            </div>
+        </div>
+
+        <div class="row">
+            <br/>
+            <button type="submit" name="calculate" class="btn btn-success">Calculate</button>
+            <br/>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <div class="row">
+            <h4>FAQ</h4>
+        </div>
+        <div class="row">
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                    What if I want to test a combination of buffs, like gear AND food?
+                  </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                  <div class="accordion-body">
+                      Incorporate the stats into your baseline. For example, if I want to see what my output is like wearing pieces A and B, and Elixirs… then add the stats of A&B into the baseline then choose the Elixir.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingTwo">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                    What if I have some other buff, like Zealots Fire giving me +10% crit rate?
+                  </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                  <div class="accordion-body">
+                      Incorporate the stats of that other buff into your baseline. Yes it works.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingThree">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                    My crit hits are huge, why should I care about average damage?
+                  </button>
+                </h2>
+                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                  <div class="accordion-body">
+                    Because in the long run, it all averages out. Imagine you did a 1000 hits with your attacks, your crits will be extremely close to your statistical crit rate * crit damage.
+                    So, over the long run, sustained attacks might be better than the odd high crit. By looking at the average, you will see your true damage output.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingFour">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseThree">
+                    If my average damage is higher than another player's, do I hit harder?
+                  </button>
+                </h2>
+                <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                  <div class="accordion-body">
+                    No, not necessarily. When comparing two players, there are many more factors to consider such as blessing and skill levels, buffs given by specific skills etc.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingFive">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseThree">
+                    I don't see my Elixir/Panacea/Food buff in the lists
+                  </button>
+                </h2>
+                <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
+                  <div class="accordion-body">
+                      Be a champ, contribute to this webapp development by giving suggestion in my guild discord.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingSix">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseThree">
+                    I have a suggested improvement!
+                  </button>
+                </h2>
+                <div id="flush-collapseSix" class="accordion-collapse collapse" aria-labelledby="flush-headingSix" data-bs-parent="#accordionFlushExample">
+                  <div class="accordion-body">
+                      Wonderful! Please speak to your nearest NoDamageSquad or PotHeads guild member
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}

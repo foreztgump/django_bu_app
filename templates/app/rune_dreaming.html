@@ -1,0 +1,335 @@
+{% extends 'app/base.html' %}
+{% load bootstrap5 %}
+
+
+{% block content %}
+<div class="container text-center">
+
+    <h3>Runes Dreaming</h3>
+      <br/>
+
+    <form role="form" method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <table class="table table-success table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Gear</th>
+              <th scope="col">Slot 1</th>
+              <th scope="col">Slot 2</th>
+              <th scope="col">Slot 3</th>
+              <th scope="col">Slot 4</th>
+              <th scope="col">Slot 5</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Weapon</th>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.w_rune_1.errors }}
+                    {{ form.w_rune_1 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.w_rune_2.errors }}
+                    {{ form.w_rune_2 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.w_rune_3.errors }}
+                    {{ form.w_rune_3 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.w_rune_4.errors }}
+                    {{ form.w_rune_4 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.w_rune_5.errors }}
+                    {{ form.w_rune_5 }}
+                  </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Off-Hand Weapon</th>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.off_rune_1.errors }}
+                    {{ form.off_rune_1 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.off_rune_2.errors }}
+                    {{ form.off_rune_2 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.off_rune_3.errors }}
+                    {{ form.off_rune_3 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.off_rune_4.errors }}
+                    {{ form.off_rune_4 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.off_rune_5.errors }}
+                    {{ form.off_rune_5 }}
+                  </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Helm</th>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.head_rune_1.errors }}
+                    {{ form.head_rune_1 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.head_rune_2.errors }}
+                    {{ form.head_rune_2 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.head_rune_3.errors }}
+                    {{ form.head_rune_3 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.head_rune_4.errors }}
+                    {{ form.head_rune_4 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.head_rune_5.errors }}
+                    {{ form.head_rune_5 }}
+                  </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Chest</th>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.chest_rune_1.errors }}
+                    {{ form.chest_rune_1 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.chest_rune_2.errors }}
+                    {{ form.chest_rune_2 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.chest_rune_3.errors }}
+                    {{ form.chest_rune_3 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.chest_rune_4.errors }}
+                    {{ form.chest_rune_4 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.chest_rune_5.errors }}
+                    {{ form.chest_rune_5 }}
+                  </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Legs</th>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.pants_rune_1.errors }}
+                    {{ form.pants_rune_1 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.pants_rune_2.errors }}
+                    {{ form.pants_rune_2 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.pants_rune_3.errors }}
+                    {{ form.pants_rune_3 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.pants_rune_4.errors }}
+                    {{ form.pants_rune_4 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.pants_rune_5.errors }}
+                    {{ form.pants_rune_5 }}
+                  </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Shoes</th>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.boots_rune_1.errors }}
+                    {{ form.boots_rune_1 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.boots_rune_2.errors }}
+                    {{ form.boots_rune_2 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.boots_rune_3.errors }}
+                    {{ form.boots_rune_3 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.boots_rune_4.errors }}
+                    {{ form.boots_rune_4 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.boots_rune_5.errors }}
+                    {{ form.boots_rune_5 }}
+                  </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Gloves</th>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.gloves_rune_1.errors }}
+                    {{ form.gloves_rune_1 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.gloves_rune_2.errors }}
+                    {{ form.gloves_rune_2 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.gloves_rune_3.errors }}
+                    {{ form.gloves_rune_3 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.gloves_rune_4.errors }}
+                    {{ form.gloves_rune_4 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.gloves_rune_5.errors }}
+                    {{ form.gloves_rune_5 }}
+                  </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Shoulder</th>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.shoulder_rune_1.errors }}
+                    {{ form.shoulder_rune_1 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.shoulder_rune_2.errors }}
+                    {{ form.shoulder_rune_2 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.shoulder_rune_3.errors }}
+                    {{ form.shoulder_rune_3 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.shoulder_rune_4.errors }}
+                    {{ form.shoulder_rune_4 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.shoulder_rune_5.errors }}
+                    {{ form.shoulder_rune_5 }}
+                  </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Waist</th>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.belt_rune_1.errors }}
+                    {{ form.belt_rune_1 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.belt_rune_2.errors }}
+                    {{ form.belt_rune_2 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.belt_rune_3.errors }}
+                    {{ form.belt_rune_3 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.belt_rune_4.errors }}
+                    {{ form.belt_rune_4 }}
+                  </div>
+              </td>
+              <td>
+                  <div class="fieldWrapper">
+                    {{ form.belt_rune_5.errors }}
+                    {{ form.belt_rune_5 }}
+                  </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <br/>
+        <button type="submit" name="calculate" class="btn btn-secondary">Calculate Runes</button>
+        <br/>
+        <br/>
+        {% load static %}
+        <h2> <img src="{% static 'img/purple.png' %}" alt="purple"> {{ result_purple }} : <img src="{% static 'img/white.png' %}" alt="white"> {{ result_white }} : <img src="{% static 'img/yellow.png' %}" alt="yellow"> {{ result_yellow }} : <img src="{% static 'img/red.png' %}" alt="red"> {{ result_red }} : <img src="{% static 'img/green.png' %}" alt="green"> {{ result_green }}</h2>
+        <h4>Don't Stop Dreaming</h4>
+    </form>
+</div>
+{% endblock %}
+
