@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from mysite.myapp.views import (
+from myapp_bless.views import (
     HomePageView,
     GSPage,
     SkillProgression,

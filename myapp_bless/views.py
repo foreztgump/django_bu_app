@@ -3,9 +3,9 @@ from django.views.generic.base import TemplateView
 from django.shortcuts import render
 
 # Create your views here.
-from mysite.myapp.constants import W_GEAR_SCORES, OH_GEAR_SCORES, HEAD_GEAR_SCORES, CHEST_GEAR_SCORES, \
+from myapp_bless.constants import W_GEAR_SCORES, OH_GEAR_SCORES, HEAD_GEAR_SCORES, CHEST_GEAR_SCORES, \
     PANTS_GEAR_SCORES, BOOTS_GEAR_SCORES, GLOVES_GEAR_SCORES, SHOULDER_GEAR_SCORES, BELT_GEAR_SCORES
-from mysite.myapp.forms import GearscoreForm, GearRunesForm, BaseATKForm
+from myapp_bless.forms import GearscoreForm, GearRunesForm, BaseATKForm
 
 
 class HomePageView(TemplateView):
