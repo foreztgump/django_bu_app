@@ -3,9 +3,9 @@ from django.views.generic.base import TemplateView
 from django.shortcuts import render
 
 # Create your views here.
-from myapp_bless.constants import W_GEAR_SCORES, OH_GEAR_SCORES, HEAD_GEAR_SCORES, CHEST_GEAR_SCORES, \
+from mysite.myapp.constants import W_GEAR_SCORES, OH_GEAR_SCORES, HEAD_GEAR_SCORES, CHEST_GEAR_SCORES, \
     PANTS_GEAR_SCORES, BOOTS_GEAR_SCORES, GLOVES_GEAR_SCORES, SHOULDER_GEAR_SCORES, BELT_GEAR_SCORES
-from myapp_bless.forms import GearscoreForm, GearRunesForm, BaseATKForm
+from mysite.myapp.forms import GearscoreForm, GearRunesForm, BaseATKForm
 
 
 class HomePageView(TemplateView):
@@ -210,6 +210,13 @@ class SkillProgression(TemplateView):
 
     def get(self, request, *args, **kwargs):
         return render(request, "app/skill_pro.html")
+
+
+class Timers(TemplateView):
+    template_name = "app/timers.html"
+
+    def get(self, request, *args, **kwargs):
+        return render(request, "app/timers.html")
 
 
 class RuneDreaming(TemplateView):

@@ -1,0 +1,54 @@
+{% extends 'app/base.html' %}
+{% load bootstrap5 %}
+
+
+{% block content %}
+<div class="container text-center">
+
+    <h3>Timers</h3>
+      <br/>
+
+    <div class="row">
+        <div class="col">
+            <br/>
+            <h4>Backflow</h4>
+            <h1>00:00:00</h1>
+            <button type="submit" name="calculate" class="btn btn-success">Start</button>
+            <button type="submit" name="calculate" class="btn btn-danger">Stop</button>
+            <br/>
+        </div>
+        <div class="col">
+            <br/>
+            <h4>Reflect</h4>
+            <h1>00:00:00</h1>
+            <button type="submit" name="calculate" class="btn btn-success">Start</button>
+            <button type="submit" name="calculate" class="btn btn-danger">Stop</button>
+            <br/>
+            <br/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <br/>
+            <h4>Fire</h4>
+            <h1>00:00:00</h1>
+            <button type="submit" name="calculate" class="btn btn-success">Start</button>
+            <button type="submit" name="calculate" class="btn btn-danger">Stop</button>
+            <br/>
+            <br/>
+        </div>
+        <div class="col">
+            <br/>
+            <h4>Lightning</h4>
+            <h1>00:00:00</h1>
+            <button type="submit" name="calculate" class="btn btn-success">Start</button>
+            <button type="submit" name="calculate" class="btn btn-danger">Stop</button>
+            <br/>
+            <br/>
+        </div>
+    </div>
+
+
+</div>
+{% endblock %}
+
