@@ -92,9 +92,9 @@ var Stopwatch = function(element, options, time_limit, voice) {
   }
   
   function play_voice_mode(num, clock) {
+	preload(num)
 	if (num == 1) { //backflow
 		if (clock >= 24000 && clock <= 25000) {
-			audio_backflow_in.load()
 			audio_backflow_in.play()
 			count_5 = false;
 			count_4 = false;
@@ -135,7 +135,6 @@ var Stopwatch = function(element, options, time_limit, voice) {
 		}
 		else if (clock >= 30000 && clock <= 31000) {
 			if (!backflow) {
-				audio_backflow.load()
 				audio_backflow.play()
 				backflow = true;
 			}
@@ -144,7 +143,6 @@ var Stopwatch = function(element, options, time_limit, voice) {
 	}
 	else if (num == 2) { //fire
 		if (clock == 24000) {
-			audio_fire_in.load()
 			audio_fire_in.play()
 			count_5 = false;
 			count_4 = false;
@@ -185,7 +183,6 @@ var Stopwatch = function(element, options, time_limit, voice) {
 		}
 		else if (clock >= 30000 && clock <= 31000) {
 			if (!backflow) {
-				audio_fire.load()
 				audio_fire.play()
 				fire = true;
 			}
@@ -193,7 +190,6 @@ var Stopwatch = function(element, options, time_limit, voice) {
 	}
 	else if (num == 3) { //reflect
 		if (clock == 24000) {
-			audio_reflect_in.load()
 			audio_reflect_in.play()
 			count_5 = false;
 			count_4 = false;
@@ -234,7 +230,6 @@ var Stopwatch = function(element, options, time_limit, voice) {
 		}
 		else if (clock >= 30000 && clock <= 31000) {
 			if (!backflow) {
-				audio_reflect.load()
 				audio_reflect.play()
 				reflect = true;
 			}
@@ -242,7 +237,6 @@ var Stopwatch = function(element, options, time_limit, voice) {
 	}
 	else if (num == 4) { //lightning
 		if (clock == 24000) {
-			audio_lightning_in.load()
 			audio_lightning_in.play()
 			count_5 = false;
 			count_4 = false;
@@ -283,7 +277,6 @@ var Stopwatch = function(element, options, time_limit, voice) {
 		}
 		else if (clock >= 30000 && clock <= 31000) {
 			if (!backflow) {
-				audio_lightning.load()
 				audio_lightning.play()
 				lightning = true;
 			}
@@ -293,27 +286,46 @@ var Stopwatch = function(element, options, time_limit, voice) {
   
   function countdown_voice(num) {
 	if (num == 1) {
-		audio_1.load()
 		audio_1.play()
 	}
 	else if (num == 2) {
-		audio_2.load()
 		audio_2.play()
 	}
 	else if (num == 3) {
-		audio_3.load()
 		audio_3.play()
 	}
 	else if (num == 4) {
-		audio_4.load()
 		audio_4.play()
 	}
 	else if (num == 5) {
-		audio_5.load()
 		audio_5.play()
 	}
   }
 
+  function preload(num) {
+	if (num == 1) {
+		audio_backflow_in.load()
+		audio_backflow.load()
+	}
+	else if (num == 2) {
+		audio_fire_in.load()
+		audio_fire.load()
+	}
+	else if (num == 3) {
+		audio_reflect_in.load()
+		audio_reflect.load()
+	}
+	else if (num == 4) {
+		audio_lightning_in.load()
+		audio_lightning.load()
+	}
+	audio_1.load()
+	audio_2.load()
+	audio_3.load()
+	audio_4.load()
+	audio_5.load()
+  }
+  
   // public API
   this.time_limit = time_limit;
   this.start = start;
@@ -325,9 +337,9 @@ window.onload = function () {
 	var anew = document.getElementById("backflow");
 	backflow_timer = new Stopwatch(anew, {delay: 50}, 35000, 1);
 	var bnew = document.getElementById("reflect");
-	reflect_timer = new Stopwatch(bnew, {delay: 50}, 35000, 2);
+	reflect_timer = new Stopwatch(bnew, {delay: 50}, 35000, 3);
 	var cnew = document.getElementById("fire");
-	fire_timer = new Stopwatch(cnew, {delay: 50}, 35000, 3);
+	fire_timer = new Stopwatch(cnew, {delay: 50}, 35000, 2);
 	var dnew = document.getElementById("lightning");
 	lightning_timer = new Stopwatch(dnew, {delay: 50}, 35000, 4);
 };
