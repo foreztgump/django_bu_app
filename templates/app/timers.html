@@ -1,11 +1,10 @@
 {% extends 'app/base.html' %}
-{% load static %}
-<script src="{% static 'js/timer.js' %}"></script>
 {% load bootstrap5 %}
 
 
 {% block content %}
-
+{% load static %}
+<script src="{% static 'js/timer.js' %}"></script>
 <script type="text/javascript">
 window.onload = function () {
 	var anew = document.getElementById("backflow");
