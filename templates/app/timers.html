@@ -8,20 +8,19 @@
 var Stopwatch = function(element, options, time_limit, voice) {
 
   var timer = createTimer(),
-	audio_backflow_in = new Audio('{% static 'audio/backflow-in.mp3' %}'),
-	audio_backflow = new Audio('{% static 'audio/backflow.mp3' %}'),
-	audio_fire_in = new Audio('{% static 'audio/fire-in.mp3' %}'),
-	audio_fire = new Audio('{% static 'audio/fire.mp3' %}'),
-	audio_reflect_in = new Audio('{% static 'audio/fire-in.mp3' %}'),
-	audio_reflect = new Audio('{% static 'audio/fire.mp3' %}'),
-	audio_lightning_in = new Audio('{% static 'audio/lightning-in.mp3' %}'),
-	audio_lightning = new Audio('{% static 'audio/lightning.mp3' %}'),
-	audio_5 = new Audio('{% static 'audio/5.mp3' %}'),
-	audio_4 = new Audio('{% static 'audio/4.mp3' %}'),
-	audio_3 = new Audio('{% static 'audio/3.mp3' %}'),
-	audio_2 = new Audio('{% static 'audio/2.mp3' %}'),
-	audio_1 = new Audio('{% static 'audio/1.mp3' %}'),
-	preload_audio = false,
+	audio_backflow_in = document.getElementById("audio_backflow_in"),
+	audio_backflow = document.getElementById("audio_backflow"),
+	audio_fire_in = document.getElementById("audio_fire_in"),
+	audio_fire = document.getElementById("audio_fire"),
+	audio_reflect_in = document.getElementById("audio_reflect_in"),
+	audio_reflect = document.getElementById("audio_reflect"),
+	audio_lightning_in = document.getElementById("audio_lightning_in"),
+	audio_lightning = document.getElementById("audio_lightning"),
+	audio_5 = document.getElementById("audio_5"),
+	audio_4 = document.getElementById("audio_4"),
+	audio_3 = document.getElementById("audio_3"),
+	audio_2 = document.getElementById("audio_2"),
+	audio_1 = document.getElementById("audio_1"),
     offset,
     clock,
     interval;
@@ -78,13 +77,9 @@ var Stopwatch = function(element, options, time_limit, voice) {
 
   function render() {
     timer.innerHTML = clock / 1000;
-	if (!preload_audio) {
-		preload(voice)
-	}
 	play_voice_mode(voice, clock);
     if (clock > time_limit) {
     	clock = 0;
-		preload_audio = false;
     }
   }
 
@@ -306,31 +301,6 @@ var Stopwatch = function(element, options, time_limit, voice) {
 	}
   }
 
-  function preload(num) {
-	preload_audio = true;
-	if (num == 1) {
-		audio_backflow_in.load()
-		audio_backflow.load()
-	}
-	else if (num == 2) {
-		audio_fire_in.load()
-		audio_fire.load()
-	}
-	else if (num == 3) {
-		audio_reflect_in.load()
-		audio_reflect.load()
-	}
-	else if (num == 4) {
-		audio_lightning_in.load()
-		audio_lightning.load()
-	}
-	audio_1.load()
-	audio_2.load()
-	audio_3.load()
-	audio_4.load()
-	audio_5.load()
-  }
-  
   // public API
   this.time_limit = time_limit;
   this.start = start;
@@ -397,6 +367,20 @@ window.onload = function () {
             <br/>
         </div>
     </div>
+	<audio hidden preload="auto">
+		<source src="{% static 'audio/backflow-in.mp3' %}" id="audio_backflow_in" type="audio/mpeg">
+		<source src="{% static 'audio/backflow.mp3' %}" id="audio_backflow" type="audio/mpeg">
+		<source src="{% static 'audio/fire-in.mp3' %}" id="audio_fire_in" type="audio/mpeg">
+		<source src="{% static 'audio/fire.mp3' %}" id="audio_fire" type="audio/mpeg">
+		<source src="{% static 'audio/reflect-in.mp3' %}" id="audio_reflect_in" type="audio/mpeg">
+		<source src="{% static 'audio/reflect.mp3' %}" id="audio_reflect" type="audio/mpeg">
+		<source src="{% static 'audio/lightning-in.mp3' %}" id="audio_lightning_in" type="audio/mpeg">
+		<source src="{% static 'audio/lightning.mp3' %}" id="audio_lightning" type="audio/mpeg">
+		<source src="{% static 'audio/5.mp3' %}" id="audio_5" type="audio/mpeg">
+		<source src="{% static 'audio/4.mp3' %}" id="audio_4" type="audio/mpeg">
+		<source src="{% static 'audio/3.mp3' %}" id="audio_3" type="audio/mpeg">
+		<source src="{% static 'audio/2.mp3' %}" id="audio_2" type="audio/mpeg">
+		<source src="{% static 'audio/1.mp3' %}" id="audio_1" type="audio/mpeg">
+	</audio>
 </div>
 {% endblock %}
-
