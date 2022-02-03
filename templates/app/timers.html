@@ -91,7 +91,7 @@ var Stopwatch = function(element, options, time_limit, voice) {
     return d;
   }
   
-  function play_voice_mode(num) {
+  function play_voice_mode(voice) {
 	if (num == 1) { //backflow
 		if (clock == 24) {
 			audio_backflow_in.play()
@@ -213,7 +213,7 @@ var Stopwatch = function(element, options, time_limit, voice) {
 
 window.onload = function () {
 	var anew = document.getElementById("backflow");
-	backflow_timer = new Stopwatch(anew, {delay: 50}, 10000);
+	backflow_timer = new Stopwatch(anew, {delay: 50}, 10000, 1);
 };
 </script>
 
