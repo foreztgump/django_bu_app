@@ -183,7 +183,7 @@ var Stopwatch = function(element, options, time_limit, voice) {
           count_1 = true;
         }
       } else if (clock >= 30000 && clock <= 31000) {
-        if (!backflow) {
+        if (!fire) {
           audio_fire.play()
           fire = true;
         }
@@ -228,7 +228,7 @@ var Stopwatch = function(element, options, time_limit, voice) {
           count_1 = true;
         }
       } else if (clock >= 30000 && clock <= 31000) {
-        if (!backflow) {
+        if (!reflect) {
           audio_reflect.play()
           reflect = true;
         }
@@ -273,7 +273,7 @@ var Stopwatch = function(element, options, time_limit, voice) {
           count_1 = true;
         }
       } else if (clock >= 30000 && clock <= 31000) {
-        if (!backflow) {
+        if (!lightning) {
           audio_lightning.play()
           lightning = true;
         }
@@ -283,19 +283,19 @@ var Stopwatch = function(element, options, time_limit, voice) {
 
   function countdown_voice(num) {
     if (num == 1) {
-      document.getElementById("audio_1").play()
-      document.getElementById("audio_2").load()
+      audio_1.play()
+      audio_2.load()
     } else if (num == 2) {
-      document.getElementById("audio_2").play()
-      document.getElementById("audio_3").load()
+      audio_2.play()
+      audio_3.load()
     } else if (num == 3) {
-      document.getElementById("audio_3").play()
-      document.getElementById("audio_4").load()
+      audio_3.play()
+      audio_4.load()
     } else if (num == 4) {
-      document.getElementById("audio_4").play()
-      document.getElementById("audio_5").load()
+      audio_4.play()
+      audio_5.load()
     } else if (num == 5) {
-      document.getElementById("audio_5").play()
+      audio_5.play()
     }
   }
 
