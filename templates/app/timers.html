@@ -1,65 +1,16 @@
 {% extends 'app/base.html' %}
+{% load static %}
+<script src="{% static 'js/timer.js' %}"></script>
 {% load bootstrap5 %}
 
 
 {% block content %}
-{% load static %}
+
 <script type="text/javascript">
-var countdown;
-var countdown_number;
-var audio_backflow_in = new Audio('{% static 'audio/backflow-in.mp3' %}');
-var audio_backflow = new Audio('{% static 'audio/backflow.mp3' %}');
-var audio_5 = new Audio('{% static 'audio/5.mp3' %}');
-var audio_4 = new Audio('{% static 'audio/4.mp3' %}');
-var audio_3 = new Audio('{% static 'audio/3.mp3' %}');
-var audio_2 = new Audio('{% static 'audio/2.mp3' %}');
-var audio_1 = new Audio('{% static 'audio/1.mp3' %}');
-
-function countdown_trigger() {
-    if (countdown_number > 0) {
-        countdown_number--;
-        document.getElementById('countdown_text').innerHTML = countdown_number;
-        if (countdown_number > 0) {
-            countdown = setTimeout(countdown_trigger, 1000);
-        }
-        if (countdown_number === 7) {
-            audio_backflow_in.play()
-        }
-        if (countdown_number === 5) {
-            audio_5.play()
-        }
-        if (countdown_number === 4) {
-            audio_4.play()
-        }
-        if (countdown_number === 3) {
-            audio_3.play()
-        }
-        if (countdown_number === 2) {
-            audio_2.play()
-        }
-        if (countdown_number === 1) {
-            audio_1.play()
-        }
-        if (countdown_number === 0) {
-            audio_backflow.play()
-        }
-    }
-}
-
-function countdown_clear() {
-    clearTimeout(countdown);
-    document.getElementById('countdown_text').innerHTML = "";
-}
-
-function countdown_init_backflow() {
-    countdown_number = 10;
-    countdown_trigger();
-}
-
-function countdown_init_reflect() {
-    countdown_number = 11;
-    countdown_trigger();
-}
+window.onload = function () {
+	var anew = document.getElementById("backflow");
+	backflow_timer = new Stopwatch(anew, {delay: 50}, 10000);
+};
 </script>
 
 <div class="container text-center">
@@ -71,9 +22,9 @@ function countdown_init_reflect() {
         <div class="col">
             <br/>
             <h4>Backflow</h4>
-            <h1 id="countdown_text"></h1>
-            <button onclick="countdown_init_backflow()" class="btn btn-success">Start</button>
-            <button onclick="countdown_clear()" class="btn btn-danger">Stop</button>
+            <h1 class="stopwatch" id="backflow"></h1>
+            <button onclick="backflow_timer.start()" class="btn btn-success">Start</button>
+            <button onclick="backflow_timer.stop()" class="btn btn-danger">Stop</button>
         </div>
         <div class="col">
             <br/>
