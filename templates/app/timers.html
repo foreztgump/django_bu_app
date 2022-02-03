@@ -21,6 +21,7 @@ var Stopwatch = function(element, options, time_limit, voice) {
 	audio_3 = new Audio('{% static 'audio/3.mp3' %}'),
 	audio_2 = new Audio('{% static 'audio/2.mp3' %}'),
 	audio_1 = new Audio('{% static 'audio/1.mp3' %}'),
+	preload_audio = false;
     offset,
     clock,
     interval;
@@ -77,9 +78,13 @@ var Stopwatch = function(element, options, time_limit, voice) {
 
   function render() {
     timer.innerHTML = clock / 1000;
+	if (!preload_audio) {
+		preload(voice)
+	}
 	play_voice_mode(voice, clock);
     if (clock > time_limit) {
     	clock = 0;
+		preload_audio = false;
     }
   }
 
@@ -92,7 +97,6 @@ var Stopwatch = function(element, options, time_limit, voice) {
   }
   
   function play_voice_mode(num, clock) {
-	preload(num)
 	if (num == 1) { //backflow
 		if (clock >= 24000 && clock <= 25000) {
 			audio_backflow_in.play()
@@ -303,6 +307,7 @@ var Stopwatch = function(element, options, time_limit, voice) {
   }
 
   function preload(num) {
+	preload_audio = true;
 	if (num == 1) {
 		audio_backflow_in.load()
 		audio_backflow.load()
