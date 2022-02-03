@@ -8,19 +8,19 @@
 var Stopwatch = function(element, options, time_limit, voice) {
 
   var timer = createTimer(),
-	audio_backflow_in = new Audio('{% static 'audio/backflow-in.mp3' %}');
-	audio_backflow = new Audio('{% static 'audio/backflow.mp3' %}');
-	audio_fire_in = new Audio('{% static 'audio/fire-in.mp3' %}');
-	audio_fire = new Audio('{% static 'audio/fire.mp3' %}');
-	audio_reflect_in = new Audio('{% static 'audio/fire-in.mp3' %}');
-	audio_reflect = new Audio('{% static 'audio/fire.mp3' %}');
-	audio_lightning_in = new Audio('{% static 'audio/lightning-in.mp3' %}');
-	audio_lightning = new Audio('{% static 'audio/lightning.mp3' %}');
-	audio_5 = new Audio('{% static 'audio/5.mp3' %}');
-	audio_4 = new Audio('{% static 'audio/4.mp3' %}');
-	audio_3 = new Audio('{% static 'audio/3.mp3' %}');
-	audio_2 = new Audio('{% static 'audio/2.mp3' %}');
-	audio_1 = new Audio('{% static 'audio/1.mp3' %}');
+	audio_backflow_in = new Audio('{% static 'audio/backflow-in.mp3' %}'),
+	audio_backflow = new Audio('{% static 'audio/backflow.mp3' %}'),
+	audio_fire_in = new Audio('{% static 'audio/fire-in.mp3' %}'),
+	audio_fire = new Audio('{% static 'audio/fire.mp3' %}'),
+	audio_reflect_in = new Audio('{% static 'audio/fire-in.mp3' %}'),
+	audio_reflect = new Audio('{% static 'audio/fire.mp3' %}'),
+	audio_lightning_in = new Audio('{% static 'audio/lightning-in.mp3' %}'),
+	audio_lightning = new Audio('{% static 'audio/lightning.mp3' %}'),
+	audio_5 = new Audio('{% static 'audio/5.mp3' %}'),
+	audio_4 = new Audio('{% static 'audio/4.mp3' %}'),
+	audio_3 = new Audio('{% static 'audio/3.mp3' %}'),
+	audio_2 = new Audio('{% static 'audio/2.mp3' %}'),
+	audio_1 = new Audio('{% static 'audio/1.mp3' %}'),
     offset,
     clock,
     interval;
@@ -213,7 +213,7 @@ var Stopwatch = function(element, options, time_limit, voice) {
 
 window.onload = function () {
 	var anew = document.getElementById("backflow");
-	backflow_timer = new Stopwatch(anew, {delay: 50}, 10000, 1);
+	backflow_timer = new Stopwatch(anew, {delay: 50}, 35000, 1);
 };
 </script>
 
