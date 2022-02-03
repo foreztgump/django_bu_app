@@ -3,9 +3,11 @@
 
 
 {% block content %}
+{% load static %}
 <script type="text/javascript">
 var countdown;
 var countdown_number;
+var audio = new Audio('{% static 'audio/backflow.mp3' %}');
 
 function countdown_trigger() {
     if (countdown_number > 0) {
@@ -16,7 +18,7 @@ function countdown_trigger() {
         }
 
         if (countdown_number === 5) {
-            document.getElementById('backflow').play();
+            audio.play()
         }
     }
 }
@@ -36,7 +38,7 @@ function countdown_init_reflect() {
     countdown_trigger();
 }
 </script>
-{% load static %}
+
 <div class="container text-center">
 
     <h3>Timers</h3>
