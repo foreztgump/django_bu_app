@@ -372,18 +372,44 @@ window.onload = function () {
             <br/>
         </div>
     </div>
-	<audio hidden preload="auto" src="{% static 'audio/backflow-in.mp3' %}" id="audio_backflow_in"></audio>
-	<audio hidden preload="auto" src="{% static 'audio/backflow.mp3' %}" id="audio_backflow"></audio>
-	<audio hidden preload="auto" src="{% static 'audio/fire-in.mp3' %}" id="audio_fire_in"></audio>
-	<audio hidden preload="auto" src="{% static 'audio/fire.mp3' %}" id="audio_fire"></audio>
-	<audio hidden preload="auto" src="{% static 'audio/reflect-in.mp3' %}" id="audio_reflect_in"></audio>
-	<audio hidden preload="auto" src="{% static 'audio/reflect.mp3' %}" id="audio_reflect"></audio>
-	<audio hidden preload="auto" src="{% static 'audio/lightning-in.mp3' %}" id="audio_lightning_in"></audio>
-	<audio hidden preload="auto" src="{% static 'audio/lightning.mp3' %}" id="audio_lightning"></audio>
-	<audio hidden preload="auto" src="{% static 'audio/5.mp3' %}" id="audio_5"></audio>
-	<audio hidden preload="auto" src="{% static 'audio/4.mp3' %}" id="audio_4"></audio>
-	<audio hidden preload="auto" src="{% static 'audio/3.mp3' %}" id="audio_3"></audio>
-	<audio hidden preload="auto" src="{% static 'audio/2.mp3' %}" id="audio_2"></audio>
-	<audio hidden preload="auto" src="{% static 'audio/1.mp3' %}" id="audio_1"></audio>
+	<audio hidden preload="auto" id="audio_backflow_in">
+		<source src="{% static 'audio/backflow-in.mp3' %}" type="audio/mpeg">
+	</audio>
+	<audio hidden preload="auto" id="audio_backflow">
+		<source src="{% static 'audio/backflow.mp3' %}" type="audio/mpeg">
+	</audio>
+	<audio hidden preload="auto" id="audio_fire_in">
+		<source src="{% static 'audio/fire-in.mp3' %}" type="audio/mpeg">
+	</audio>
+	<audio hidden preload="auto" id="audio_fire">
+		<source src="{% static 'audio/fire.mp3' %}" type="audio/mpeg">
+	</audio>
+	<audio hidden preload="auto" id="audio_reflect_in">
+		<source src="{% static 'audio/reflect-in.mp3' %}" type="audio/mpeg">
+	</audio>
+	<audio hidden preload="auto" id="audio_reflect">
+		<source src="{% static 'audio/reflect.mp3' %}" type="audio/mpeg">
+	</audio>
+	<audio hidden preload="auto" id="audio_lightning_in">
+		<source src="{% static 'audio/lightning-in.mp3' %}" type="audio/mpeg">
+	</audio>
+	<audio hidden preload="auto" id="audio_lightning">
+		<source src="{% static 'audio/lightning.mp3' %}" type="audio/mpeg">
+	</audio>
+	<audio hidden preload="auto" id="audio_5">
+		<source src="{% static 'audio/5.mp3' %}" type="audio/mpeg">
+	</audio>
+	<audio hidden preload="auto" id="audio_4">
+		<source src="{% static 'audio/4.mp3' %}" type="audio/mpeg">
+	</audio>
+	<audio hidden preload="auto" id="audio_3">
+		<source src="{% static 'audio/3.mp3' %}" type="audio/mpeg">
+	</audio>
+	<audio hidden preload="auto" id="audio_2">
+		<source src="{% static 'audio/2.mp3' %}" type="audio/mpeg">
+	</audio>
+	<audio hidden preload="auto" id="audio_1">
+		<source src="{% static 'audio/1.mp3' %}" type="audio/mpeg">
+	</audio>
 </div>
 {% endblock %}
