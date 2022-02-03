@@ -95,24 +95,49 @@ var Stopwatch = function(element, options, time_limit, voice) {
 	if (num == 1) { //backflow
 		if (clock >= 24000 && clock <= 25000) {
 			audio_backflow_in.play()
+			count_5 = false;
+			count_4 = false;
+			count_3 = false;
+			count_2 = false;
+			count_1 = false;
+			backflow = false;
 		}
 		else if (clock >= 25000 && clock <= 26000) {
-			countdown_voice(5)
+			if (!count_5) {
+				countdown_voice(5)
+				count_5 = true;
+			}
 		}
 		else if (clock >= 26000 && clock <= 27000) {
-			countdown_voice(4)
+			if (!count_4) {
+				countdown_voice(4)
+				count_4 = true;
+			}
 		}
 		else if (clock >= 27000 && clock <= 28000) {
-			countdown_voice(3)
+			if (!count_3) {
+				countdown_voice(3)
+				count_3 = true;
+			}
 		}
 		else if (clock >= 28000 && clock <= 29000) {
-			countdown_voice(2)
+			if (!count_2) {
+				countdown_voice(2)
+				count_2 = true;
+			}
 		}
 		else if (clock >= 29000 && clock <= 30000) {
-			countdown_voice(1)
+			if (!count_1) {
+				countdown_voice(1)
+				count_1 = true;
+			}
 		}
 		else if (clock >= 30000 && clock <= 31000) {
-			audio_backflow.play()
+			if (!backflow) {
+				audio_backflow.play()
+				backflow = true;
+			}
+			
 		}
 	}
 	else if (num == 2) { //fire
