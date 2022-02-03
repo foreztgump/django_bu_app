@@ -93,25 +93,25 @@ var Stopwatch = function(element, options, time_limit, voice) {
   
   function play_voice_mode(num, clock) {
 	if (num == 1) { //backflow
-		if (clock == 24000) {
+		if (clock >= 24000 && clock <= 25000) {
 			audio_backflow_in.play()
 		}
-		else if (clock == 25000) {
+		else if (clock >= 25000 && clock <= 26000) {
 			countdown_voice(5)
 		}
-		else if (clock == 26000) {
+		else if (clock >= 26000 && clock <= 27000) {
 			countdown_voice(4)
 		}
-		else if (clock == 27000) {
+		else if (clock >= 27000 && clock <= 28000) {
 			countdown_voice(3)
 		}
-		else if (clock == 28000) {
+		else if (clock >= 28000 && clock <= 29000) {
 			countdown_voice(2)
 		}
-		else if (clock == 29000) {
+		else if (clock >= 29000 && clock <= 30000) {
 			countdown_voice(1)
 		}
-		else if (clock == 30000) {
+		else if (clock >= 30000 && clock <= 31000) {
 			audio_backflow.play()
 		}
 	}
