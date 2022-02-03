@@ -98,8 +98,12 @@ var Stopwatch = function(element, options, time_limit, voice) {
   
   function play_voice_mode(num, clock) {
 	if (num == 1) { //backflow
+		if (clock >= 23000 && clock <= 24000) {
+			audio_backflow_in.load()
+		}
 		if (clock >= 24000 && clock <= 25000) {
-			document.getElementById("audio_backflow_in").play()
+			audio_backflow_in).play()
+			audio_1.load()
 			count_5 = false;
 			count_4 = false;
 			count_3 = false;
@@ -134,20 +138,25 @@ var Stopwatch = function(element, options, time_limit, voice) {
 		else if (clock >= 29000 && clock <= 30000) {
 			if (!count_1) {
 				countdown_voice(1)
+				audio_backflow.load()
 				count_1 = true;
 			}
 		}
 		else if (clock >= 30000 && clock <= 31000) {
 			if (!backflow) {
-				document.getElementById("audio_backflow").play()
+				audio_backflow.play()
 				backflow = true;
 			}
 			
 		}
 	}
 	else if (num == 2) { //fire
-		if (clock == 24000) {
+		if (clock >= 23000 && clock <= 24000) {
+			audio_fire_in.load()
+		}
+		if (clock >= 24000 && clock <= 25000) {
 			audio_fire_in.play()
+			audio_1.load()
 			count_5 = false;
 			count_4 = false;
 			count_3 = false;
@@ -182,6 +191,7 @@ var Stopwatch = function(element, options, time_limit, voice) {
 		else if (clock >= 29000 && clock <= 30000) {
 			if (!count_1) {
 				countdown_voice(1)
+				audio_fire.load()
 				count_1 = true;
 			}
 		}
@@ -193,8 +203,12 @@ var Stopwatch = function(element, options, time_limit, voice) {
 		}
 	}
 	else if (num == 3) { //reflect
-		if (clock == 24000) {
+		if (clock >= 23000 && clock <= 24000) {
+			audio_reflect_in.load()
+		}
+		if (clock >= 24000 && clock <= 25000) {
 			audio_reflect_in.play()
+			audio_1.load()
 			count_5 = false;
 			count_4 = false;
 			count_3 = false;
@@ -229,6 +243,7 @@ var Stopwatch = function(element, options, time_limit, voice) {
 		else if (clock >= 29000 && clock <= 30000) {
 			if (!count_1) {
 				countdown_voice(1)
+				audio_reflect.load()
 				count_1 = true;
 			}
 		}
@@ -240,8 +255,12 @@ var Stopwatch = function(element, options, time_limit, voice) {
 		}
 	}
 	else if (num == 4) { //lightning
-		if (clock == 24000) {
+		if (clock >= 23000 && clock <= 24000) {
+			audio_lightning_in.load()
+		}
+		if (clock >= 24000 && clock <= 25000) {
 			audio_lightning_in.play()
+			audio_1.load()
 			count_5 = false;
 			count_4 = false;
 			count_3 = false;
@@ -276,6 +295,7 @@ var Stopwatch = function(element, options, time_limit, voice) {
 		else if (clock >= 29000 && clock <= 30000) {
 			if (!count_1) {
 				countdown_voice(1)
+				audio_lightning.load()
 				count_1 = true;
 			}
 		}
@@ -291,15 +311,19 @@ var Stopwatch = function(element, options, time_limit, voice) {
   function countdown_voice(num) {
 	if (num == 1) {
 		document.getElementById("audio_1").play()
+		document.getElementById("audio_2").load()
 	}
 	else if (num == 2) {
 		document.getElementById("audio_2").play()
+		document.getElementById("audio_3").load()
 	}
 	else if (num == 3) {
 		document.getElementById("audio_3").play()
+		document.getElementById("audio_4").load()
 	}
 	else if (num == 4) {
 		document.getElementById("audio_4").play()
+		document.getElementById("audio_5").load()
 	}
 	else if (num == 5) {
 		document.getElementById("audio_5").play()
