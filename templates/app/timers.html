@@ -22,28 +22,10 @@ function countdown_trigger() {
         if (countdown_number > 0) {
             countdown = setTimeout(countdown_trigger, 1000);
         }
-
         if (countdown_number === 6) {
             audio_backflow_in.play()
         }
-        if (countdown_number === 5) {
-            audio_5.play()
-        }
-        if (countdown_number === 4) {
-            audio_4.play()
-        }
-        if (countdown_number === 3) {
-            audio_3.play()
-        }
-        if (countdown_number === 2) {
-            audio_2.play()
-        }
-        if (countdown_number === 1) {
-            audio_1.play()
-        }
-        if (countdown_number === 0) {
-            audio_backflow.play()
-        }
+
     }
 }
 
