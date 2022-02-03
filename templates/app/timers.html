@@ -8,6 +8,12 @@
 var countdown;
 var countdown_number;
 var audio_backflow_in = new Audio('{% static 'audio/backflow-in.mp3' %}');
+var audio_backflow = new Audio('{% static 'audio/backflow.mp3' %}');
+var audio_5 = new Audio('{% static 'audio/5.mp3' %}');
+var audio_4 = new Audio('{% static 'audio/4.mp3' %}');
+var audio_3 = new Audio('{% static 'audio/3.mp3' %}');
+var audio_2 = new Audio('{% static 'audio/2.mp3' %}');
+var audio_1 = new Audio('{% static 'audio/1.mp3' %}');
 
 function countdown_trigger() {
     if (countdown_number > 0) {
@@ -16,23 +22,26 @@ function countdown_trigger() {
         if (countdown_number > 0) {
             countdown = setTimeout(countdown_trigger, 1000);
         }
-        if (countdown_number === 6) {
+        if (countdown_number === 7) {
             audio_backflow_in.play()
         }
-
-    }
-}
-
-function countdown_trigger() {
-    if (countdown_number > 0) {
-        countdown_number--;
-        document.getElementById('countdown_text').innerHTML = countdown_number;
-        if (countdown_number > 0) {
-            countdown = setTimeout(countdown_trigger, 1000);
-        }
-
         if (countdown_number === 5) {
-            audio.play()
+            audio_5.play()
+        }
+        if (countdown_number === 4) {
+            audio_4.play()
+        }
+        if (countdown_number === 3) {
+            audio_3.play()
+        }
+        if (countdown_number === 2) {
+            audio_2.play()
+        }
+        if (countdown_number === 1) {
+            audio_1.play()
+        }
+        if (countdown_number === 0) {
+            audio_backflow.play()
         }
     }
 }
