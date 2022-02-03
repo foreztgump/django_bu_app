@@ -215,6 +215,18 @@ window.onload = function () {
 	var anew = document.getElementById("backflow");
 	backflow_timer = new Stopwatch(anew, {delay: 50}, 35000, 1);
 };
+window.onload = function () {
+	var bnew = document.getElementById("reflect");
+	reflect_timer = new Stopwatch(bnew, {delay: 50}, 35000, 2);
+};
+window.onload = function () {
+	var cnew = document.getElementById("fire");
+	fire_timer = new Stopwatch(cnew, {delay: 50}, 35000, 3);
+};
+window.onload = function () {
+	var dnew = document.getElementById("lightning");
+	lightning_timer = new Stopwatch(dnew, {delay: 50}, 35000, 4);
+};
 </script>
 
 <div class="container text-center">
@@ -229,13 +241,15 @@ window.onload = function () {
             <h1 class="stopwatch" id="backflow"></h1>
             <button onclick="backflow_timer.start()" class="btn btn-success">Start</button>
             <button onclick="backflow_timer.stop()" class="btn btn-danger">Stop</button>
+			<button onclick="backflow_timer.reset()" class="btn btn-secondary">Reset</button>
         </div>
         <div class="col">
             <br/>
             <h4>Reflect</h4>
-            <h1>00:00:00</h1>
-            <button onclick="countdown_init_reflect()" class="btn btn-success">Start</button>
-            <button onclick="countdown_clear()" class="btn btn-danger">Stop</button>
+            <h1 class="stopwatch" id="reflect"></h1>
+            <button onclick="reflect_timer.start()" class="btn btn-success">Start</button>
+            <button onclick="reflect_timer.stop()" class="btn btn-danger">Stop</button>
+			<button onclick="reflect_timer.reset()" class="btn btn-secondary">Reset</button>
             <br/>
             <br/>
         </div>
@@ -244,18 +258,20 @@ window.onload = function () {
         <div class="col">
             <br/>
             <h4>Fire</h4>
-            <h1>00:00:00</h1>
-            <button type="submit" name="calculate" class="btn btn-success">Start</button>
-            <button type="submit" name="calculate" class="btn btn-danger">Stop</button>
+            <h1 class="stopwatch" id="fire"></h1>
+            <button onclick="fire_timer.start()" class="btn btn-success">Start</button>
+            <button onclick="fire_timer.stop()" class="btn btn-danger">Stop</button>
+			<button onclick="fire_timer.reset()" class="btn btn-secondary">Reset</button>
             <br/>
             <br/>
         </div>
         <div class="col">
             <br/>
             <h4>Lightning</h4>
-            <h1>00:00:00</h1>
-            <button type="submit" name="calculate" class="btn btn-success">Start</button>
-            <button type="submit" name="calculate" class="btn btn-danger">Stop</button>
+            <h1 class="stopwatch" id="lightning"></h1>
+            <button onclick="lightning_timer.start()" class="btn btn-success">Start</button>
+            <button onclick="lightning_timer.stop()" class="btn btn-danger">Stop</button>
+			<button onclick="lightning_timer.reset()" class="btn btn-secondary">Reset</button>
             <br/>
             <br/>
         </div>
