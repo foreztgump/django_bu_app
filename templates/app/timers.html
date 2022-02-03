@@ -36,6 +36,7 @@ function countdown_init_reflect() {
     countdown_trigger();
 }
 </script>
+{% load static %}
 <div class="container text-center">
 
     <h3>Timers</h3>
@@ -83,7 +84,7 @@ function countdown_init_reflect() {
 
     <audio hidden>
         <p>An invisible audio player:</p>
-        {% load static %}
+        
         <source src="{% static 'img/backflow.mp3' %}" type="audio/mpeg" id="backflow">
     </audio>
 
