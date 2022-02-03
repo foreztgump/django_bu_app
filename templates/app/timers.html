@@ -3,6 +3,39 @@
 
 
 {% block content %}
+<script type="text/javascript">
+var countdown;
+var countdown_number;
+
+function countdown_trigger() {
+    if (countdown_number > 0) {
+        countdown_number--;
+        document.getElementById('countdown_text').innerHTML = countdown_number;
+        if (countdown_number > 0) {
+            countdown = setTimeout(countdown_trigger, 1000);
+        }
+
+        if (countdown_number === 5) {
+            document.getElementById('backflow').play();
+        }
+    }
+}
+
+function countdown_clear() {
+    clearTimeout(countdown);
+    document.getElementById('countdown_text').innerHTML = "";
+}
+
+function countdown_init_backflow() {
+    countdown_number = 10;
+    countdown_trigger();
+}
+
+function countdown_init_reflect() {
+    countdown_number = 11;
+    countdown_trigger();
+}
+</script>
 <div class="container text-center">
 
     <h3>Timers</h3>
@@ -12,17 +45,17 @@
         <div class="col">
             <br/>
             <h4>Backflow</h4>
-            <h1>00:00:00</h1>
-            <button type="submit" name="calculate" class="btn btn-success">Start</button>
-            <button type="submit" name="calculate" class="btn btn-danger">Stop</button>
-            <br/>
+            <h1 id="countdown_text"></h1>
+            <button onclick="countdown_init_backflow()" class="btn btn-success">Start</button>
+            <button onclick="countdown_clear()" class="btn btn-danger">Stop</button>
+            <input type="hidden" id="audio-src" value="{% static 'audio/backflow.mp3' %}">
         </div>
         <div class="col">
             <br/>
             <h4>Reflect</h4>
             <h1>00:00:00</h1>
-            <button type="submit" name="calculate" class="btn btn-success">Start</button>
-            <button type="submit" name="calculate" class="btn btn-danger">Stop</button>
+            <button onclick="countdown_init_reflect()" class="btn btn-success">Start</button>
+            <button onclick="countdown_clear()" class="btn btn-danger">Stop</button>
             <br/>
             <br/>
         </div>
@@ -48,6 +81,11 @@
         </div>
     </div>
 
+    <audio hidden>
+        <p>An invisible audio player:</p>
+        {% load static %}
+        <source src="{% static 'img/backflow.mp3' %}" type="audio/mpeg" id="backflow">
+    </audio>
 
 </div>
 {% endblock %}
