@@ -73,11 +73,11 @@ var Stopwatch = function(element, options, time_limit, voice) {
   function update() {
     clock += delta();
     render();
-	play_voice_mode(voice);
   }
 
   function render() {
     timer.innerHTML = clock / 1000;
+	play_voice_mode(voice, clock);
     if (clock > time_limit) {
     	clock = 0;
     }
@@ -91,7 +91,7 @@ var Stopwatch = function(element, options, time_limit, voice) {
     return d;
   }
   
-  function play_voice_mode(num) {
+  function play_voice_mode(num, clock) {
 	if (num == 1) { //backflow
 		if (clock == 24000) {
 			audio_backflow_in.play()
@@ -225,7 +225,7 @@ window.onload = function () {
 
 <div class="container text-center">
 
-    <h3>Timers</h3>
+    <h3>Timers(Still being worked on)</h3>
       <br/>
 
     <div class="row">
