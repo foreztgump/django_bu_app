@@ -21,7 +21,7 @@ var Stopwatch = function(element, options, time_limit, voice) {
 	audio_3 = new Audio('{% static 'audio/3.mp3' %}'),
 	audio_2 = new Audio('{% static 'audio/2.mp3' %}'),
 	audio_1 = new Audio('{% static 'audio/1.mp3' %}'),
-	preload_audio = false;
+	preload_audio = false,
     offset,
     clock,
     interval;
