@@ -309,7 +309,6 @@ var Stopwatch = function(element, options, time_limit, voice) {
   }
 
   // public API
-  this.time_limit = time_limit;
   this.start = start;
   this.stop = stop;
   this.reset = reset;
@@ -382,11 +381,11 @@ function setColor() {
 
 <div class="container text-center">
 
-    <h3>Timers still off(Proof of concept)</h3>
+    <h2>Timers still off(Proof of concept)</h2>
       <br/>
 
     <div class="row justify-content-evenly">
-        <div class="col" id="backflow_div">
+        <div class="col-4 border" id="backflow_div">
             <br/>
             <h2 id="backflow_title" style="font-size:90px;">Backflow</h2>
             <h1 class="stopwatch" id="backflow" style="font-size:140px;"></h1>
@@ -394,7 +393,7 @@ function setColor() {
             <button onclick="backflow_timer.stop()" class="btn btn-danger">Stop</button>
 			<button onclick="backflow_timer.reset()" class="btn btn-secondary">Reset</button>
         </div>
-        <div class="col" id="reflect_div">
+        <div class="col border" id="reflect_div">
             <br/>
             <h2 id="reflect_title" style="font-size:90px;">Reflect</h2>
             <h1 class="stopwatch" id="reflect" style="font-size:140px;"></h1>
@@ -408,7 +407,7 @@ function setColor() {
 	<br/>
 	<br/>
     <div class="row justify-content-evenly">
-        <div class="col" id="fire_div">
+        <div class="col-4 border" id="fire_div">
             <br/>
             <h2 id="fire_title" style="font-size:90px;">Fire</h2>
             <h1 class="stopwatch" id="fire" style="font-size:140px;"></h1>
@@ -418,7 +417,7 @@ function setColor() {
             <br/>
             <br/>
         </div>
-        <div class="col" id="lightning_div">
+        <div class="col-4 border" id="lightning_div">
             <br/>
             <h2 id="lightning_title" style="font-size:90px;">Lightning</h2>
             <h1 class="stopwatch" id="lightning" style="font-size:140px;"></h1>
