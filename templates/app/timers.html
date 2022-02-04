@@ -72,7 +72,7 @@ var Stopwatch = function(element, options, time_limit, voice) {
   }
 
   function reset() {
-    clock = 0;
+    clock = time_limit;
     render(0);
   }
 
@@ -80,8 +80,8 @@ var Stopwatch = function(element, options, time_limit, voice) {
     clock += delta();
     render();
 	play_voice_mode(voice, clock);
-    if (clock > time_limit) {
-      clock = 0;
+    if (clock <= 0) {
+      clock = time_limit;
     }
   }
 
@@ -101,12 +101,12 @@ var Stopwatch = function(element, options, time_limit, voice) {
   function play_voice_mode(num, clock) {
     if (num == 1) { //backflow
       if (!preloaded) {
-        if (clock >= 23000 && clock <= 24000) {
+        if (clock >= 16000 && clock <= 17000) {
           audio_backflow_in.load();
           preloaded = true;
         }
       }
-      if (clock >= 24000 && clock <= 25000) {
+      if (clock >= 15000 && clock <= 16000) {
         audio_backflow_in.play();
         count_5 = false;
         count_4 = false;
@@ -115,33 +115,33 @@ var Stopwatch = function(element, options, time_limit, voice) {
         count_1 = false;
         backflow = false;
         preloaded = false;
-      } else if (clock >= 25000 && clock <= 26000) {
+      } else if (clock >= 14000 && clock <= 15000) {
         if (!count_5) {
           countdown_voice(5)
           count_5 = true;
         }
-      } else if (clock >= 26000 && clock <= 27000) {
+      } else if (clock >= 13000 && clock <= 14000) {
         if (!count_4) {
           countdown_voice(4)
           count_4 = true;
         }
-      } else if (clock >= 27000 && clock <= 28000) {
+      } else if (clock >= 12000 && clock <= 13000) {
         if (!count_3) {
           countdown_voice(3)
           count_3 = true;
         }
-      } else if (clock >= 28000 && clock <= 29000) {
+      } else if (clock >= 11000 && clock <= 12000) {
         if (!count_2) {
           countdown_voice(2)
           count_2 = true;
         }
-      } else if (clock >= 29000 && clock <= 30000) {
+      } else if (clock >= 10000 && clock <= 11000) {
         if (!count_1) {
           countdown_voice(1)
           audio_backflow.load()
           count_1 = true;
         }
-      } else if (clock >= 30000 && clock <= 31000) {
+      } else if (clock >= 9000 && clock <= 10000) {
         if (!backflow) {
           audio_backflow.play()
           backflow = true;
@@ -150,12 +150,12 @@ var Stopwatch = function(element, options, time_limit, voice) {
       }
     } else if (num == 2) { //fire
       if (!preloaded) {
-        if (clock >= 23000 && clock <= 24000) {
+        if (clock >= 11000 && clock <= 12000) {
           audio_fire_in.load()
           preloaded = true
         }
       }
-      if (clock >= 24000 && clock <= 25000) {
+      if (clock >= 10000 && clock <= 11000) {
         audio_fire_in.play()
         count_5 = false;
         count_4 = false;
@@ -164,33 +164,33 @@ var Stopwatch = function(element, options, time_limit, voice) {
         count_1 = false;
         fire = false;
         preloaded = false;
-      } else if (clock >= 25000 && clock <= 26000) {
+      } else if (clock >= 9000 && clock <= 10000) {
         if (!count_5) {
           countdown_voice(5)
           count_5 = true;
         }
-      } else if (clock >= 26000 && clock <= 27000) {
+      } else if (clock >= 8000 && clock <= 9000) {
         if (!count_4) {
           countdown_voice(4)
           count_4 = true;
         }
-      } else if (clock >= 27000 && clock <= 28000) {
+      } else if (clock >= 7000 && clock <= 8000) {
         if (!count_3) {
           countdown_voice(3)
           count_3 = true;
         }
-      } else if (clock >= 28000 && clock <= 29000) {
+      } else if (clock >= 6000 && clock <= 7000) {
         if (!count_2) {
           countdown_voice(2)
           count_2 = true;
         }
-      } else if (clock >= 29000 && clock <= 30000) {
+      } else if (clock >= 5000 && clock <= 6000) {
         if (!count_1) {
           countdown_voice(1)
           audio_fire.load()
           count_1 = true;
         }
-      } else if (clock >= 30000 && clock <= 31000) {
+      } else if (clock >= 4000 && clock <= 5000) {
         if (!fire) {
           audio_fire.play()
           fire = true;
@@ -198,12 +198,12 @@ var Stopwatch = function(element, options, time_limit, voice) {
       }
     } else if (num == 3) { //reflect
       if (!preloaded) {
-        if (clock >= 23000 && clock <= 24000) {
+        if (clock >= 11000 && clock <= 12000) {
           audio_reflect_in.load()
           preloaded = true
         }
       }
-      if (clock >= 24000 && clock <= 25000) {
+      if (clock >= 10000 && clock <= 11000) {
         audio_reflect_in.play()
         count_5 = false;
         count_4 = false;
@@ -212,33 +212,33 @@ var Stopwatch = function(element, options, time_limit, voice) {
         count_1 = false;
         reflect = false;
         preloaded = false;
-      } else if (clock >= 25000 && clock <= 26000) {
+      } else if (clock >= 9000 && clock <= 10000) {
         if (!count_5) {
           countdown_voice(5)
           count_5 = true;
         }
-      } else if (clock >= 26000 && clock <= 27000) {
+      } else if (clock >= 8000 && clock <= 9000) {
         if (!count_4) {
           countdown_voice(4)
           count_4 = true;
         }
-      } else if (clock >= 27000 && clock <= 28000) {
+      } else if (clock >= 7000 && clock <= 8000) {
         if (!count_3) {
           countdown_voice(3)
           count_3 = true;
         }
-      } else if (clock >= 28000 && clock <= 29000) {
+      } else if (clock >= 6000 && clock <= 7000) {
         if (!count_2) {
           countdown_voice(2)
           count_2 = true;
         }
-      } else if (clock >= 29000 && clock <= 30000) {
+      } else if (clock >= 5000 && clock <= 6000) {
         if (!count_1) {
           countdown_voice(1)
           audio_reflect.load()
           count_1 = true;
         }
-      } else if (clock >= 30000 && clock <= 31000) {
+      } else if (clock >= 4000 && clock <= 5000) {
         if (!reflect) {
           audio_reflect.play()
           reflect = true;
@@ -246,12 +246,12 @@ var Stopwatch = function(element, options, time_limit, voice) {
       }
     } else if (num == 4) { //lightning
       if (!preloaded) {
-        if (clock >= 23000 && clock <= 24000) {
+        if (clock >= 11000 && clock <= 12000) {
           audio_lightning_in.load()
           preloaded = true
         }
       }
-      if (clock >= 24000 && clock <= 25000) {
+      if (clock >= 10000 && clock <= 11000) {
         audio_lightning_in.play()
         count_5 = false;
         count_4 = false;
@@ -260,33 +260,33 @@ var Stopwatch = function(element, options, time_limit, voice) {
         count_1 = false;
         lightning = false;
         preloaded = false;
-      } else if (clock >= 25000 && clock <= 26000) {
+      } else if (clock >= 9000 && clock <= 10000) {
         if (!count_5) {
           countdown_voice(5)
           count_5 = true;
         }
-      } else if (clock >= 26000 && clock <= 27000) {
+      } else if (clock >= 8000 && clock <= 9000) {
         if (!count_4) {
           countdown_voice(4)
           count_4 = true;
         }
-      } else if (clock >= 27000 && clock <= 28000) {
+      } else if (clock >= 7000 && clock <= 8000) {
         if (!count_3) {
           countdown_voice(3)
           count_3 = true;
         }
-      } else if (clock >= 28000 && clock <= 29000) {
+      } else if (clock >= 6000 && clock <= 7000) {
         if (!count_2) {
           countdown_voice(2)
           count_2 = true;
         }
-      } else if (clock >= 29000 && clock <= 30000) {
+      } else if (clock >= 5000 && clock <= 6000) {
         if (!count_1) {
           countdown_voice(1)
           audio_lightning.load()
           count_1 = true;
         }
-      } else if (clock >= 30000 && clock <= 31000) {
+      } else if (clock >= 4000 && clock <= 5000) {
         if (!lightning) {
           audio_lightning.play()
           lightning = true;
@@ -318,19 +318,19 @@ var Stopwatch = function(element, options, time_limit, voice) {
 window.onload = function() {
   var anew = document.getElementById("backflow");
   backflow_timer = new Stopwatch(anew, {
-    delay: 50
+    delay: 1
   }, 40000, 1);
   var bnew = document.getElementById("reflect");
   reflect_timer = new Stopwatch(bnew, {
-    delay: 50
+    delay: 1
   }, 35000, 3);
   var cnew = document.getElementById("fire");
   fire_timer = new Stopwatch(cnew, {
-    delay: 50
+    delay: 1
   }, 35000, 2);
   var dnew = document.getElementById("lightning");
   lightning_timer = new Stopwatch(dnew, {
-    delay: 50
+    delay: 1
   }, 35000, 4);
 };
 
