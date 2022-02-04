@@ -21,6 +21,7 @@ var Stopwatch = function(element, options, time_limit, voice) {
     audio_3 = document.getElementById("audio_3"),
     audio_2 = document.getElementById("audio_2"),
     audio_1 = document.getElementById("audio_1"),
+	
     preloaded = false,
     count_5 = false,
     count_4 = false,
@@ -343,7 +344,7 @@ window.onload = function() {
     <div class="row">
         <div class="col">
             <br/>
-            <h4>Backflow</h4>
+            <h4 id="backflow_title">Backflow</h4>
             <h1 class="stopwatch" id="backflow"></h1>
             <button onclick="backflow_timer.start()" class="btn btn-success">Start</button>
             <button onclick="backflow_timer.stop()" class="btn btn-danger">Stop</button>
@@ -351,7 +352,7 @@ window.onload = function() {
         </div>
         <div class="col">
             <br/>
-            <h4>Reflect</h4>
+            <h4 id="reflect_title">Reflect</h4>
             <h1 class="stopwatch" id="reflect"></h1>
             <button onclick="reflect_timer.start()" class="btn btn-success">Start</button>
             <button onclick="reflect_timer.stop()" class="btn btn-danger">Stop</button>
@@ -363,7 +364,7 @@ window.onload = function() {
     <div class="row">
         <div class="col">
             <br/>
-            <h4>Fire</h4>
+            <h4 id="fire_title">Fire</h4>
             <h1 class="stopwatch" id="fire"></h1>
             <button onclick="fire_timer.start()" class="btn btn-success">Start</button>
             <button onclick="fire_timer.stop()" class="btn btn-danger">Stop</button>
@@ -373,7 +374,7 @@ window.onload = function() {
         </div>
         <div class="col">
             <br/>
-            <h4>Lightning</h4>
+            <h4 id="lightning_title">Lightning</h4>
             <h1 class="stopwatch" id="lightning"></h1>
             <button onclick="lightning_timer.start()" class="btn btn-success">Start</button>
             <button onclick="lightning_timer.stop()" class="btn btn-danger">Stop</button>
