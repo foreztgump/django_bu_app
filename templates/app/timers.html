@@ -86,7 +86,8 @@ var Stopwatch = function(element, options, time_limit, voice) {
   }
 
   function render() {
-    timer.innerHTML = clock / 1000;
+    value = clock / 1000;
+    timer.innerHTML = value.toFixed(2);
   }
 
   function delta() {
