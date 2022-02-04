@@ -359,7 +359,7 @@ function setColor() {
   
   let fire_div = document.getElementById("fire_div");
   let fire_value = document.getElementById("fire").innerText;
-  if (fire_value <= 10) {
+  if (fire_value >= 10) {
    fire_div.style.backgroundColor = "#B9FEC2";
   } else if (fire_value >= 5 && fire_value <= 10){
     fire_div.style.backgroundColor = "#FDE6A5";
