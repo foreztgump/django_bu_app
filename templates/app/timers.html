@@ -21,7 +21,6 @@ var Stopwatch = function(element, options, time_limit, voice) {
     audio_3 = document.getElementById("audio_3"),
     audio_2 = document.getElementById("audio_2"),
     audio_1 = document.getElementById("audio_1"),
-	
     preloaded = false,
     count_5 = false,
     count_4 = false,
@@ -80,14 +79,14 @@ var Stopwatch = function(element, options, time_limit, voice) {
   function update() {
     clock += delta();
     render();
+	play_voice_mode(voice, clock);
+    if (clock > time_limit) {
+      clock = 0;
+    }
   }
 
   function render() {
     timer.innerHTML = clock / 1000;
-    play_voice_mode(voice, clock);
-    if (clock > time_limit) {
-      clock = 0;
-    }
   }
 
   function delta() {
@@ -102,12 +101,12 @@ var Stopwatch = function(element, options, time_limit, voice) {
     if (num == 1) { //backflow
       if (!preloaded) {
         if (clock >= 23000 && clock <= 24000) {
-          audio_backflow_in.load()
-          preloaded = true
+          audio_backflow_in.load();
+          preloaded = true;
         }
       }
       if (clock >= 24000 && clock <= 25000) {
-        audio_backflow_in.play()
+        audio_backflow_in.play();
         count_5 = false;
         count_4 = false;
         count_3 = false;
@@ -334,6 +333,51 @@ window.onload = function() {
     delay: 50
   }, 35000, 4);
 };
+
+const bg_change_interval = setInterval(setColor, 500);
+
+function setColor() {
+  let backflow_div = document.getElementById("backflow_div");
+  let backflow_value = document.getElementById("backflow").innerText;
+  if (backflow_value <= 25) {
+   backflow_div.style.backgroundColor = "#B9FEC2";
+  } else if (backflow_value >= 25 && backflow_value <= 30){
+    backflow_div.style.backgroundColor = "#FDE6A5";
+  } else if (backflow_value => 30) {
+    backflow_div.style.backgroundColor = "#FDABA5";
+  }
+  
+  let reflect_div = document.getElementById("reflect_div");
+  let reflect_value = document.getElementById("reflect").innerText;
+  if (reflect_value <= 25) {
+   reflect_div.style.backgroundColor = "#B9FEC2";
+  } else if (reflect_value >= 25 && reflect_value <= 30){
+    reflect_div.style.backgroundColor = "#FDE6A5";
+  } else if (reflect_value => 30) {
+    reflect_div.style.backgroundColor = "#FDABA5";
+  }
+  
+  let fire_div = document.getElementById("fire_div");
+  let fire_value = document.getElementById("fire").innerText;
+  if (fire_value <= 25) {
+   fire_div.style.backgroundColor = "#B9FEC2";
+  } else if (fire_value >= 25 && reflect_value <= 30){
+    fire_div.style.backgroundColor = "#FDE6A5";
+  } else if (fire_value => 30) {
+    fire_div.style.backgroundColor = "#FDABA5";
+  }
+  
+  let lightning_div = document.getElementById("lightning_div");
+  let lightning_value = document.getElementById("lightning").innerText;
+  if (lightning_value <= 25) {
+   lightning_div.style.backgroundColor = "#B9FEC2";
+  } else if (lightning_value >= 25 && reflect_value <= 30){
+    lightning_div.style.backgroundColor = "#FDE6A5";
+  } else if (lightning_value => 30) {
+    lightning_div.style.backgroundColor = "#FDABA5";
+  }
+}
+
 </script>
 
 <div class="container text-center">
@@ -342,7 +386,7 @@ window.onload = function() {
       <br/>
 
     <div class="row">
-        <div class="col">
+        <div class="col" id="backflow_div">
             <br/>
             <h4 id="backflow_title">Backflow</h4>
             <h1 class="stopwatch" id="backflow"></h1>
@@ -350,7 +394,7 @@ window.onload = function() {
             <button onclick="backflow_timer.stop()" class="btn btn-danger">Stop</button>
 			<button onclick="backflow_timer.reset()" class="btn btn-secondary">Reset</button>
         </div>
-        <div class="col">
+        <div class="col" id="reflect_div">
             <br/>
             <h4 id="reflect_title">Reflect</h4>
             <h1 class="stopwatch" id="reflect"></h1>
@@ -362,7 +406,7 @@ window.onload = function() {
         </div>
     </div>
     <div class="row">
-        <div class="col">
+        <div class="col" id="fire_div">
             <br/>
             <h4 id="fire_title">Fire</h4>
             <h1 class="stopwatch" id="fire"></h1>
@@ -372,7 +416,7 @@ window.onload = function() {
             <br/>
             <br/>
         </div>
-        <div class="col">
+        <div class="col" id="lightning_div">
             <br/>
             <h4 id="lightning_title">Lightning</h4>
             <h1 class="stopwatch" id="lightning"></h1>
