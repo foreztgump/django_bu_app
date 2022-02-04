@@ -318,7 +318,7 @@ window.onload = function() {
   var anew = document.getElementById("backflow");
   backflow_timer = new Stopwatch(anew, {
     delay: 50
-  }, 35000, 1);
+  }, 40000, 1);
   var bnew = document.getElementById("reflect");
   reflect_timer = new Stopwatch(bnew, {
     delay: 50
@@ -393,7 +393,7 @@ function setColor() {
             <button onclick="backflow_timer.stop()" class="btn btn-danger">Stop</button>
 			<button onclick="backflow_timer.reset()" class="btn btn-secondary">Reset</button>
         </div>
-        <div class="col border" id="reflect_div">
+        <div class="col-4 border" id="reflect_div">
             <br/>
             <h2 id="reflect_title" style="font-size:90px;">Reflect</h2>
             <h1 class="stopwatch" id="reflect" style="font-size:140px;"></h1>
