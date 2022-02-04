@@ -361,7 +361,7 @@ function setColor() {
   let fire_value = document.getElementById("fire").innerText;
   if (fire_value <= 25) {
    fire_div.style.backgroundColor = "#B9FEC2";
-  } else if (fire_value >= 25 && reflect_value <= 30){
+  } else if (fire_value >= 25 && fire_value <= 30){
     fire_div.style.backgroundColor = "#FDE6A5";
   } else if (fire_value => 30) {
     fire_div.style.backgroundColor = "#FDABA5";
@@ -371,7 +371,7 @@ function setColor() {
   let lightning_value = document.getElementById("lightning").innerText;
   if (lightning_value <= 25) {
    lightning_div.style.backgroundColor = "#B9FEC2";
-  } else if (lightning_value >= 25 && reflect_value <= 30){
+  } else if (lightning_value >= 25 && lightning_value <= 30){
     lightning_div.style.backgroundColor = "#FDE6A5";
   } else if (lightning_value => 30) {
     lightning_div.style.backgroundColor = "#FDABA5";
@@ -385,19 +385,19 @@ function setColor() {
     <h3>Timers still off(Proof of concept)</h3>
       <br/>
 
-    <div class="row">
+    <div class="row justify-content-evenly">
         <div class="col" id="backflow_div">
             <br/>
-            <h4 id="backflow_title">Backflow</h4>
-            <h1 class="stopwatch" id="backflow"></h1>
+            <h2 id="backflow_title" style="font-size:90px;">Backflow</h2>
+            <h1 class="stopwatch" id="backflow" style="font-size:140px;"></h1>
             <button onclick="backflow_timer.start()" class="btn btn-success">Start</button>
             <button onclick="backflow_timer.stop()" class="btn btn-danger">Stop</button>
 			<button onclick="backflow_timer.reset()" class="btn btn-secondary">Reset</button>
         </div>
         <div class="col" id="reflect_div">
             <br/>
-            <h4 id="reflect_title">Reflect</h4>
-            <h1 class="stopwatch" id="reflect"></h1>
+            <h2 id="reflect_title" style="font-size:90px;">Reflect</h2>
+            <h1 class="stopwatch" id="reflect" style="font-size:140px;"></h1>
             <button onclick="reflect_timer.start()" class="btn btn-success">Start</button>
             <button onclick="reflect_timer.stop()" class="btn btn-danger">Stop</button>
 			<button onclick="reflect_timer.reset()" class="btn btn-secondary">Reset</button>
@@ -405,11 +405,13 @@ function setColor() {
             <br/>
         </div>
     </div>
-    <div class="row">
+	<br/>
+	<br/>
+    <div class="row justify-content-evenly">
         <div class="col" id="fire_div">
             <br/>
-            <h4 id="fire_title">Fire</h4>
-            <h1 class="stopwatch" id="fire"></h1>
+            <h2 id="fire_title" style="font-size:90px;">Fire</h2>
+            <h1 class="stopwatch" id="fire" style="font-size:140px;"></h1>
             <button onclick="fire_timer.start()" class="btn btn-success">Start</button>
             <button onclick="fire_timer.stop()" class="btn btn-danger">Stop</button>
 			<button onclick="fire_timer.reset()" class="btn btn-secondary">Reset</button>
@@ -418,8 +420,8 @@ function setColor() {
         </div>
         <div class="col" id="lightning_div">
             <br/>
-            <h4 id="lightning_title">Lightning</h4>
-            <h1 class="stopwatch" id="lightning"></h1>
+            <h2 id="lightning_title" style="font-size:90px;">Lightning</h2>
+            <h1 class="stopwatch" id="lightning" style="font-size:140px;"></h1>
             <button onclick="lightning_timer.start()" class="btn btn-success">Start</button>
             <button onclick="lightning_timer.stop()" class="btn btn-danger">Stop</button>
 			<button onclick="lightning_timer.reset()" class="btn btn-secondary">Reset</button>
