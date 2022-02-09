@@ -506,6 +506,8 @@ window.onload = function() {
   lightning_timer = new Stopwatch(dnew, {
     delay: 1
   }, 35000, 4);
+  initDragElement();
+  initResizeElement();
 };
 
 const bg_change_interval = setInterval(setColor, 500);
