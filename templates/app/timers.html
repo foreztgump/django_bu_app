@@ -318,11 +318,11 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
     }
   }
 
-function play_beep_mode(num, clock) {
+  function play_beep_mode(num, clock) {
     if (num == 1) { //backflow
       if (!preloaded) {
         if (clock >= 16000 && clock <= 17000) {
-          beep-short.load();
+          beep_short.load()
           preloaded = true;
         }
       }
@@ -336,33 +336,33 @@ function play_beep_mode(num, clock) {
         preloaded = false;
       } else if (clock >= 14000 && clock <= 15000) {
         if (!count_5) {
-          beep-short.play();
+          beep_short.play()
           count_5 = true;
         }
       } else if (clock >= 13000 && clock <= 14000) {
         if (!count_4) {
-          beep-short.play();
+          beep_short.play()
           count_4 = true;
         }
       } else if (clock >= 12000 && clock <= 13000) {
         if (!count_3) {
-          beep-short.play();
+          beep_short.play()
           count_3 = true;
         }
       } else if (clock >= 11000 && clock <= 12000) {
         if (!count_2) {
-          beep-short.play();
+          beep_short.play()
           count_2 = true;
         }
       } else if (clock >= 10000 && clock <= 11000) {
         if (!count_1) {
-          beep-short.play();
-          beep-long.load()
+          beep_short.play()
+          beep_long.load()
           count_1 = true;
         }
       } else if (clock >= 9000 && clock <= 10000) {
         if (!backflow) {
-          beep-long.play()
+          beep_long.play()
           backflow = true;
         }
 
@@ -370,7 +370,7 @@ function play_beep_mode(num, clock) {
     } else if (num == 2) { //fire
       if (!preloaded) {
         if (clock >= 11000 && clock <= 12000) {
-          beep-short.load();
+          beep_short.load()
           preloaded = true
         }
       }
@@ -384,40 +384,40 @@ function play_beep_mode(num, clock) {
         preloaded = false;
       } else if (clock >= 9000 && clock <= 10000) {
         if (!count_5) {
-          beep-short.play();
+          beep_short.play()
           count_5 = true;
         }
       } else if (clock >= 8000 && clock <= 9000) {
         if (!count_4) {
-          beep-short.play();
+          beep_short.play()
           count_4 = true;
         }
       } else if (clock >= 7000 && clock <= 8000) {
         if (!count_3) {
-          beep-short.play();
+          beep_short.play()
           count_3 = true;
         }
       } else if (clock >= 6000 && clock <= 7000) {
         if (!count_2) {
-          beep-short.play();
+          beep_short.play()
           count_2 = true;
         }
       } else if (clock >= 5000 && clock <= 6000) {
         if (!count_1) {
-          beep-short.play();
-          beep-long.load()
+          beep_short.play()
+          beep_long.load()
           count_1 = true;
         }
       } else if (clock >= 4000 && clock <= 5000) {
         if (!fire) {
-          beep-long.play()
+          beep_long.play()
           fire = true;
         }
       }
     } else if (num == 3) { //reflect
       if (!preloaded) {
         if (clock >= 11000 && clock <= 12000) {
-          beep-short.load()
+          beep_short.load()
           preloaded = true
         }
       }
@@ -431,40 +431,40 @@ function play_beep_mode(num, clock) {
         preloaded = false;
       } else if (clock >= 9000 && clock <= 10000) {
         if (!count_5) {
-          beep-short.play()
+          beep_short.play()
           count_5 = true;
         }
       } else if (clock >= 8000 && clock <= 9000) {
         if (!count_4) {
-          beep-short.play()
+          beep_short.play()
           count_4 = true;
         }
       } else if (clock >= 7000 && clock <= 8000) {
         if (!count_3) {
-          beep-short.play()
+          beep_short.play()
           count_3 = true;
         }
       } else if (clock >= 6000 && clock <= 7000) {
         if (!count_2) {
-          beep-short.play()
+          beep_short.play()
           count_2 = true;
         }
       } else if (clock >= 5000 && clock <= 6000) {
         if (!count_1) {
-          beep-short.play()
-          beep-long.load()
+          beep_short.play()
+          beep_long.load()
           count_1 = true;
         }
       } else if (clock >= 4000 && clock <= 5000) {
         if (!reflect) {
-          beep-long.play()
+          beep_long.play()
           reflect = true;
         }
       }
     } else if (num == 4) { //lightning
       if (!preloaded) {
         if (clock >= 11000 && clock <= 12000) {
-          beep-short.load()
+          beep_short.load()
           preloaded = true
         }
       }
@@ -478,27 +478,27 @@ function play_beep_mode(num, clock) {
         preloaded = false;
       } else if (clock >= 9000 && clock <= 10000) {
         if (!count_5) {
-          beep-short.play()
+          beep_short.play()
           count_5 = true;
         }
       } else if (clock >= 8000 && clock <= 9000) {
         if (!count_4) {
-          beep-short.play()
+          beep_short.play()
           count_4 = true;
         }
       } else if (clock >= 7000 && clock <= 8000) {
         if (!count_3) {
-          beep-short.play()
+          beep_short.play()
           count_3 = true;
         }
       } else if (clock >= 6000 && clock <= 7000) {
         if (!count_2) {
-          beep-short.play()
+          beep_short.play()
           count_2 = true;
         }
       } else if (clock >= 5000 && clock <= 6000) {
         if (!count_1) {
-          beep-short.play()
+          beep_short.play()
           beep_long.load()
           count_1 = true;
         }
@@ -729,6 +729,7 @@ window.onload = function() {
 <div class="container text-center">
 
     <h2>Timers</h2>
+	<p>Each timers can be moved or resized to your desired. You can also change between voice or beep for alert.</p>
       <br/>
 
     <div class="row justify-content-evenly">
