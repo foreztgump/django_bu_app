@@ -488,28 +488,7 @@ function setColor() {
 }
 
 
-//Onload function
-window.onload = function() {
-  var anew = document.getElementById("backflow");
-  backflow_timer = new Stopwatch(anew, {
-    delay: 1
-  }, 30000, 1);
-  var bnew = document.getElementById("reflect");
-  reflect_timer = new Stopwatch(bnew, {
-    delay: 1
-  }, 35000, 3);
-  var cnew = document.getElementById("fire");
-  fire_timer = new Stopwatch(cnew, {
-    delay: 1
-  }, 35000, 2);
-  var dnew = document.getElementById("lightning");
-  lightning_timer = new Stopwatch(dnew, {
-    delay: 1
-  }, 35000, 4);
-  initDragElement();
-  initResizeElement();
-};
-
+//Background Change
 const bg_change_interval = setInterval(setColor, 500);
 
 function setColor() {
@@ -554,6 +533,27 @@ function setColor() {
   }
 }
 
+//Onload function
+window.onload = function() {
+  var anew = document.getElementById("backflow");
+  backflow_timer = new Stopwatch(anew, {
+    delay: 1
+  }, 30000, 1);
+  var bnew = document.getElementById("reflect");
+  reflect_timer = new Stopwatch(bnew, {
+    delay: 1
+  }, 35000, 3);
+  var cnew = document.getElementById("fire");
+  fire_timer = new Stopwatch(cnew, {
+    delay: 1
+  }, 35000, 2);
+  var dnew = document.getElementById("lightning");
+  lightning_timer = new Stopwatch(dnew, {
+    delay: 1
+  }, 35000, 4);
+  initDragElement();
+  initResizeElement();
+};
 </script>
 
 <div class="container text-center">
@@ -567,7 +567,7 @@ function setColor() {
 				<div class="popup-header">Click here to move</div>
 				<br/>
 				<h2 id="backflow_title" class="font">Backflow</h2>
-				<h1 class="stopwatch" id="backflow" style="font-size:140px;"></h1>
+				<h1 class="stopwatch" id="backflow"></h1>
 				<button onclick="backflow_timer.start()" class="btn btn-success">Start</button>
 				<button onclick="backflow_timer.stop()" class="btn btn-danger">Stop</button>
 				<button onclick="backflow_timer.reset()" class="btn btn-secondary">Reset</button>
@@ -583,7 +583,7 @@ function setColor() {
 				<div class="popup-header">Click here to move</div>
 				<br/>
 				<h2 id="reflect_title" class="font">Reflect</h2>
-				<h1 class="stopwatch" id="reflect" style="font-size:140px;"></h1>
+				<h1 class="stopwatch" id="reflect"></h1>
 				<button onclick="reflect_timer.start()" class="btn btn-success">Start</button>
 				<button onclick="reflect_timer.stop()" class="btn btn-danger">Stop</button>
 				<button onclick="reflect_timer.reset()" class="btn btn-secondary">Reset</button>
@@ -603,7 +603,7 @@ function setColor() {
 				<div class="popup-header">Click here to move</div>
 				<br/>
 				<h2 id="fire_title" class="font">Fire</h2>
-				<h1 class="stopwatch" id="fire" style="font-size:140px;"></h1>
+				<h1 class="stopwatch" id="fire"></h1>
 				<button onclick="fire_timer.start()" class="btn btn-success">Start</button>
 				<button onclick="fire_timer.stop()" class="btn btn-danger">Stop</button>
 				<button onclick="fire_timer.reset()" class="btn btn-secondary">Reset</button>
@@ -619,7 +619,7 @@ function setColor() {
 				<div class="popup-header">Click here to move</div>
 				<br/>
 				<h2 id="lightning_title" class="font">Lightning</h2>
-				<h1 class="stopwatch" id="lightning" style="font-size:140px;"></h1>
+				<h1 class="stopwatch" id="lightning"></h1>
 				<button onclick="lightning_timer.start()" class="btn btn-success">Start</button>
 				<button onclick="lightning_timer.stop()" class="btn btn-danger">Stop</button>
 				<button onclick="lightning_timer.reset()" class="btn btn-secondary">Reset</button>
