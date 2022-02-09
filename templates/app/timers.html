@@ -26,6 +26,10 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
     audio_1 = document.getElementById("audio_1"),
 	alarm_mode_bool = false,
     preloaded = false,
+	backflow_audio = false,
+    reflect_audio = false,
+    lightning_audio = false,
+    fire_audio = false,
     count_5 = false,
     count_4 = false,
     count_3 = false,
@@ -116,14 +120,17 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
         }
       }
       if (clock >= 15000 && clock <= 16000) {
-        audio_backflow_in.play();
-        count_5 = false;
-        count_4 = false;
-        count_3 = false;
-        count_2 = false;
-        count_1 = false;
-        backflow = false;
-        preloaded = false;
+		if (!backflow_audio) {
+         audio_backflow_in.play();
+         count_5 = false;
+         count_4 = false;
+         count_3 = false;
+         count_2 = false;
+         count_1 = false;
+         backflow = false;
+         preloaded = false;
+		 backflow_audio = true;
+		}
       } else if (clock >= 14000 && clock <= 15000) {
         if (!count_5) {
           countdown_voice(5)
@@ -165,14 +172,17 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
         }
       }
       if (clock >= 10000 && clock <= 11000) {
-        audio_fire_in.play()
-        count_5 = false;
-        count_4 = false;
-        count_3 = false;
-        count_2 = false;
-        count_1 = false;
-        fire = false;
-        preloaded = false;
+	    if (!fire_audio) {
+          audio_fire_in.play()
+          count_5 = false;
+          count_4 = false;
+          count_3 = false;
+          count_2 = false;
+          count_1 = false;
+          fire = false;
+          preloaded = false;
+		  fire_audio = true;
+		}
       } else if (clock >= 9000 && clock <= 10000) {
         if (!count_5) {
           countdown_voice(5)
@@ -213,14 +223,17 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
         }
       }
       if (clock >= 10000 && clock <= 11000) {
-        audio_reflect_in.play()
-        count_5 = false;
-        count_4 = false;
-        count_3 = false;
-        count_2 = false;
-        count_1 = false;
-        reflect = false;
-        preloaded = false;
+	    if (!reflect-audio) {
+          audio_reflect_in.play()
+          count_5 = false;
+          count_4 = false;
+          count_3 = false;
+          count_2 = false;
+          count_1 = false;
+          reflect = false;
+          preloaded = false;
+		  reflect-audio = true;
+		}
       } else if (clock >= 9000 && clock <= 10000) {
         if (!count_5) {
           countdown_voice(5)
@@ -261,14 +274,17 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
         }
       }
       if (clock >= 10000 && clock <= 11000) {
-        audio_lightning_in.play()
-        count_5 = false;
-        count_4 = false;
-        count_3 = false;
-        count_2 = false;
-        count_1 = false;
-        lightning = false;
-        preloaded = false;
+	    if (!lightning_audio) {
+          audio_lightning_in.play()
+          count_5 = false;
+          count_4 = false;
+          count_3 = false;
+          count_2 = false;
+          count_1 = false;
+          lightning = false;
+          preloaded = false;
+		  lightning_audio = true;
+		}
       } else if (clock >= 9000 && clock <= 10000) {
         if (!count_5) {
           countdown_voice(5)
