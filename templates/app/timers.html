@@ -315,6 +315,179 @@ var Stopwatch = function(element, options, time_limit, voice) {
   this.reset = reset;
 };
 
+
+//draggable & resizeable
+function initDragElement() {
+  var pos1 = 0,
+    pos2 = 0,
+    pos3 = 0,
+    pos4 = 0;
+  var popups = document.getElementsByClassName("popup");
+  var elmnt = null;
+  var currentZIndex = 100; //TODO reset z index when a threshold is passed
+
+  for (var i = 0; i < popups.length; i++) {
+    var popup = popups[i];
+    var header = getHeader(popup);
+
+    popup.onmousedown = function() {
+      this.style.zIndex = "" + ++currentZIndex;
+    };
+
+    if (header) {
+      header.parentPopup = popup;
+      header.onmousedown = dragMouseDown;
+    }
+  }
+
+  function dragMouseDown(e) {
+    elmnt = this.parentPopup;
+    elmnt.style.zIndex = "" + ++currentZIndex;
+
+    e = e || window.event;
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    if (!elmnt) {
+      return;
+    }
+
+    e = e || window.event;
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = elmnt.offsetTop - pos2 + "px";
+    elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
+  }
+
+  function closeDragElement() {
+    /* stop moving when mouse button is released:*/
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+
+  function getHeader(element) {
+    var headerItems = element.getElementsByClassName("popup-header");
+
+    if (headerItems.length === 1) {
+      return headerItems[0];
+    }
+
+    return null;
+  }
+}
+
+function initResizeElement() {
+  var popups = document.getElementsByClassName("popup");
+  var element = null;
+  var startX, startY, startWidth, startHeight;
+
+  for (var i = 0; i < popups.length; i++) {
+    var p = popups[i];
+
+    var right = document.createElement("div");
+    right.className = "resizer-right";
+    p.appendChild(right);
+    right.addEventListener("mousedown", initDrag, false);
+    right.parentPopup = p;
+
+    var bottom = document.createElement("div");
+    bottom.className = "resizer-bottom";
+    p.appendChild(bottom);
+    bottom.addEventListener("mousedown", initDrag, false);
+    bottom.parentPopup = p;
+
+    var both = document.createElement("div");
+    both.className = "resizer-both";
+    p.appendChild(both);
+    both.addEventListener("mousedown", initDrag, false);
+    both.parentPopup = p;
+  }
+
+  function initDrag(e) {
+    element = this.parentPopup;
+
+    startX = e.clientX;
+    startY = e.clientY;
+    startWidth = parseInt(
+      document.defaultView.getComputedStyle(element).width,
+      10
+    );
+    startHeight = parseInt(
+      document.defaultView.getComputedStyle(element).height,
+      10
+    );
+    document.documentElement.addEventListener("mousemove", doDrag, false);
+    document.documentElement.addEventListener("mouseup", stopDrag, false);
+  }
+
+  function doDrag(e) {
+    element.style.width = startWidth + e.clientX - startX + "px";
+    element.style.height = startHeight + e.clientY - startY + "px";
+  }
+
+  function stopDrag() {
+    document.documentElement.removeEventListener("mousemove", doDrag, false);
+    document.documentElement.removeEventListener("mouseup", stopDrag, false);
+  }
+}
+
+
+const bg_change_interval = setInterval(setColor, 500);
+
+function setColor() {
+  let backflow_div = document.getElementById("backflow_div");
+  let backflow_value = document.getElementById("backflow").innerText;
+  if (backflow_value >= 15) {
+   backflow_div.style.backgroundColor = "#B9FEC2";
+  } else if (backflow_value >= 10 && backflow_value <= 15){
+    backflow_div.style.backgroundColor = "#FDE6A5";
+  } else if (backflow_value <= 10) {
+    backflow_div.style.backgroundColor = "#FDABA5";
+  }
+
+  let reflect_div = document.getElementById("reflect_div");
+  let reflect_value = document.getElementById("reflect").innerText;
+  if (reflect_value >= 10) {
+   reflect_div.style.backgroundColor = "#B9FEC2";
+  } else if (reflect_value >= 5 && reflect_value <= 10){
+    reflect_div.style.backgroundColor = "#FDE6A5";
+  } else if (reflect_value <= 5) {
+    reflect_div.style.backgroundColor = "#FDABA5";
+  }
+
+  let fire_div = document.getElementById("fire_div");
+  let fire_value = document.getElementById("fire").innerText;
+  if (fire_value >= 10) {
+   fire_div.style.backgroundColor = "#B9FEC2";
+  } else if (fire_value >= 5 && fire_value <= 10){
+    fire_div.style.backgroundColor = "#FDE6A5";
+  } else if (fire_value <= 5) {
+    fire_div.style.backgroundColor = "#FDABA5";
+  }
+
+  let lightning_div = document.getElementById("lightning_div");
+  let lightning_value = document.getElementById("lightning").innerText;
+  if (lightning_value >= 10) {
+   lightning_div.style.backgroundColor = "#B9FEC2";
+  } else if (lightning_value >= 5 && lightning_value <= 10){
+    lightning_div.style.backgroundColor = "#FDE6A5";
+  } else if (lightning_value <= 5) {
+    lightning_div.style.backgroundColor = "#FDABA5";
+  }
+}
+
+
+//Onload function
 window.onload = function() {
   var anew = document.getElementById("backflow");
   backflow_timer = new Stopwatch(anew, {
@@ -386,21 +559,33 @@ function setColor() {
       <br/>
 
     <div class="row justify-content-evenly">
-        <div class="col-4 border" id="backflow_div">
+        <div class="col-4">
+			<div class="popup" id="backflow_div">
+				<br/>
+				<h2 id="backflow_title" class="font">Backflow</h2>
+				<h1 class="stopwatch" id="backflow" style="font-size:140px;"></h1>
+				<button onclick="backflow_timer.start()" class="btn btn-success">Start</button>
+				<button onclick="backflow_timer.stop()" class="btn btn-danger">Stop</button>
+				<button onclick="backflow_timer.reset()" class="btn btn-secondary">Reset</button>
+				<br/>
+				<br/>
+			</div>
             <br/>
-            <h2 id="backflow_title" style="font-size:90px;">Backflow</h2>
-            <h1 class="stopwatch" id="backflow" style="font-size:140px;"></h1>
-            <button onclick="backflow_timer.start()" class="btn btn-success">Start</button>
-            <button onclick="backflow_timer.stop()" class="btn btn-danger">Stop</button>
-			<button onclick="backflow_timer.reset()" class="btn btn-secondary">Reset</button>
+            <br/>
+            <br/>
         </div>
-        <div class="col-4 border" id="reflect_div">
+        <div class="col-4">
+			<div class="popup" id="reflect_div">
+				<br/>
+				<h2 id="reflect_title" class="font">Reflect</h2>
+				<h1 class="stopwatch" id="reflect" style="font-size:140px;"></h1>
+				<button onclick="reflect_timer.start()" class="btn btn-success">Start</button>
+				<button onclick="reflect_timer.stop()" class="btn btn-danger">Stop</button>
+				<button onclick="reflect_timer.reset()" class="btn btn-secondary">Reset</button>
             <br/>
-            <h2 id="reflect_title" style="font-size:90px;">Reflect</h2>
-            <h1 class="stopwatch" id="reflect" style="font-size:140px;"></h1>
-            <button onclick="reflect_timer.start()" class="btn btn-success">Start</button>
-            <button onclick="reflect_timer.stop()" class="btn btn-danger">Stop</button>
-			<button onclick="reflect_timer.reset()" class="btn btn-secondary">Reset</button>
+            <br/>
+			</div>
+            <br/>
             <br/>
             <br/>
         </div>
@@ -408,23 +593,33 @@ function setColor() {
 	<br/>
 	<br/>
     <div class="row justify-content-evenly">
-        <div class="col-4 border" id="fire_div">
+        <div class="col-4">
+			<div class="popup" id="fire_div">
+				<br/>
+				<h2 id="fire_title" class="font">Fire</h2>
+				<h1 class="stopwatch" id="fire" style="font-size:140px;"></h1>
+				<button onclick="fire_timer.start()" class="btn btn-success">Start</button>
+				<button onclick="fire_timer.stop()" class="btn btn-danger">Stop</button>
+				<button onclick="fire_timer.reset()" class="btn btn-secondary">Reset</button>
+				<br/>
+				<br/>
+			</div>
             <br/>
-            <h2 id="fire_title" style="font-size:90px;">Fire</h2>
-            <h1 class="stopwatch" id="fire" style="font-size:140px;"></h1>
-            <button onclick="fire_timer.start()" class="btn btn-success">Start</button>
-            <button onclick="fire_timer.stop()" class="btn btn-danger">Stop</button>
-			<button onclick="fire_timer.reset()" class="btn btn-secondary">Reset</button>
             <br/>
             <br/>
         </div>
-        <div class="col-4 border" id="lightning_div">
+        <div class="col-4">
+			<div class="popup" id="lightning_div">
+				<br/>
+				<h2 id="lightning_title" class="font">Lightning</h2>
+				<h1 class="stopwatch" id="lightning" style="font-size:140px;"></h1>
+				<button onclick="lightning_timer.start()" class="btn btn-success">Start</button>
+				<button onclick="lightning_timer.stop()" class="btn btn-danger">Stop</button>
+				<button onclick="lightning_timer.reset()" class="btn btn-secondary">Reset</button>
+				<br/>
+				<br/>
+			</div>
             <br/>
-            <h2 id="lightning_title" style="font-size:90px;">Lightning</h2>
-            <h1 class="stopwatch" id="lightning" style="font-size:140px;"></h1>
-            <button onclick="lightning_timer.start()" class="btn btn-success">Start</button>
-            <button onclick="lightning_timer.stop()" class="btn btn-danger">Stop</button>
-			<button onclick="lightning_timer.reset()" class="btn btn-secondary">Reset</button>
             <br/>
             <br/>
         </div>
