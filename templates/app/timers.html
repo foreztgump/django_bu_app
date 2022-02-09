@@ -329,12 +329,16 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
       audio_1.play()
     } else if (num == 2) {
       audio_2.play()
+	  audio_1.load()
     } else if (num == 3) {
       audio_3.play()
+	  audio_2.load()
     } else if (num == 4) {
       audio_4.play()
+	  audio_3.load()
     } else if (num == 5) {
       audio_5.play()
+	  audio_4.load()
     }
   }
 
