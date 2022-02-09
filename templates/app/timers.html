@@ -17,6 +17,8 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
     audio_reflect = document.getElementById("audio_reflect"),
     audio_lightning_in = document.getElementById("audio_lightning_in"),
     audio_lightning = document.getElementById("audio_lightning"),
+	beep_long = document.getElementById("audio_beep-long"),
+	beep_short = document.getElementById("audio_beep-short"),
     audio_5 = document.getElementById("audio_5"),
     audio_4 = document.getElementById("audio_4"),
     audio_3 = document.getElementById("audio_3"),
@@ -774,6 +776,11 @@ window.onload = function() {
 		<div class="p-2"></div>
 		<div class="p-2"></div>
 	</div>
+	<div class="d-grid gap-3">
+		<div class="p-2"></div>
+		<div class="p-2"></div>
+		<div class="p-2"></div>
+	</div>
 	
     <div class="row justify-content-evenly">
         <div class="col-4">
@@ -848,10 +855,10 @@ window.onload = function() {
 	<audio hidden preload="auto" id="audio_1">
 		<source src="{% static 'audio/1.mp3' %}" type="audio/mpeg">
 	</audio>
-	<audio hidden preload="auto" id="beep-long">
+	<audio hidden preload="auto" id="audio_beep-long">
 		<source src="{% static 'audio/beep-long.mp3' %}" type="audio/mpeg">
 	</audio>
-	<audio hidden preload="auto" id="beep-short">
+	<audio hidden preload="auto" id="audio_beep-short">
 		<source src="{% static 'audio/beep-short.mp3' %}" type="audio/mpeg">
 	</audio>
 </div>
