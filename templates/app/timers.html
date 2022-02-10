@@ -128,7 +128,7 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
   }
 
   function play_backflow_voice(clock_value) {
-    if (clock_value == 16) {
+    if (clock_value == 17) {
       backflow_bool = false;
       count_5 = false;
       count_4 = false;
@@ -142,39 +142,39 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
         preloaded = true;
       }
     }
-    if (clock_value == 15) {
+    if (clock_value == 16) {
       if (!backflow_bool) {
         audio_backflow_in.play();
         preloaded = false;
         backflow_bool = true;
       }
-    } else if (clock_value == 14) {
+    } else if (clock_value == 15) {
         if (!count_5) {
           countdown_voice(5)
           count_5 = true;
         }
-    } else if (clock_value == 13) {
+    } else if (clock_value == 14) {
       if (!count_4) {
         countdown_voice(4)
         count_4 = true;
       }
-    } else if (clock_value == 12) {
+    } else if (clock_value == 13) {
         if (!count_3) {
           countdown_voice(3)
           count_3 = true;
         }
-    } else if (clock_value == 11) {
+    } else if (clock_value == 12) {
         if (!count_2) {
           countdown_voice(2)
           count_2 = true;
         }
-    } else if (clock_value == 10) {
+    } else if (clock_value == 11) {
         if (!count_1) {
           countdown_voice(1)
           audio_backflow.load()
           count_1 = true;
         }
-    } else if (clock_value == 9) {
+    } else if (clock_value == 10) {
         if (!backflow) {
           audio_backflow.play()
           backflow = true;
@@ -238,7 +238,7 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
   }
 
   function play_reflect_voice(clock_value) {
-    if (clock_value == 7) {
+    if (clock_value == 12) {
       reflect_bool = false;
       count_5 = false;
       count_4 = false;
@@ -252,39 +252,39 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
         preloaded = true;
       }
     }
-    if (clock_value == 6) {
+    if (clock_value == 11) {
       if (!reflect_bool) {
         audio_reflect_in.play();
         preloaded = false;
         reflect_bool = true;
       }
-    } else if (clock_value == 5) {
+    } else if (clock_value == 10) {
         if (!count_5) {
           countdown_voice(5)
           count_5 = true;
         }
-    } else if (clock_value == 4) {
+    } else if (clock_value == 9) {
       if (!count_4) {
         countdown_voice(4)
         count_4 = true;
       }
-    } else if (clock_value == 3) {
+    } else if (clock_value == 8) {
         if (!count_3) {
           countdown_voice(3)
           count_3 = true;
         }
-    } else if (clock_value == 2) {
+    } else if (clock_value == 7) {
         if (!count_2) {
           countdown_voice(2)
           count_2 = true;
         }
-    } else if (clock_value == 1) {
+    } else if (clock_value == 6) {
         if (!count_1) {
           countdown_voice(1)
           audio_reflect.load()
           count_1 = true;
         }
-    } else if (clock_value == 0) {
+    } else if (clock_value == 5) {
         if (!reflect) {
           audio_reflect.play()
           reflect = true;
@@ -349,7 +349,7 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
 
   function play_beep_mode(num, clock_value) {
     rounded_clock = clock_value.toFixed();
-    
+
     if (num == 1) { //backflow
       play_backflow_beep(rounded_clock)
     } else if (num == 2) { //fire
@@ -376,32 +376,32 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
         preloaded = true;
       }
     }
-    if (clock_value == 14) {
+    if (clock_value == 15) {
         if (!count_5) {
           beep_short.play();
           count_5 = true;
         }
-    } else if (clock_value == 13) {
+    } else if (clock_value == 14) {
       if (!count_4) {
         beep_short.play();
         count_4 = true;
       }
-    } else if (clock_value == 12) {
+    } else if (clock_value == 13) {
         if (!count_3) {
           beep_short.play();
           count_3 = true;
         }
-    } else if (clock_value == 11) {
+    } else if (clock_value == 12) {
         if (!count_2) {
           beep_short.play();
           count_2 = true;
         }
-    } else if (clock_value == 10) {
+    } else if (clock_value == 11) {
         if (!count_1) {
           beep_short.play();
           count_1 = true;
         }
-    } else if (clock_value == 9) {
+    } else if (clock_value == 10) {
         if (!backflow) {
           beep_long.play();
           backflow = true;
@@ -459,7 +459,7 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
   }
 
   function play_reflect_beep(clock_value) {
-    if (clock_value == 7) {
+    if (clock_value == 11) {
       reflect_bool = false;
       count_5 = false;
       count_4 = false;
@@ -474,32 +474,32 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
         preloaded = true;
       }
     }
-    if (clock_value == 5) {
+    if (clock_value == 10) {
         if (!count_5) {
           beep_short.play();
           count_5 = true;
         }
-    } else if (clock_value == 4) {
+    } else if (clock_value == 9) {
       if (!count_4) {
         beep_short.play();
         count_4 = true;
       }
-    } else if (clock_value == 3) {
+    } else if (clock_value == 8) {
         if (!count_3) {
           beep_short.play();
           count_3 = true;
         }
-    } else if (clock_value == 2) {
+    } else if (clock_value == 7) {
         if (!count_2) {
           beep_short.play();
           count_2 = true;
         }
-    } else if (clock_value == 1) {
+    } else if (clock_value == 6) {
         if (!count_1) {
           beep_short.play();
           count_1 = true;
         }
-    } else if (clock_value == 0) {
+    } else if (clock_value == 5) {
         if (!reflect) {
           beep_long.play();
           reflect = true;
@@ -723,6 +723,7 @@ const bg_change_interval = setInterval(setColor, 500);
 function setColor() {
   let backflow_div = document.getElementById("backflow_div");
   let backflow_value = document.getElementById("backflow").innerText;
+
   if (backflow_value >= 15) {
    backflow_div.style.backgroundColor = "#B9FEC2";
   } else if (backflow_value >= 10 && backflow_value <= 15){
@@ -733,6 +734,7 @@ function setColor() {
 
   let reflect_div = document.getElementById("reflect_div");
   let reflect_value = document.getElementById("reflect").innerText;
+
   if (reflect_value >= 10) {
    reflect_div.style.backgroundColor = "#B9FEC2";
   } else if (reflect_value >= 5 && reflect_value <= 10){
@@ -743,6 +745,7 @@ function setColor() {
 
   let fire_div = document.getElementById("fire_div");
   let fire_value = document.getElementById("fire").innerText;
+
   if (fire_value >= 10) {
    fire_div.style.backgroundColor = "#B9FEC2";
   } else if (fire_value >= 5 && fire_value <= 10){
@@ -753,6 +756,7 @@ function setColor() {
 
   let lightning_div = document.getElementById("lightning_div");
   let lightning_value = document.getElementById("lightning").innerText;
+
   if (lightning_value >= 10) {
    lightning_div.style.backgroundColor = "#B9FEC2";
   } else if (lightning_value >= 5 && lightning_value <= 10){
@@ -766,37 +770,32 @@ function setColor() {
 window.onload = function() {
   var backflow_option = document.getElementById("backflow_option");
   var anew = document.getElementById("backflow");
-  backflow_timer = new Stopwatch(anew, backflow_option, {
-    delay: 1
-  }, 30000, 1);
+  backflow_timer = new Stopwatch(anew, backflow_option, {delay: 1}, 30000, 1);
+
   var reflect_option = document.getElementById("reflect_option");
   var bnew = document.getElementById("reflect");
-  reflect_timer = new Stopwatch(bnew, reflect_option, {
-    delay: 1
-  }, 35000, 3);
+  reflect_timer = new Stopwatch(bnew, reflect_option, {delay: 1}, 35000, 3);
+
   var fire_option = document.getElementById("fire_option");
   var cnew = document.getElementById("fire");
-  fire_timer = new Stopwatch(cnew, fire, {
-    delay: 1
-  }, 35000, 2);
+  fire_timer = new Stopwatch(cnew, fire_option, {delay: 1}, 30000, 2);
+
   var lightning_option = document.getElementById("lightning_option");
   var dnew = document.getElementById("lightning");
-  lightning_timer = new Stopwatch(dnew, lightning_option, {
-    delay: 1
-  }, 35000, 4);
+  lightning_timer = new Stopwatch(dnew, lightning_option, {delay: 1}, 35000, 4);
   initDragElement();
   initResizeElement();
 };
 </script>
 
 <div class="container text-center">
+  <h2>Timers</h2>
+  <p>Each timers can be moved or resized to your desired. You can also change between voice or beep for alert.</p>
+  <p><b>*Only Backflow is tested and accurate at the moment</b></p>
+  <br/>
 
-    <h2>Timers</h2>
-	<p>Each timers can be moved or resized to your desired. You can also change between voice or beep for alert.</p>
-      <br/>
-
-    <div class="row justify-content-evenly">
-        <div class="col-4">
+  <div class="row justify-content-evenly">
+    <div class="col-4">
 			<div class="popup" id="backflow_div">
 				<div class="popup-header">Click here to move</div>
 				<br/>
@@ -806,13 +805,13 @@ window.onload = function() {
 				<button onclick="backflow_timer.stop()" class="btn btn-danger">Stop</button>
 				<button onclick="backflow_timer.reset()" class="btn btn-secondary">Reset</button>
 				<p></p>
-                <p>Voice/Beep Option</p>
-                <input onclick="backflow_timer.alarm_mode()" type="button" class="btn btn-secondary" id="backflow_option" value="Voice On" />
+        <p>Voice/Beep Option</p>
+        <input onclick="backflow_timer.alarm_mode()" type="button" class="btn btn-secondary" id="backflow_option" value="Voice On" />
 				<br/>
 				<br/>
-			</div>
-        </div>
-        <div class="col-4">
+      </div>
+    </div>
+    <div class="col-4">
 			<div class="popup" id="reflect_div">
 				<div class="popup-header">Click here to move</div>
 				<br/>
@@ -822,13 +821,13 @@ window.onload = function() {
 				<button onclick="reflect_timer.stop()" class="btn btn-danger">Stop</button>
 				<button onclick="reflect_timer.reset()" class="btn btn-secondary">Reset</button>
 				<p></p>
-                <p>Voice/Beep Option</p>
-                <input onclick="reflect_timer.alarm_mode()" type="button" class="btn btn-secondary" id="reflect_option" value="Voice On" />
-            <br/>
-            <br/>
+        <p>Voice/Beep Option</p>
+        <input onclick="reflect_timer.alarm_mode()" type="button" class="btn btn-secondary" id="reflect_option" value="Voice On" />
+        <br/>
+        <br/>
 			</div>
-        </div>
     </div>
+  </div>
 
 	<div class="d-grid gap-3">
 		<div class="p-2"></div>
@@ -846,8 +845,8 @@ window.onload = function() {
 		<div class="p-2"></div>
 	</div>
 
-    <div class="row justify-content-evenly">
-        <div class="col-4">
+  <div class="row justify-content-evenly">
+    <div class="col-4">
 			<div class="popup" id="fire_div">
 				<div class="popup-header">Click here to move</div>
 				<br/>
@@ -857,73 +856,74 @@ window.onload = function() {
 				<button onclick="fire_timer.stop()" class="btn btn-danger">Stop</button>
 				<button onclick="fire_timer.reset()" class="btn btn-secondary">Reset</button>
 				<p></p>
-                <p>Voice/Beep Option</p>
-                <input onclick="fire_timer.alarm_mode()" type="button" class="btn btn-secondary" id="fire_option" value="Voice On" />
+        <p>Voice/Beep Option</p>
+        <input onclick="fire_timer.alarm_mode()" type="button" class="btn btn-secondary" id="fire_option" value="Voice On" />
 				<br/>
 				<br/>
 			</div>
-        </div>
-        <div class="col-4">
-			<div class="popup" id="lightning_div">
-				<div class="popup-header">Click here to move</div>
-				<br/>
-				<h2 id="lightning_title" class="font">Lightning</h2>
-				<h1 class="stopwatch font" id="lightning"></h1>
-				<button onclick="lightning_timer.start()" class="btn btn-success">Start</button>
-				<button onclick="lightning_timer.stop()" class="btn btn-danger">Stop</button>
-				<button onclick="lightning_timer.reset()" class="btn btn-secondary">Reset</button>
-				<p></p>
-                <p>Voice/Beep Option</p>
-                <input onclick="lightning_timer.alarm_mode()" type="button" class="btn btn-secondary" id="lightning_option" value="Voice On" />
-				<br/>
-				<br/>
-			</div>
-        </div>
     </div>
-	<audio hidden preload="auto" id="audio_backflow_in">
-		<source src="{% static 'audio/backflow-in.mp3' %}" type="audio/mpeg">
-	</audio>
-	<audio hidden preload="auto" id="audio_backflow">
-		<source src="{% static 'audio/backflow.mp3' %}" type="audio/mpeg">
-	</audio>
-	<audio hidden preload="auto" id="audio_fire_in">
-		<source src="{% static 'audio/fire-in.mp3' %}" type="audio/mpeg">
-	</audio>
-	<audio hidden preload="auto" id="audio_fire">
-		<source src="{% static 'audio/fire.mp3' %}" type="audio/mpeg">
-	</audio>
-	<audio hidden preload="auto" id="audio_reflect_in">
-		<source src="{% static 'audio/reflect-in.mp3' %}" type="audio/mpeg">
-	</audio>
-	<audio hidden preload="auto" id="audio_reflect">
-		<source src="{% static 'audio/reflect.mp3' %}" type="audio/mpeg">
-	</audio>
-	<audio hidden preload="auto" id="audio_lightning_in">
-		<source src="{% static 'audio/lightning-in.mp3' %}" type="audio/mpeg">
-	</audio>
-	<audio hidden preload="auto" id="audio_lightning">
-		<source src="{% static 'audio/lightning.mp3' %}" type="audio/mpeg">
-	</audio>
-	<audio hidden preload="auto" id="audio_5">
-		<source src="{% static 'audio/5.mp3' %}" type="audio/mpeg">
-	</audio>
-	<audio hidden preload="auto" id="audio_4">
-		<source src="{% static 'audio/4.mp3' %}" type="audio/mpeg">
-	</audio>
-	<audio hidden preload="auto" id="audio_3">
-		<source src="{% static 'audio/3.mp3' %}" type="audio/mpeg">
-	</audio>
-	<audio hidden preload="auto" id="audio_2">
-		<source src="{% static 'audio/2.mp3' %}" type="audio/mpeg">
-	</audio>
-	<audio hidden preload="auto" id="audio_1">
-		<source src="{% static 'audio/1.mp3' %}" type="audio/mpeg">
-	</audio>
-	<audio hidden preload="auto" id="audio_beep-long">
-		<source src="{% static 'audio/beep-long.mp3' %}" type="audio/mpeg">
-	</audio>
-	<audio hidden preload="auto" id="audio_beep-short">
-		<source src="{% static 'audio/beep-short.mp3' %}" type="audio/mpeg">
-	</audio>
+  <div class="col-4">
+		<div class="popup" id="lightning_div">
+			<div class="popup-header">Click here to move</div>
+			<br/>
+			<h2 id="lightning_title" class="font">Lightning</h2>
+			<h1 class="stopwatch font" id="lightning"></h1>
+			<button onclick="lightning_timer.start()" class="btn btn-success">Start</button>
+			<button onclick="lightning_timer.stop()" class="btn btn-danger">Stop</button>
+			<button onclick="lightning_timer.reset()" class="btn btn-secondary">Reset</button>
+			<p></p>
+      <p>Voice/Beep Option</p>
+      <input onclick="lightning_timer.alarm_mode()" type="button" class="btn btn-secondary" id="lightning_option" value="Voice On" />
+			<br/>
+			<br/>
+		</div>
+  </div>
+  </div>
+  
+  <audio hidden preload="auto" id="audio_backflow_in">
+	   <source src="{% static 'audio/backflow-in.mp3' %}" type="audio/mpeg">
+  </audio>
+  <audio hidden preload="auto" id="audio_backflow">
+	   <source src="{% static 'audio/backflow.mp3' %}" type="audio/mpeg">
+  </audio>
+  <audio hidden preload="auto" id="audio_fire_in">
+	   <source src="{% static 'audio/fire-in.mp3' %}" type="audio/mpeg">
+  </audio>
+  <audio hidden preload="auto" id="audio_fire">
+	   <source src="{% static 'audio/fire.mp3' %}" type="audio/mpeg">
+  </audio>
+  <audio hidden preload="auto" id="audio_reflect_in">
+	   <source src="{% static 'audio/reflect-in.mp3' %}" type="audio/mpeg">
+  </audio>
+  <audio hidden preload="auto" id="audio_reflect">
+	   <source src="{% static 'audio/reflect.mp3' %}" type="audio/mpeg">
+  </audio>
+  <audio hidden preload="auto" id="audio_lightning_in">
+	   <source src="{% static 'audio/lightning-in.mp3' %}" type="audio/mpeg">
+  </audio>
+  <audio hidden preload="auto" id="audio_lightning">
+	   <source src="{% static 'audio/lightning.mp3' %}" type="audio/mpeg">
+  </audio>
+  <audio hidden preload="auto" id="audio_5">
+	   <source src="{% static 'audio/5.mp3' %}" type="audio/mpeg">
+  </audio>
+  <audio hidden preload="auto" id="audio_4">
+	   <source src="{% static 'audio/4.mp3' %}" type="audio/mpeg">
+  </audio>
+  <audio hidden preload="auto" id="audio_3">
+	   <source src="{% static 'audio/3.mp3' %}" type="audio/mpeg">
+  </audio>
+  <audio hidden preload="auto" id="audio_2">
+	   <source src="{% static 'audio/2.mp3' %}" type="audio/mpeg">
+  </audio>
+  <audio hidden preload="auto" id="audio_1">
+	   <source src="{% static 'audio/1.mp3' %}" type="audio/mpeg">
+  </audio>
+  <audio hidden preload="auto" id="audio_beep-long">
+	   <source src="{% static 'audio/beep-long.mp3' %}" type="audio/mpeg">
+  </audio>
+  <audio hidden preload="auto" id="audio_beep-short">
+	   <source src="{% static 'audio/beep-short.mp3' %}" type="audio/mpeg">
+  </audio>
 </div>
 {% endblock %}
