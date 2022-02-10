@@ -86,16 +86,18 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
 
   function update() {
     clock -= delta();
+    clock_value = clock / 1000;
     render();
-	if (alarm_mode_bool) {
-	  play_beep_mode(voice, clock);
-	} else {
-	  play_voice_mode(voice, clock);
-	}
 
-    if (clock <= 0) {
-      clock = time_limit;
-    }
+    if (alarm_mode_bool) {
+	     play_beep_mode(voice, clock_value);
+     } else {
+       play_voice_mode(voice, clock_value);
+	   }
+
+     if (clock <= 0) {
+       clock = time_limit;
+     }
   }
 
   function render() {
@@ -111,9 +113,9 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
     return d;
   }
 
-  function play_voice_mode(num, clock) {
-    clock_value = clock / 1000;
+  function play_voice_mode(num, clock_value) {
     rounded_clock = clock_value.toFixed();
+
     if (num == 1) { //backflow
       play_backflow_voice(rounded_clock)
     } else if (num == 2) { //fire
@@ -172,7 +174,7 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
           audio_backflow.load()
           count_1 = true;
         }
-    } else if (clock_value == 9000) {
+    } else if (clock_value == 9) {
         if (!backflow) {
           audio_backflow.play()
           backflow = true;
@@ -180,165 +182,377 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
     }
   }
 
-  function play_fire_voice() {
-    if (!preloaded) {
-      if (clock >= 11000 && clock <= 12000) {
-        audio_fire_in.load()
-        preloaded = true
-    fire_bool = false;
+  function play_fire_voice(clock_value) {
+    if (clock_value == 7) {
+      fire_bool = false;
+      count_5 = false;
+      count_4 = false;
+      count_3 = false;
+      count_2 = false;
+      count_1 = false;
+      fire = false;
+
+      if (!preloaded) {
+        audio_fire_in.load();
+        preloaded = true;
       }
     }
-    if (clock >= 10000 && clock <= 11000) {
-    if (!fire_bool) {
-        audio_fire_in.play()
-        count_5 = false;
-        count_4 = false;
-        count_3 = false;
-        count_2 = false;
-        count_1 = false;
-        fire = false;
+    if (clock_value == 6) {
+      if (!fire_bool) {
+        audio_fire_in.play();
         preloaded = false;
-    fire_bool = true;
-  }
-    } else if (clock >= 9000 && clock <= 10000) {
-      if (!count_5) {
-        countdown_voice(5)
-        count_5 = true;
+        fire_bool = true;
       }
-    } else if (clock >= 8000 && clock <= 9000) {
+    } else if (clock_value == 5) {
+        if (!count_5) {
+          countdown_voice(5)
+          count_5 = true;
+        }
+    } else if (clock_value == 4) {
       if (!count_4) {
         countdown_voice(4)
         count_4 = true;
       }
-    } else if (clock >= 7000 && clock <= 8000) {
-      if (!count_3) {
-        countdown_voice(3)
-        count_3 = true;
-      }
-    } else if (clock >= 6000 && clock <= 7000) {
-      if (!count_2) {
-        countdown_voice(2)
-        count_2 = true;
-      }
-    } else if (clock >= 5000 && clock <= 6000) {
-      if (!count_1) {
-        countdown_voice(1)
-        audio_fire.load()
-        count_1 = true;
-      }
-    } else if (clock >= 4000 && clock <= 5000) {
-      if (!fire) {
-        audio_fire.play()
-        fire = true;
-      }
+    } else if (clock_value == 3) {
+        if (!count_3) {
+          countdown_voice(3)
+          count_3 = true;
+        }
+    } else if (clock_value == 2) {
+        if (!count_2) {
+          countdown_voice(2)
+          count_2 = true;
+        }
+    } else if (clock_value == 1) {
+        if (!count_1) {
+          countdown_voice(1)
+          audio_fire.load()
+          count_1 = true;
+        }
+    } else if (clock_value == 0) {
+        if (!fire) {
+          audio_fire.play()
+          fire = true;
+        }
     }
   }
 
-  function play_reflect_voice() {
-    if (!preloaded) {
-      if (clock >= 11000 && clock <= 12000) {
-        audio_reflect_in.load()
-        preloaded = true
-    reflect_bool = false;
+  function play_reflect_voice(clock_value) {
+    if (clock_value == 7) {
+      reflect_bool = false;
+      count_5 = false;
+      count_4 = false;
+      count_3 = false;
+      count_2 = false;
+      count_1 = false;
+      reflect = false;
+
+      if (!preloaded) {
+        audio_reflect_in.load();
+        preloaded = true;
       }
     }
-    if (clock >= 10000 && clock <= 11000) {
-    if (!reflect_bool) {
-        audio_reflect_in.play()
-        count_5 = false;
-        count_4 = false;
-        count_3 = false;
-        count_2 = false;
-        count_1 = false;
-        reflect = false;
+    if (clock_value == 6) {
+      if (!reflect_bool) {
+        audio_reflect_in.play();
         preloaded = false;
-    reflect_bool = true;
-  }
-    } else if (clock >= 9000 && clock <= 10000) {
-      if (!count_5) {
-        countdown_voice(5)
-        count_5 = true;
+        reflect_bool = true;
       }
-    } else if (clock >= 8000 && clock <= 9000) {
+    } else if (clock_value == 5) {
+        if (!count_5) {
+          countdown_voice(5)
+          count_5 = true;
+        }
+    } else if (clock_value == 4) {
       if (!count_4) {
         countdown_voice(4)
         count_4 = true;
       }
-    } else if (clock >= 7000 && clock <= 8000) {
-      if (!count_3) {
-        countdown_voice(3)
-        count_3 = true;
-      }
-    } else if (clock >= 6000 && clock <= 7000) {
-      if (!count_2) {
-        countdown_voice(2)
-        count_2 = true;
-      }
-    } else if (clock >= 5000 && clock <= 6000) {
-      if (!count_1) {
-        countdown_voice(1)
-        audio_reflect.load()
-        count_1 = true;
-      }
-    } else if (clock >= 4000 && clock <= 5000) {
-      if (!reflect) {
-        audio_reflect.play()
-        reflect = true;
-      }
+    } else if (clock_value == 3) {
+        if (!count_3) {
+          countdown_voice(3)
+          count_3 = true;
+        }
+    } else if (clock_value == 2) {
+        if (!count_2) {
+          countdown_voice(2)
+          count_2 = true;
+        }
+    } else if (clock_value == 1) {
+        if (!count_1) {
+          countdown_voice(1)
+          audio_reflect.load()
+          count_1 = true;
+        }
+    } else if (clock_value == 0) {
+        if (!reflect) {
+          audio_reflect.play()
+          reflect = true;
+        }
     }
   }
 
-  function play_lightning_voice() {
-    if (!preloaded) {
-      if (clock >= 11000 && clock <= 12000) {
-        audio_lightning_in.load()
-        preloaded = true
-    lightning_bool = false;
+  function play_lightning_voice(clock_value) {
+    if (clock_value == 7) {
+      lightning_bool = false;
+      count_5 = false;
+      count_4 = false;
+      count_3 = false;
+      count_2 = false;
+      count_1 = false;
+      lightning = false;
+
+      if (!preloaded) {
+        audio_lightning_in.load();
+        preloaded = true;
       }
     }
-    if (clock >= 10000 && clock <= 11000) {
-    if (!lightning_bool) {
-        audio_lightning_in.play()
-        count_5 = false;
-        count_4 = false;
-        count_3 = false;
-        count_2 = false;
-        count_1 = false;
-        lightning = false;
+    if (clock_value == 6) {
+      if (!lightning_bool) {
+        audio_lightning_in.play();
         preloaded = false;
-    lightning_bool = true;
-  }
-    } else if (clock >= 9000 && clock <= 10000) {
-      if (!count_5) {
-        countdown_voice(5)
-        count_5 = true;
+        lightning_bool = true;
       }
-    } else if (clock >= 8000 && clock <= 9000) {
+    } else if (clock_value == 5) {
+        if (!count_5) {
+          countdown_voice(5)
+          count_5 = true;
+        }
+    } else if (clock_value == 4) {
       if (!count_4) {
         countdown_voice(4)
         count_4 = true;
       }
-    } else if (clock >= 7000 && clock <= 8000) {
-      if (!count_3) {
-        countdown_voice(3)
-        count_3 = true;
+    } else if (clock_value == 3) {
+        if (!count_3) {
+          countdown_voice(3)
+          count_3 = true;
+        }
+    } else if (clock_value == 2) {
+        if (!count_2) {
+          countdown_voice(2)
+          count_2 = true;
+        }
+    } else if (clock_value == 1) {
+        if (!count_1) {
+          countdown_voice(1)
+          audio_lightning.load()
+          count_1 = true;
+        }
+    } else if (clock_value == 0) {
+        if (!lightning) {
+          audio_lightning.play()
+          lightning = true;
+        }
+    }
+  }
+
+  function play_beep_mode(num, clock_value) {
+    rounded_clock = clock_value.toFixed();
+    
+    if (num == 1) { //backflow
+      play_backflow_beep(rounded_clock)
+    } else if (num == 2) { //fire
+      play_fire_beep(rounded_clock)
+    } else if (num == 3) { //reflect
+      play_reflect_beep(rounded_clock)
+    } else if (num == 4) { //lightning
+      play_lightning_beep(rounded_clock)
+    }
+  }
+
+  function play_backflow_beep(clock_value) {
+    if (clock_value == 16) {
+      count_5 = false;
+      count_4 = false;
+      count_3 = false;
+      count_2 = false;
+      count_1 = false;
+      backflow = false;
+
+      if (!preloaded) {
+        beep_short.load();
+        beep_long.load();
+        preloaded = true;
       }
-    } else if (clock >= 6000 && clock <= 7000) {
-      if (!count_2) {
-        countdown_voice(2)
-        count_2 = true;
+    }
+    if (clock_value == 14) {
+        if (!count_5) {
+          beep_short.play();
+          count_5 = true;
+        }
+    } else if (clock_value == 13) {
+      if (!count_4) {
+        beep_short.play();
+        count_4 = true;
       }
-    } else if (clock >= 5000 && clock <= 6000) {
-      if (!count_1) {
-        countdown_voice(1)
-        audio_lightning.load()
-        count_1 = true;
+    } else if (clock_value == 12) {
+        if (!count_3) {
+          beep_short.play();
+          count_3 = true;
+        }
+    } else if (clock_value == 11) {
+        if (!count_2) {
+          beep_short.play();
+          count_2 = true;
+        }
+    } else if (clock_value == 10) {
+        if (!count_1) {
+          beep_short.play();
+          count_1 = true;
+        }
+    } else if (clock_value == 9) {
+        if (!backflow) {
+          beep_long.play();
+          backflow = true;
+        }
+    }
+  }
+
+  function play_fire_beep(clock_value) {
+    if (clock_value == 7) {
+      fire_bool = false;
+      count_5 = false;
+      count_4 = false;
+      count_3 = false;
+      count_2 = false;
+      count_1 = false;
+      fire = false;
+
+      if (!preloaded) {
+        beep_short.load();
+        beep_long.load();
+        preloaded = true;
       }
-    } else if (clock >= 4000 && clock <= 5000) {
-      if (!lightning) {
-        audio_lightning.play()
-        lightning = true;
+    }
+    if (clock_value == 5) {
+        if (!count_5) {
+          beep_short.play();
+          count_5 = true;
+        }
+    } else if (clock_value == 4) {
+        if (!count_4) {
+          beep_short.play();
+          count_4 = true;
       }
+    } else if (clock_value == 3) {
+        if (!count_3) {
+          beep_short.play();
+          count_3 = true;
+        }
+    } else if (clock_value == 2) {
+        if (!count_2) {
+          beep_short.play();
+          count_2 = true;
+        }
+    } else if (clock_value == 1) {
+        if (!count_1) {
+          beep_short.play();
+          count_1 = true;
+        }
+    } else if (clock_value == 0) {
+        if (!fire) {
+          beep_long.play();
+          fire = true;
+        }
+    }
+  }
+
+  function play_reflect_beep(clock_value) {
+    if (clock_value == 7) {
+      reflect_bool = false;
+      count_5 = false;
+      count_4 = false;
+      count_3 = false;
+      count_2 = false;
+      count_1 = false;
+      reflect = false;
+
+      if (!preloaded) {
+        beep_short.load();
+        beep_long.load();
+        preloaded = true;
+      }
+    }
+    if (clock_value == 5) {
+        if (!count_5) {
+          beep_short.play();
+          count_5 = true;
+        }
+    } else if (clock_value == 4) {
+      if (!count_4) {
+        beep_short.play();
+        count_4 = true;
+      }
+    } else if (clock_value == 3) {
+        if (!count_3) {
+          beep_short.play();
+          count_3 = true;
+        }
+    } else if (clock_value == 2) {
+        if (!count_2) {
+          beep_short.play();
+          count_2 = true;
+        }
+    } else if (clock_value == 1) {
+        if (!count_1) {
+          beep_short.play();
+          count_1 = true;
+        }
+    } else if (clock_value == 0) {
+        if (!reflect) {
+          beep_long.play();
+          reflect = true;
+        }
+    }
+  }
+
+  function play_lightning_beep(clock_value) {
+    if (clock_value == 7) {
+      lightning_bool = false;
+      count_5 = false;
+      count_4 = false;
+      count_3 = false;
+      count_2 = false;
+      count_1 = false;
+      lightning = false;
+
+      if (!preloaded) {
+        beep_short.load();
+        beep_long.load();
+        preloaded = true;
+      }
+    }
+    if (clock_value == 5) {
+        if (!count_5) {
+          beep_short.play();
+          count_5 = true;
+        }
+    } else if (clock_value == 4) {
+      if (!count_4) {
+        beep_short.play();
+        count_4 = true;
+      }
+    } else if (clock_value == 3) {
+        if (!count_3) {
+          beep_short.play();
+          count_3 = true;
+        }
+    } else if (clock_value == 2) {
+        if (!count_2) {
+          beep_short.play();
+          count_2 = true;
+        }
+    } else if (clock_value == 1) {
+        if (!count_1) {
+          beep_short.play();
+          count_1 = true;
+        }
+    } else if (clock_value == 0) {
+        if (!lightning) {
+          beep_long.play();
+          lightning = true;
+        }
     }
   }
 
@@ -357,199 +571,6 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
     } else if (num == 5) {
         audio_5.play()
 	      //audio_4.load()
-    }
-  }
-
-  function play_beep_mode(num, clock) {
-    if (num == 1) { //backflow
-      if (!preloaded) {
-        if (clock >= 16000 && clock <= 17000) {
-          beep_short.load()
-          preloaded = true;
-        }
-      }
-      if (clock >= 15000 && clock <= 16000) {
-        count_5 = false;
-        count_4 = false;
-        count_3 = false;
-        count_2 = false;
-        count_1 = false;
-        backflow = false;
-        preloaded = false;
-      } else if (clock >= 14000 && clock <= 15000) {
-        if (!count_5) {
-          beep_short.play()
-          count_5 = true;
-        }
-      } else if (clock >= 13000 && clock <= 14000) {
-        if (!count_4) {
-          beep_short.play()
-          count_4 = true;
-        }
-      } else if (clock >= 12000 && clock <= 13000) {
-        if (!count_3) {
-          beep_short.play()
-          count_3 = true;
-        }
-      } else if (clock >= 11000 && clock <= 12000) {
-        if (!count_2) {
-          beep_short.play()
-          count_2 = true;
-        }
-      } else if (clock >= 10000 && clock <= 11000) {
-        if (!count_1) {
-          beep_short.play()
-          beep_long.load()
-          count_1 = true;
-        }
-      } else if (clock >= 9000 && clock <= 10000) {
-        if (!backflow) {
-          beep_long.play()
-          backflow = true;
-        }
-
-      }
-    } else if (num == 2) { //fire
-      if (!preloaded) {
-        if (clock >= 11000 && clock <= 12000) {
-          beep_short.load()
-          preloaded = true
-        }
-      }
-      if (clock >= 10000 && clock <= 11000) {
-        count_5 = false;
-        count_4 = false;
-        count_3 = false;
-        count_2 = false;
-        count_1 = false;
-        fire = false;
-        preloaded = false;
-      } else if (clock >= 9000 && clock <= 10000) {
-        if (!count_5) {
-          beep_short.play()
-          count_5 = true;
-        }
-      } else if (clock >= 8000 && clock <= 9000) {
-        if (!count_4) {
-          beep_short.play()
-          count_4 = true;
-        }
-      } else if (clock >= 7000 && clock <= 8000) {
-        if (!count_3) {
-          beep_short.play()
-          count_3 = true;
-        }
-      } else if (clock >= 6000 && clock <= 7000) {
-        if (!count_2) {
-          beep_short.play()
-          count_2 = true;
-        }
-      } else if (clock >= 5000 && clock <= 6000) {
-        if (!count_1) {
-          beep_short.play()
-          beep_long.load()
-          count_1 = true;
-        }
-      } else if (clock >= 4000 && clock <= 5000) {
-        if (!fire) {
-          beep_long.play()
-          fire = true;
-        }
-      }
-    } else if (num == 3) { //reflect
-      if (!preloaded) {
-        if (clock >= 11000 && clock <= 12000) {
-          beep_short.load()
-          preloaded = true
-        }
-      }
-      if (clock >= 10000 && clock <= 11000) {
-        count_5 = false;
-        count_4 = false;
-        count_3 = false;
-        count_2 = false;
-        count_1 = false;
-        reflect = false;
-        preloaded = false;
-      } else if (clock >= 9000 && clock <= 10000) {
-        if (!count_5) {
-          beep_short.play()
-          count_5 = true;
-        }
-      } else if (clock >= 8000 && clock <= 9000) {
-        if (!count_4) {
-          beep_short.play()
-          count_4 = true;
-        }
-      } else if (clock >= 7000 && clock <= 8000) {
-        if (!count_3) {
-          beep_short.play()
-          count_3 = true;
-        }
-      } else if (clock >= 6000 && clock <= 7000) {
-        if (!count_2) {
-          beep_short.play()
-          count_2 = true;
-        }
-      } else if (clock >= 5000 && clock <= 6000) {
-        if (!count_1) {
-          beep_short.play()
-          beep_long.load()
-          count_1 = true;
-        }
-      } else if (clock >= 4000 && clock <= 5000) {
-        if (!reflect) {
-          beep_long.play()
-          reflect = true;
-        }
-      }
-    } else if (num == 4) { //lightning
-      if (!preloaded) {
-        if (clock >= 11000 && clock <= 12000) {
-          beep_short.load()
-          preloaded = true
-        }
-      }
-      if (clock >= 10000 && clock <= 11000) {
-        count_5 = false;
-        count_4 = false;
-        count_3 = false;
-        count_2 = false;
-        count_1 = false;
-        lightning = false;
-        preloaded = false;
-      } else if (clock >= 9000 && clock <= 10000) {
-        if (!count_5) {
-          beep_short.play()
-          count_5 = true;
-        }
-      } else if (clock >= 8000 && clock <= 9000) {
-        if (!count_4) {
-          beep_short.play()
-          count_4 = true;
-        }
-      } else if (clock >= 7000 && clock <= 8000) {
-        if (!count_3) {
-          beep_short.play()
-          count_3 = true;
-        }
-      } else if (clock >= 6000 && clock <= 7000) {
-        if (!count_2) {
-          beep_short.play()
-          count_2 = true;
-        }
-      } else if (clock >= 5000 && clock <= 6000) {
-        if (!count_1) {
-          beep_short.play()
-          beep_long.load()
-          count_1 = true;
-        }
-      } else if (clock >= 4000 && clock <= 5000) {
-        if (!lightning) {
-          beep_long.play()
-          lightning = true;
-        }
-      }
     }
   }
 
