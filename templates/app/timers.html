@@ -782,7 +782,7 @@ window.onload = function() {
 
   var lightning_option = document.getElementById("lightning_option");
   var dnew = document.getElementById("lightning");
-  lightning_timer = new Stopwatch(dnew, lightning_option, {delay: 1}, 35000, 4);
+  lightning_timer = new Stopwatch(dnew, lightning_option, {delay: 1}, 30000, 4);
   initDragElement();
   initResizeElement();
 };
@@ -791,7 +791,7 @@ window.onload = function() {
 <div class="container text-center">
   <h2>Timers</h2>
   <p>Each timers can be moved or resized to your desired. You can also change between voice or beep for alert.</p>
-  <p><b>*Only Backflow is tested and accurate at the moment</b></p>
+  <p><b>*Only Backflow and Lightning are tested and accurate at the moment</b></p>
   <br/>
 
   <div class="row justify-content-evenly">
@@ -879,7 +879,7 @@ window.onload = function() {
 		</div>
   </div>
   </div>
-  
+
   <audio hidden preload="auto" id="audio_backflow_in">
 	   <source src="{% static 'audio/backflow-in.mp3' %}" type="audio/mpeg">
   </audio>
