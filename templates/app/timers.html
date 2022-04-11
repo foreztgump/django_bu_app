@@ -32,6 +32,7 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
     reflect_bool = false,
     lightning_bool = false,
     fire_bool = false,
+    fuse_storm_bool = false,
     count_5 = false,
     count_4 = false,
     count_3 = false,
@@ -905,8 +906,8 @@ window.onload = function() {
   lightning_timer = new Stopwatch(dnew, lightning_option, {delay: 1}, 30000, 4);
 
   var fuse_storm_option = document.getElementById("fuse_storm_option");
-  var dnew = document.getElementById("fuse_storm");
-  fuse_storm_timer = new Stopwatch(dnew, fuse_storm_option, {delay: 1}, 25000, 5);
+  var enew = document.getElementById("fuse_storm");
+  fuse_storm_timer = new Stopwatch(enew, fuse_storm_option, {delay: 1}, 25000, 5);
   initDragElement();
   initResizeElement();
 };
