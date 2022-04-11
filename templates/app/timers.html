@@ -17,6 +17,8 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
     audio_reflect = document.getElementById("audio_reflect"),
     audio_lightning_in = document.getElementById("audio_lightning_in"),
     audio_lightning = document.getElementById("audio_lightning"),
+    audio_fuse_storm = document.getElementById("audio_fuse_storm"),
+    audio_fuse_storm_in = document.getElementById("audio_fuse_storm_in"),
 	  beep_long = document.getElementById("audio_beep-long"),
 	  beep_short = document.getElementById("audio_beep-short"),
     audio_5 = document.getElementById("audio_5"),
@@ -124,6 +126,8 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
       play_reflect_voice(rounded_clock)
     } else if (num == 4) { //lightning
       play_lightning_voice(rounded_clock)
+    } else if (num == 5) { //audio_fuse_storm
+      play_fuse_storm_voice(rounded_clock)
     }
   }
 
@@ -347,6 +351,61 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
     }
   }
 
+  function play_fuse_storm_voice(clock_value) {
+    if (clock_value == 7) {
+      fuse_storm_bool = false;
+      count_5 = false;
+      count_4 = false;
+      count_3 = false;
+      count_2 = false;
+      count_1 = false;
+      fuse_storm = false;
+
+      if (!preloaded) {
+        audio_fuse_storm_in.load();
+        preloaded = true;
+      }
+    }
+    if (clock_value == 6) {
+      if (!fuse_storm_bool) {
+        audio_fuse_storm_in.play();
+        preloaded = false;
+        fuse_storm_bool = true;
+      }
+    } else if (clock_value == 5) {
+        if (!count_5) {
+          countdown_voice(5)
+          count_5 = true;
+        }
+    } else if (clock_value == 4) {
+      if (!count_4) {
+        countdown_voice(4)
+        count_4 = true;
+      }
+    } else if (clock_value == 3) {
+        if (!count_3) {
+          countdown_voice(3)
+          count_3 = true;
+        }
+    } else if (clock_value == 2) {
+        if (!count_2) {
+          countdown_voice(2)
+          count_2 = true;
+        }
+    } else if (clock_value == 1) {
+        if (!count_1) {
+          countdown_voice(1)
+          audio_fuse_storm.load()
+          count_1 = true;
+        }
+    } else if (clock_value == 0) {
+        if (!fuse_storm) {
+          audio_fuse_storm.play()
+          fire = true;
+        }
+    }
+  }
+
   function play_beep_mode(num, clock_value) {
     rounded_clock = clock_value.toFixed();
 
@@ -358,7 +417,8 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
       play_reflect_beep(rounded_clock)
     } else if (num == 4) { //lightning
       play_lightning_beep(rounded_clock)
-    }
+    } else if (num == 5) { //lightning
+      play_fuse_storm_beep(rounded_clock)
   }
 
   function play_backflow_beep(clock_value) {
@@ -552,6 +612,55 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
         if (!lightning) {
           beep_long.play();
           lightning = true;
+        }
+    }
+  }
+
+  function play_fuse_storm_beep(clock_value) {
+    if (clock_value == 7) {
+      fuse_storm_bool = false;
+      count_5 = false;
+      count_4 = false;
+      count_3 = false;
+      count_2 = false;
+      count_1 = false;
+      fuse_storm = false;
+
+      if (!preloaded) {
+        beep_short.load();
+        beep_long.load();
+        preloaded = true;
+      }
+    }
+    if (clock_value == 5) {
+        if (!count_5) {
+          beep_short.play();
+          count_5 = true;
+        }
+    } else if (clock_value == 4) {
+        if (!count_4) {
+          beep_short.play();
+          count_4 = true;
+      }
+    } else if (clock_value == 3) {
+        if (!count_3) {
+          beep_short.play();
+          count_3 = true;
+        }
+    } else if (clock_value == 2) {
+        if (!count_2) {
+          beep_short.play();
+          count_2 = true;
+        }
+    } else if (clock_value == 1) {
+        if (!count_1) {
+          beep_short.play();
+          count_1 = true;
+        }
+    } else if (clock_value == 0) {
+        if (!fuse_storm) {
+          beep_long.play();
+          fuse_storm = true;
         }
     }
   }
@@ -764,6 +873,17 @@ function setColor() {
   } else if (lightning_value <= 5) {
     lightning_div.style.backgroundColor = "#FDABA5";
   }
+
+  let fuse_storm_div = document.getElementById("fuse_storm_div");
+  let fuse_storm_value = document.getElementById("fuse_storm").innerText;
+
+  if (fuse_storm_value >= 10) {
+   fuse_storm_div.style.backgroundColor = "#B9FEC2";
+  } else if (fuse_storm_value >= 5 && lightning_value <= 10){
+    lightning_div.style.backgroundColor = "#FDE6A5";
+  } else if (fuse_storm_value <= 5) {
+    lightning_div.style.backgroundColor = "#FDABA5";
+  }
 }
 
 //Onload function
@@ -783,6 +903,10 @@ window.onload = function() {
   var lightning_option = document.getElementById("lightning_option");
   var dnew = document.getElementById("lightning");
   lightning_timer = new Stopwatch(dnew, lightning_option, {delay: 1}, 30000, 4);
+
+  var fuse_storm_option = document.getElementById("fuse_storm_option");
+  var dnew = document.getElementById("fuse_storm");
+  fuse_storm_timer = new Stopwatch(dnew, fuse_storm_option, {delay: 1}, 25000, 4);
   initDragElement();
   initResizeElement();
 };
@@ -881,6 +1005,41 @@ window.onload = function() {
   </div>
   </div>
 
+  <div class="d-grid gap-3">
+    <div class="p-2"></div>
+    <div class="p-2"></div>
+    <div class="p-2"></div>
+  </div>
+  <div class="d-grid gap-3">
+    <div class="p-2"></div>
+    <div class="p-2"></div>
+    <div class="p-2"></div>
+  </div>
+  <div class="d-grid gap-3">
+    <div class="p-2"></div>
+    <div class="p-2"></div>
+    <div class="p-2"></div>
+  </div>
+
+  <div class="row justify-content-evenly">
+    <div class="col-4">
+      <div class="popup" id="fuse_storm_div">
+        <div class="popup-header">Click here to move</div>
+        <br/>
+        <h2 id="fuse_storme_title" class="font">Fuse Storm</h2>
+        <h1 class="stopwatch font" id="fuse_storme"></h1>
+        <button onclick="fuse_storm_timer.start()" class="btn btn-success">Start</button>
+        <button onclick="fuse_storm_timer.stop()" class="btn btn-danger">Stop</button>
+        <button onclick="fuse_storm_timer.reset()" class="btn btn-secondary">Reset</button>
+        <p></p>
+        <p>Voice/Beep Option</p>
+        <input onclick="fuse_storm_timer.alarm_mode()" type="button" class="btn btn-secondary" id="fuse_storme_option" value="Voice On" />
+        <br/>
+        <br/>
+      </div>
+    </div>
+  </div>
+
   <audio hidden preload="auto" id="audio_backflow_in">
 	   <source src="{% static 'audio/backflow-in.mp3' %}" type="audio/mpeg">
   </audio>
@@ -904,6 +1063,12 @@ window.onload = function() {
   </audio>
   <audio hidden preload="auto" id="audio_lightning">
 	   <source src="{% static 'audio/lightning.mp3' %}" type="audio/mpeg">
+  </audio>
+  <audio hidden preload="auto" id="audio_fuse_storm">
+	   <source src="{% static 'audio/fuse-storm.mp3' %}" type="audio/mpeg">
+  </audio>
+  <audio hidden preload="auto" id="audio_fuse_storm_id">
+	   <source src="{% static 'audio/fuse-storm-id.mp3' %}" type="audio/mpeg">
   </audio>
   <audio hidden preload="auto" id="audio_5">
 	   <source src="{% static 'audio/5.mp3' %}" type="audio/mpeg">
