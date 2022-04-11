@@ -881,10 +881,10 @@ function setColor() {
 
   if (fuse_storm_value >= 10) {
    fuse_storm_div.style.backgroundColor = "#B9FEC2";
-  } else if (fuse_storm_value >= 5 && lightning_value <= 10){
-    lightning_div.style.backgroundColor = "#FDE6A5";
+  } else if (fuse_storm_value >= 5 && fuse_storm_value <= 10){
+    fuse_storm_div.style.backgroundColor = "#FDE6A5";
   } else if (fuse_storm_value <= 5) {
-    lightning_div.style.backgroundColor = "#FDABA5";
+    fuse_storm_div.style.backgroundColor = "#FDABA5";
   }
 }
 
@@ -918,7 +918,6 @@ window.onload = function() {
   <h2>Timers</h2>
   <p>Each timers can be moved or resized to your desired. You can also change between voice or beep for alert.</p>
   <p>How to use : Start timer right after the effect has ended.</p>
-  <p><b>*Only Backflow, Reflect and Lightning are tested and accurate at the moment</b></p>
   <br/>
 
   <div class="row justify-content-evenly">
