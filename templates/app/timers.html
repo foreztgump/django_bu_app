@@ -906,7 +906,7 @@ window.onload = function() {
 
   var fuse_storm_option = document.getElementById("fuse_storm_option");
   var dnew = document.getElementById("fuse_storm");
-  fuse_storm_timer = new Stopwatch(dnew, fuse_storm_option, {delay: 1}, 25000, 4);
+  fuse_storm_timer = new Stopwatch(dnew, fuse_storm_option, {delay: 1}, 25000, 5);
   initDragElement();
   initResizeElement();
 };
@@ -1026,14 +1026,14 @@ window.onload = function() {
       <div class="popup" id="fuse_storm_div">
         <div class="popup-header">Click here to move</div>
         <br/>
-        <h2 id="fuse_storme_title" class="font">Fuse Storm</h2>
-        <h1 class="stopwatch font" id="fuse_storme"></h1>
+        <h2 id="fuse_storm_title" class="font">Fuse Storm</h2>
+        <h1 class="stopwatch font" id="fuse_storm"></h1>
         <button onclick="fuse_storm_timer.start()" class="btn btn-success">Start</button>
         <button onclick="fuse_storm_timer.stop()" class="btn btn-danger">Stop</button>
         <button onclick="fuse_storm_timer.reset()" class="btn btn-secondary">Reset</button>
         <p></p>
         <p>Voice/Beep Option</p>
-        <input onclick="fuse_storm_timer.alarm_mode()" type="button" class="btn btn-secondary" id="fuse_storme_option" value="Voice On" />
+        <input onclick="fuse_storm_timer.alarm_mode()" type="button" class="btn btn-secondary" id="fuse_storm_option" value="Voice On" />
         <br/>
         <br/>
       </div>
@@ -1067,8 +1067,8 @@ window.onload = function() {
   <audio hidden preload="auto" id="audio_fuse_storm">
 	   <source src="{% static 'audio/fuse-storm.mp3' %}" type="audio/mpeg">
   </audio>
-  <audio hidden preload="auto" id="audio_fuse_storm_id">
-	   <source src="{% static 'audio/fuse-storm-id.mp3' %}" type="audio/mpeg">
+  <audio hidden preload="auto" id="audio_fuse_storm_in">
+	   <source src="{% static 'audio/fuse-storm-in.mp3' %}" type="audio/mpeg">
   </audio>
   <audio hidden preload="auto" id="audio_5">
 	   <source src="{% static 'audio/5.mp3' %}" type="audio/mpeg">
