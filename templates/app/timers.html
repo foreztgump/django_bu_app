@@ -69,23 +69,8 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
   }
 
   function setVolume(value) {
-    audio_backflow_in.volume = value / 100;
-    audio_backflow.volume = value / 100;
-    audio_fire_in.volume = value / 100;
-    audio_fire.volume = value / 100;
-    audio_reflect_in.volume = value / 100;
-    audio_reflect.volume = value / 100;
-    audio_lightning_in.volume = value / 100;
-    audio_lightning.volume = value / 100;
-    audio_fuse_storm.volume = value / 100;
-    audio_fuse_storm_in.volume = value / 100;
-	  beep_long.volume = value / 100;
-	  beep_short.volume = value / 100;
-    audio_5.volume = value / 100;
-    audio_4.volume = value / 100;
-    audio_3.volume = value / 100;
-    audio_2.volume = value / 100;
-    audio_1.volume = value / 100;
+    var vol = value / 100;
+    return vol;
   }
 
   function start() {
@@ -689,17 +674,22 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
 
   function countdown_voice(num) {
     if (num == 1) {
-      audio_1.play()
+      audio_1.volume = setVolume(value);
+      audio_1.play();
     } else if (num == 2) {
+        audio_2.volume = setVolume(value);
         audio_2.play()
 	      //audio_1.load()
     } else if (num == 3) {
+        audio_3.volume = setVolume(value);
         audio_3.play()
 	      //audio_2.load()
     } else if (num == 4) {
+        audio_4.volume = setVolume(value);
         audio_4.play()
 	      //audio_3.load()
     } else if (num == 5) {
+        audio_5.volume = setVolume(value);
         audio_5.play()
 	      //audio_4.load()
     }
