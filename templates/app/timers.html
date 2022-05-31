@@ -674,22 +674,22 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
 
   function countdown_voice(num) {
     if (num == 1) {
-      audio_1.volume = setVolume(value);
+      audio_1.volume() = setVolume(value);
       audio_1.play();
     } else if (num == 2) {
-        audio_2.volume = setVolume(value);
+        audio_2.volume() = setVolume(value);
         audio_2.play()
 	      //audio_1.load()
     } else if (num == 3) {
-        audio_3.volume = setVolume(value);
+        audio_3.volume() = setVolume(value);
         audio_3.play()
 	      //audio_2.load()
     } else if (num == 4) {
-        audio_4.volume = setVolume(value);
+        audio_4.volume() = setVolume(value);
         audio_4.play()
 	      //audio_3.load()
     } else if (num == 5) {
-        audio_5.volume = setVolume(value);
+        audio_5.volume() = setVolume(value);
         audio_5.play()
 	      //audio_4.load()
     }
