@@ -69,13 +69,23 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
   }
 
   function setVolume(value) {
+    audio_backflow_in.volume = value / 100;
+    audio_backflow.volume = value / 100;
+    audio_fire_in.volume = value / 100;
+    audio_fire.volume = value / 100;
+    audio_reflect_in.volume = value / 100;
+    audio_reflect.volume = value / 100;
+    audio_lightning_in.volume = value / 100;
+    audio_lightning.volume = value / 100;
     audio_fuse_storm.volume = value / 100;
     audio_fuse_storm_in.volume = value / 100;
-    count_5.volume = value / 100;
-    count_4.volume = value / 100;
-    count_3.volume = value / 100;
-    count_2.volume = value / 100;
-    count_1.volume = value / 100;
+	  beep_long.volume = value / 100;
+	  beep_short.volume = value / 100;
+    audio_5.volume = value / 100;
+    audio_4.volume = value / 100;
+    audio_3.volume = value / 100;
+    audio_2.volume = value / 100;
+    audio_1.volume = value / 100;
   }
 
   function start() {
@@ -944,6 +954,9 @@ window.onload = function() {
 				<p></p>
         <p>Voice/Beep Option</p>
         <input onclick="backflow_timer.alarm_mode()" type="button" class="btn btn-secondary" id="backflow_option" value="Voice On" />
+        <p></p>
+        <p>Volume Control</p>
+        <input id="backflow_vol-control" type="range" min="0" max="100" step="1" oninput="backflow_timer.setVolume(this.value)" onchange="backflow_timer.setVolume(this.value)"></input>
 				<br/>
 				<br/>
       </div>
@@ -960,7 +973,10 @@ window.onload = function() {
 				<p></p>
         <p>Voice/Beep Option</p>
         <input onclick="reflect_timer.alarm_mode()" type="button" class="btn btn-secondary" id="reflect_option" value="Voice On" />
-        <br/>
+        <p></p>
+        <p>Volume Control</p>
+        <input id="reflect_vol-control" type="range" min="0" max="100" step="1" oninput="reflect_timer.setVolume(this.value)" onchange="reflect_timer.setVolume(this.value)"></input>
+				<br/>
         <br/>
 			</div>
     </div>
@@ -995,6 +1011,9 @@ window.onload = function() {
 				<p></p>
         <p>Voice/Beep Option</p>
         <input onclick="fire_timer.alarm_mode()" type="button" class="btn btn-secondary" id="fire_option" value="Voice On" />
+        <p></p>
+        <p>Volume Control</p>
+        <input id="fire_vol-control" type="range" min="0" max="100" step="1" oninput="fire_timer.setVolume(this.value)" onchange="fire_timer.setVolume(this.value)"></input>
 				<br/>
 				<br/>
 			</div>
@@ -1011,6 +1030,9 @@ window.onload = function() {
 			<p></p>
       <p>Voice/Beep Option</p>
       <input onclick="lightning_timer.alarm_mode()" type="button" class="btn btn-secondary" id="lightning_option" value="Voice On" />
+      <p></p>
+      <p>Volume Control</p>
+      <input id="lightning_vol-control" type="range" min="0" max="100" step="1" oninput="lightning_timer.setVolume(this.value)" onchange="lightning_timer.setVolume(this.value)"></input>
 			<br/>
 			<br/>
 		</div>
@@ -1046,8 +1068,9 @@ window.onload = function() {
         <p></p>
         <p>Voice/Beep Option</p>
         <input onclick="fuse_storm_timer.alarm_mode()" type="button" class="btn btn-secondary" id="fuse_storm_option" value="Voice On" />
+        <p></p>
         <p>Volume Control</p>
-        <input id="vol-control" type="range" min="0" max="100" step="1" oninput="fuse_storm_timer.setVolume(this.value)" onchange="fuse_storm_timer.setVolume(this.value)"></input>
+        <input id="fuse_storm_vol-control" type="range" min="0" max="100" step="1" oninput="fuse_storm_timer.setVolume(this.value)" onchange="fuse_storm_timer.setVolume(this.value)"></input>
         <br/>
         <br/>
       </div>
