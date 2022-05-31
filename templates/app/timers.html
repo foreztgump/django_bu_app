@@ -68,6 +68,16 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
     return a;
   }
 
+  function setVolume(value) {
+    audio_fuse_storm.volume = value / 100;
+    audio_fuse_storm_in.volume = value / 100;
+    count_5.volume = value / 100;
+    count_4.volume = value / 100;
+    count_3.volume = value / 100;
+    count_2.volume = value / 100;
+    count_1.volume = value / 100;
+  }
+
   function start() {
     if (!interval) {
       offset = Date.now();
@@ -700,6 +710,7 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
   this.stop = stop;
   this.reset = reset;
   this.alarm_mode = alarm_mode;
+  this.setVolume = setVolume;
 };
 
 
@@ -1035,6 +1046,8 @@ window.onload = function() {
         <p></p>
         <p>Voice/Beep Option</p>
         <input onclick="fuse_storm_timer.alarm_mode()" type="button" class="btn btn-secondary" id="fuse_storm_option" value="Voice On" />
+        <p>Volume Control</p>
+        <input id="vol-control" type="range" min="0" max="100" step="1" oninput="fuse_storm_timer.setVolume(this.value)" onchange="fuse_storm_timer.setVolume(this.value)"></input>
         <br/>
         <br/>
       </div>
