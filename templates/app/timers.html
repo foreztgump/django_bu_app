@@ -942,12 +942,8 @@ function setColor() {
 }
 
 function nightmode() {
-  $("#remove-filter").click(function() {
-    $("body").removeClass("night-filter");
-  });
-  $("#night-filter").click(function() {
-    $("body").addClass("night-filter");
-  });
+  var element = document.getElementById("night-filter");
+  document.body.classList.toggle("night-filter");
 }
 
 //Onload function
@@ -981,7 +977,6 @@ window.onload = function() {
   <p>Each timers can be moved or resized to your desired. You can also change between voice or beep for alert.</p>
   <p>How to use : Start timer right after the effect has ended.</p>
   <p>
-    <button class="btn btn-outline-dark " id="remove-filter">No Filter</button>
     <button class="btn btn-outline-dark " id="night-filter">Nightmode Filter</button>
   </p>
   <br/>
