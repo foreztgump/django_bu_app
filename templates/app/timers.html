@@ -941,15 +941,6 @@ function setColor() {
   }
 }
 
-function nightmode() {
-  $("#remove-filter").click(function() {
-    $("body").removeClass("night-filter");
-  });
-  $("#night-filter").click(function() {
-    $("body").addClass("night-filter");
-  });
-}
-
 //Onload function
 window.onload = function() {
   var backflow_option = document.getElementById("backflow_option");
@@ -973,7 +964,12 @@ window.onload = function() {
   fuse_storm_timer = new Stopwatch(enew, fuse_storm_option, {delay: 1}, 25000, 5);
   initDragElement();
   initResizeElement();
-  nightmode();
+  $("#remove-filter").click(function() {
+    $("body").removeClass("night-filter");
+  });
+  $("#night-filter").click(function() {
+    $("body").addClass("night-filter");
+  });
 };
 </script>
 
