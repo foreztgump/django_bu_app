@@ -941,12 +941,15 @@ function setColor() {
   }
 }
 
-$("#remove-filter").click(function() {
-  $("body").removeClass("night-filter");
-});
-$("#night-filter").click(function() {
-  $("body").addClass("night-filter");
-});
+function nightmode() {
+  $("#remove-filter").click(function() {
+    $("body").removeClass("night-filter");
+  });
+  $("#night-filter").click(function() {
+    $("body").addClass("night-filter");
+  });
+}
+
 //Onload function
 window.onload = function() {
   var backflow_option = document.getElementById("backflow_option");
