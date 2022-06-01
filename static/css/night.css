@@ -1,0 +1,11 @@
+body.night-filter:before {
+  pointer-events: none;
+  content: '';
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgb(64, 64, 64);
+  mix-blend-mode: multiply;
+}

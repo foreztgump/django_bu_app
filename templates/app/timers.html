@@ -5,6 +5,7 @@
 {% block content %}
 {% load static %}
 <link rel="stylesheet" type='text/css' href="{% static 'css/pop.css' %}">
+<link rel="stylesheet" type='text/css' href="{% static 'css/night.css' %}">
 <script type="text/javascript">
 var Stopwatch = function(element, voice_option, options, time_limit, voice) {
 
@@ -940,6 +941,15 @@ function setColor() {
   }
 }
 
+function nightmode() {
+  $("#remove-filter").click(function() {
+    $("body").removeClass("night-filter");
+  });
+  $("#night-filter").click(function() {
+    $("body").addClass("night-filter");
+  });
+}
+
 //Onload function
 window.onload = function() {
   var backflow_option = document.getElementById("backflow_option");
@@ -963,6 +973,7 @@ window.onload = function() {
   fuse_storm_timer = new Stopwatch(enew, fuse_storm_option, {delay: 1}, 25000, 5);
   initDragElement();
   initResizeElement();
+  nightmode();
 };
 </script>
 
@@ -970,6 +981,10 @@ window.onload = function() {
   <h2>Timers</h2>
   <p>Each timers can be moved or resized to your desired. You can also change between voice or beep for alert.</p>
   <p>How to use : Start timer right after the effect has ended.</p>
+  <p>
+    <button class="btn btn-outline-dark " id="remove-filter">No Filter</button>
+    <button class="btn btn-outline-dark " id="night-filter">Nightmode Filter</button>
+  </p>
   <br/>
 
   <div class="row justify-content-evenly">
