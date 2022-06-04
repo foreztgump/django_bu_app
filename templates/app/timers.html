@@ -156,7 +156,7 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
     }
     if (clock_value == 16) {
       if (!backflow_bool) {
-        audio_backflow_in.volume = parseFloat(volume_c);
+        audio_backflow_in.volume = parseFloat(volume_c).toFixed(2);
         audio_backflow_in.play();
         preloaded = false;
         backflow_bool = true;
@@ -189,7 +189,7 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
         }
     } else if (clock_value == 10) {
         if (!backflow) {
-          audio_backflow.volume = parseFloat(volume_c);
+          audio_backflow.volume = parseFloat(volume_c).toFixed(2);
           audio_backflow.play()
           backflow = true;
         }
@@ -213,7 +213,7 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
     }
     if (clock_value == 6) {
       if (!fire_bool) {
-        audio_fire_in.volume = parseFloat(volume_c);
+        audio_fire_in.volume = parseFloat(volume_c).toFixed(2);
         audio_fire_in.play();
         preloaded = false;
         fire_bool = true;
@@ -246,7 +246,7 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
         }
     } else if (clock_value == 0) {
         if (!fire) {
-          audio_fire.volume = parseFloat(volume_c);
+          audio_fire.volume = parseFloat(volume_c).toFixed(2);
           audio_fire.play()
           fire = true;
         }
@@ -270,7 +270,7 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
     }
     if (clock_value == 11) {
       if (!reflect_bool) {
-        audio_reflect_in.volume = parseFloat(volume_c);
+        audio_reflect_in.volume = parseFloat(volume_c).toFixed(2);
         audio_reflect_in.play();
         preloaded = false;
         reflect_bool = true;
@@ -303,7 +303,7 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
         }
     } else if (clock_value == 5) {
         if (!reflect) {
-          audio_reflect.volume = parseFloat(volume_c);
+          audio_reflect.volume = parseFloat(volume_c).toFixed(2);
           audio_reflect.play()
           reflect = true;
         }
@@ -327,7 +327,7 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
     }
     if (clock_value == 6) {
       if (!lightning_bool) {
-        audio_lightning_in.volume = parseFloat(volume_c);
+        audio_lightning_in.volume = parseFloat(volume_c).toFixed(2);
         audio_lightning_in.play();
         preloaded = false;
         lightning_bool = true;
@@ -360,7 +360,7 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
         }
     } else if (clock_value == 0) {
         if (!lightning) {
-          audio_lightning.volume = parseFloat(volume_c);
+          audio_lightning.volume = parseFloat(volume_c).toFixed(2);
           audio_lightning.play()
           lightning = true;
         }
@@ -384,7 +384,7 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
     }
     if (clock_value == 6) {
       if (!fuse_storm_bool) {
-        audio_fuse_storm_in.volume = parseFloat(volume_c);
+        audio_fuse_storm_in.volume = parseFloat(volume_c).toFixed(2);
         audio_fuse_storm_in.play();
         preloaded = false;
         fuse_storm_bool = true;
@@ -417,7 +417,7 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
         }
     } else if (clock_value == 0) {
         if (!fuse_storm) {
-          audio_fuse_storm.volume = parseFloat(volume_c);
+          audio_fuse_storm.volume = parseFloat(volume_c).toFixed(2);
           audio_fuse_storm.play()
           fire = true;
         }
@@ -457,37 +457,37 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
     }
     if (clock_value == 15) {
         if (!count_5) {
-          beep_short.volume = parseFloat(volume_c);
+          beep_short.volume = parseFloat(volume_c).toFixed(2);
           beep_short.play();
           count_5 = true;
         }
     } else if (clock_value == 14) {
       if (!count_4) {
-        beep_short.volume = parseFloat(volume_c);
+        beep_short.volume = parseFloat(volume_c).toFixed(2);
         beep_short.play();
         count_4 = true;
       }
     } else if (clock_value == 13) {
         if (!count_3) {
-          beep_short.volume = parseFloat(volume_c);
+          beep_short.volume = parseFloat(volume_c).toFixed(2);
           beep_short.play();
           count_3 = true;
         }
     } else if (clock_value == 12) {
         if (!count_2) {
-          beep_short.volume = parseFloat(volume_c);
+          beep_short.volume = parseFloat(volume_c).toFixed(2);
           beep_short.play();
           count_2 = true;
         }
     } else if (clock_value == 11) {
         if (!count_1) {
-          beep_short.volume = parseFloat(volume_c);
+          beep_short.volume = parseFloat(volume_c).toFixed(2);
           beep_short.play();
           count_1 = true;
         }
     } else if (clock_value == 10) {
         if (!backflow) {
-          beep_long.volume = parseFloat(volume_c);
+          beep_long.volume = parseFloat(volume_c).toFixed(2);
           beep_long.play();
           backflow = true;
         }
@@ -512,37 +512,37 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
     }
     if (clock_value == 5) {
         if (!count_5) {
-          beep_short.volume = parseFloat(volume_c);
+          beep_short.volume = parseFloat(volume_c).toFixed(2);
           beep_short.play();
           count_5 = true;
         }
     } else if (clock_value == 4) {
         if (!count_4) {
-          beep_short.volume = parseFloat(volume_c);
+          beep_short.volume = parseFloat(volume_c).toFixed(2);
           beep_short.play();
           count_4 = true;
       }
     } else if (clock_value == 3) {
         if (!count_3) {
-          beep_short.volume = parseFloat(volume_c);
+          beep_short.volume = parseFloat(volume_c).toFixed(2);
           beep_short.play();
           count_3 = true;
         }
     } else if (clock_value == 2) {
         if (!count_2) {
-          beep_short.volume = parseFloat(volume_c);
+          beep_short.volume = parseFloat(volume_c).toFixed(2);
           beep_short.play();
           count_2 = true;
         }
     } else if (clock_value == 1) {
         if (!count_1) {
-          beep_short.volume = parseFloat(volume_c);
+          beep_short.volume = parseFloat(volume_c).toFixed(2);
           beep_short.play();
           count_1 = true;
         }
     } else if (clock_value == 0) {
         if (!fire) {
-          beep_long.volume = parseFloat(volume_c);
+          beep_long.volume = parseFloat(volume_c).toFixed(2);
           beep_long.play();
           fire = true;
         }
@@ -567,37 +567,37 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
     }
     if (clock_value == 10) {
         if (!count_5) {
-          beep_short.volume = parseFloat(volume_c);
+          beep_short.volume = parseFloat(volume_c).toFixed(2);
           beep_short.play();
           count_5 = true;
         }
     } else if (clock_value == 9) {
       if (!count_4) {
-        beep_short.volume = parseFloat(volume_c);
+        beep_short.volume = parseFloat(volume_c).toFixed(2);
         beep_short.play();
         count_4 = true;
       }
     } else if (clock_value == 8) {
         if (!count_3) {
-          beep_short.volume = parseFloat(volume_c);
+          beep_short.volume = parseFloat(volume_c).toFixed(2);
           beep_short.play();
           count_3 = true;
         }
     } else if (clock_value == 7) {
         if (!count_2) {
-          beep_short.volume = parseFloat(volume_c);
+          beep_short.volume = parseFloat(volume_c).toFixed(2);
           beep_short.play();
           count_2 = true;
         }
     } else if (clock_value == 6) {
         if (!count_1) {
-          beep_short.volume = parseFloat(volume_c);
+          beep_short.volume = parseFloat(volume_c).toFixed(2);
           beep_short.play();
           count_1 = true;
         }
     } else if (clock_value == 5) {
         if (!reflect) {
-          beep_long.volume = parseFloat(volume_c);
+          beep_long.volume = parseFloat(volume_c).toFixed(2);
           beep_long.play();
           reflect = true;
         }
@@ -622,37 +622,37 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
     }
     if (clock_value == 5) {
         if (!count_5) {
-          beep_short.volume = parseFloat(volume_c);
+          beep_short.volume = parseFloat(volume_c).toFixed(2);
           beep_short.play();
           count_5 = true;
         }
     } else if (clock_value == 4) {
       if (!count_4) {
-        beep_short.volume = parseFloat(volume_c);
+        beep_short.volume = parseFloat(volume_c).toFixed(2);
         beep_short.play();
         count_4 = true;
       }
     } else if (clock_value == 3) {
         if (!count_3) {
-          beep_short.volume = parseFloat(volume_c);
+          beep_short.volume = parseFloat(volume_c).toFixed(2);
           beep_short.play();
           count_3 = true;
         }
     } else if (clock_value == 2) {
         if (!count_2) {
-          beep_short.volume = parseFloat(volume_c);
+          beep_short.volume = parseFloat(volume_c).toFixed(2);
           beep_short.play();
           count_2 = true;
         }
     } else if (clock_value == 1) {
         if (!count_1) {
-          beep_short.volume = parseFloat(volume_c);
+          beep_short.volume = parseFloat(volume_c).toFixed(2);
           beep_short.play();
           count_1 = true;
         }
     } else if (clock_value == 0) {
         if (!lightning) {
-          beep_long.volume = parseFloat(volume_c);
+          beep_long.volume = parseFloat(volume_c).toFixed(2);
           beep_long.play();
           lightning = true;
         }
@@ -677,37 +677,37 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
     }
     if (clock_value == 5) {
         if (!count_5) {
-          beep_short.volume = parseFloat(volume_c);
+          beep_short.volume = parseFloat(volume_c).toFixed(2);
           beep_short.play();
           count_5 = true;
         }
     } else if (clock_value == 4) {
         if (!count_4) {
-          beep_short.volume = parseFloat(volume_c);
+          beep_short.volume = parseFloat(volume_c).toFixed(2);
           beep_short.play();
           count_4 = true;
       }
     } else if (clock_value == 3) {
         if (!count_3) {
-          beep_short.volume = parseFloat(volume_c);
+          beep_short.volume = parseFloat(volume_c).toFixed(2);
           beep_short.play();
           count_3 = true;
         }
     } else if (clock_value == 2) {
         if (!count_2) {
-          beep_short.volume = parseFloat(volume_c);
+          beep_short.volume = parseFloat(volume_c).toFixed(2);
           beep_short.play();
           count_2 = true;
         }
     } else if (clock_value == 1) {
         if (!count_1) {
-          beep_short.volume = parseFloat(volume_c);
+          beep_short.volume = parseFloat(volume_c).toFixed(2);
           beep_short.play();
           count_1 = true;
         }
     } else if (clock_value == 0) {
         if (!fuse_storm) {
-          beep_long.volume = parseFloat(volume_c);
+          beep_long.volume = parseFloat(volume_c).toFixed(2);
           beep_long.play();
           fuse_storm = true;
         }
@@ -716,22 +716,22 @@ var Stopwatch = function(element, voice_option, options, time_limit, voice) {
 
   function countdown_voice(num) {
     if (num == 1) {
-      audio_1.volume = parseFloat(volume_c);
+      audio_1.volume = parseFloat(volume_c).toFixed(2);
       audio_1.play();
     } else if (num == 2) {
-        audio_2.volume = parseFloat(volume_c);
+        audio_2.volume = parseFloat(volume_c).toFixed(2);
         audio_2.play()
 	      //audio_1.load()
     } else if (num == 3) {
-        audio_3.volume = parseFloat(volume_c);
+        audio_3.volume = parseFloat(volume_c).toFixed(2);
         audio_3.play()
 	      //audio_2.load()
     } else if (num == 4) {
-        audio_4.volume = parseFloat(volume_c);
+        audio_4.volume = parseFloat(volume_c).toFixed(2);
         audio_4.play()
 	      //audio_3.load()
     } else if (num == 5) {
-        audio_5.volume = parseFloat(volume_c);
+        audio_5.volume = parseFloat(volume_c).toFixed(2);
         audio_5.play()
 	      //audio_4.load()
     }
