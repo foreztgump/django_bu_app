@@ -1,0 +1,596 @@
+{% extends 'app/base.html' %}
+{% load bootstrap5 %}
+
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" type='text/css' href="{% static 'css/pop.css' %}">
+<link rel="stylesheet" type='text/css' href="{% static 'css/night.css' %}">
+
+<script type="text/javascript">
+  //contains all of the potentials that are saved
+		let list_of_potentials = [];
+
+		//the hexagon for image 1 is adjacent to image 2,3,5, etc
+		//save all these relationships in an array
+		//an individual hexagon can be adjacent with up to 6 other hexagons
+		//0 indicates none
+		//the order matters, [top, topleft, bottomleft, bottom, bottomright, topright]
+		let adjacent_list = [
+
+			[0, 0, 0, 0, 0, 0],
+
+			[0, 0, 2, 5, 3, 0],
+			[0, 0, 4, 7, 5, 1],
+			[0, 1, 5, 8, 6, 0],
+			[0, 0, 0, 9, 7, 2],
+			[1, 2, 7, 10, 8, 3],
+
+			[0, 3, 8, 11, 0, 0],
+			[2, 4, 9, 12, 10, 5],
+			[3, 5, 10, 13, 11, 6],
+			[4, 0, 0, 14, 12, 7],
+			[5, 7, 12, 15, 13, 8],
+
+			[6, 8, 13, 16, 0, 0],
+			[7, 9, 14, 17, 15, 10],
+			[8, 10, 15, 18, 16, 11],
+			[9, 0, 0, 19, 17, 12],
+			[10, 12, 17, 20, 18, 13],
+
+			[11, 13, 18, 21, 0, 0],
+			[12, 14, 19, 22, 20, 15],
+			[13, 15, 20, 23, 21, 16],
+			[14, 0, 0, 0, 22, 17],
+			[15, 17, 22, 24, 23, 18],
+
+			[16, 18, 23, 0, 0, 0],
+			[17, 19, 0, 0, 24, 20],
+			[18, 20, 24, 0, 0, 21],
+			[20, 22, 0, 0, 0, 23]
+
+		];
+
+		//this will contain a large number of solutions, each of which is an array
+		let list_of_solutions = [];
+		let list_of_searched = [];
+		let list_of_best_solutions = [];
+		let current_solution = -1;
+
+
+		function next_solution() {
+
+			//no solutions, don't do anything
+			if (list_of_best_solutions.length == 0) {
+				return;
+			}
+
+			//increment the solution
+			current_solution = current_solution + 1;
+
+			if (current_solution >= list_of_best_solutions.length) {
+				current_solution = 0;
+			}
+
+			display_solution();
+
+		}
+
+		function prev_solution() {
+
+			//no solutions, don't do anything
+			if (list_of_best_solutions.length == 0) {
+				return;
+			}
+
+			//decrement the solution
+			current_solution = current_solution - 1;
+
+			if (current_solution < 0) {
+				current_solution = list_of_best_solutions.length - 1;
+			}
+
+			display_solution();
+
+		}
+
+		function display_solution() {
+
+			let solution = [];
+			let color = 0;
+
+			deselect_all();
+
+			solution = list_of_best_solutions[current_solution];
+			//alert("solution " + current_solution + ": " + solution);
+
+
+
+			for (var i = 0; i <= 24; i++ ){
+
+				if (solution[i] != -1) {
+
+					color = solution[i] % 5;
+					//alert("color: " + color);
+
+					set_image(i,color);
+
+				}
+			}
+
+		}
+
+
+		function set_image(tile_number, color) {
+
+			var image = document.getElementById(tile_number);
+
+			//if (color == 0) {
+			//		image.src = "hex.png";
+			//}
+
+			if (color == 0) {
+					image.src = "{% static 'img/hex-blue.png' %}" alt="hex-blue";
+			}
+
+			if (color == 1) {
+					image.src = "{% static 'img/hex-green.png' %}" alt="hex-green";
+			}
+
+			if (color == 2) {
+					image.src = "{% static 'img/hex-orange.png' %}" alt="hex-orange";
+			}
+
+			if (color == 3) {
+					image.src = "{% static 'img/hex-purple.png' %}" alt="hex-purple";
+			}
+
+			if (color == 4) {
+					image.src = "{% static 'img/hex-red.png' %}" alt="hex-red";
+			}
+
+		}
+
+		//unselects all tiles
+		function deselect_all() {
+			for (var i = 1; i <= 24; i++ ) {
+				var image = document.getElementById(i);
+				//if (image.getAttribute('src') === 'hex-blue.png') {
+					image.src = "hex.png";
+				//}
+			}
+		}
+
+		//use the 4 tile potentials saved in the "list_of_potentials" array and try to fit as many as possible
+		//into an area of 24 hex tiles
+		//each potential from the "list_of_potentials" may only be used once per solution
+		function solve_button() {
+			list_of_solutions.length = 0;
+			list_of_searched.length = 0;
+			list_of_best_solutions.length = 0;
+
+			let solution = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1];
+			let count = 0;
+			let bestcount = 24;
+			let bestsolution = "";
+
+			solve(solution, 0);
+
+			//alert("number of solutions: " + list_of_solutions.length );
+			console.log(list_of_solutions);
+
+			//search through the list of solutions and see what the best solutions are
+			for (var i = 0; i < list_of_solutions.length; i++) {
+				solution = list_of_solutions[i];
+				count = 0;
+
+				//check each tile of the solution and count the empty tiles (-1)
+				for (var j = 0; j < solution.length; j++) {
+					if (solution[j] == -1) {
+						count = count + 1;
+					}
+				}
+
+				//update the results
+				if (count == bestcount) {
+					bestsolution = bestsolution + " " + i;
+					list_of_best_solutions.push(solution);
+				} else if (count < bestcount) {
+					bestcount = count;
+					bestsolution = "" + i;
+					list_of_best_solutions.length = 0;
+					list_of_best_solutions.push(solution);
+				}
+
+			} //end looping through all of the found solutions
+
+			console.log("bestcount: " + bestcount + " bestsolution:" + bestsolution);
+			update_best_solutions();
+		}
+
+		//returns true if this function is able to place a potential at any position
+		//returns false if no potentials were able to be placed in the solution
+		function solve(solution, potential) {
+
+			let tempsolution = [];
+			let result = false;
+			let fit_result = false;
+			let solve_result = false;
+			let used = [];
+
+			list_of_searched.push(solution + potential);
+
+			//end of the recursive function call because it's the last potential in the list of potentials
+			if (potential==list_of_potentials.length) {
+				return false;
+			}
+
+			//try to put the potential at each of the 24 positions
+			for (var i = 1; i <= 24; i++) {
+				used.length = 0;
+				tempsolution = [...solution];
+
+				//try to place the potential at the current position
+				fit_result = fit_potential(potential, tempsolution, i, -1, used);
+
+				if (fit_result == true) {
+					//the potential was able to fit at at least one position so the function should return true
+					result=true;
+				}
+
+				//if there are more potentials remaining in the list try to place those in the solution as well
+				if (potential<list_of_potentials.length-1) {
+					//eliminate duplicate checks during the brute force search, this reduces the amount off searching by a lot
+					if(list_of_searched.includes(tempsolution + (potential+1)) == false) {
+						solve_result = solve(tempsolution, potential+1);
+						if (solve_result==false) {
+							//console.log("Tried to call solve() on potential:" + (potential+1) + " and failed. Adding " + tempsolution);
+							list_of_solutions.push(tempsolution);
+						}
+					}
+				} else {
+					if(fit_result==true) {
+						//console.log("fit piece and no more potentials, adding " + tempsolution);
+						list_of_solutions.push(tempsolution);
+					}
+				}
+			} //end of checking each position for this potential
+
+			return result;
+		}
+
+		//index_of_potential is the number of which potential in the list_of_potentials array that should be added
+		//solution is an array where each index represents either -1 for empty or the ID of which potential is placed there
+		//solution_offset is the tile that should be used in the solution
+		//potential_offset is the tile that should be used from the potential
+		//used is an array that indicates which tiles of the potential have already been placed in the solution
+		//return either true if the fit worked, false if there was an overlap or the potential was out of bounds
+		function fit_potential(index_of_potential, solution, solution_offset, potential_offset, used) {
+
+			//make a temporary copy of the solution
+			//the loop in this function will attempt to fit the potential to the current solution
+			//if the potential fits then the "temporary solution" will be copied to the solution
+			//and the function will return true to indicate that it was successful
+			let tempsolution = [...solution];
+			let char = "";
+			let potential = "";
+			let adjacent = "";
+			let solution_adjacent = "";
+			let result = "";
+
+			//get the potential from the list
+			potential = list_of_potentials[index_of_potential];
+
+			//alert("fit potential " + index_of_potential + ": " + potential + " to solution offset " + solution_offset + " potential offset " + potential_offset);
+
+			//if the potential offset is negative one then check to see where the first selected tile is of the potential
+			if (potential_offset==-1) {
+				//loop through each digit of the potential
+				for (var i = 0; i < potential.length; i++) {
+					char = potential.charAt(i);
+					if (char == "1") {
+						potential_offset = i+1;
+						break;
+					}
+				}
+			}
+
+			//place the first tile of the potential at the solution offset in the temp solution
+			if (tempsolution[solution_offset]==-1) {
+				tempsolution[solution_offset] = index_of_potential;
+				used.push(potential_offset);
+				//alert("temp solution: " + tempsolution);
+			} else {
+				//alert("Can not place potential number " + index_of_potential + " at tile " + solution_offset + " because it is already used.");
+				return false;
+			}
+
+			//get the adjacent tiles of the potential
+			adjacent = adjacent_list[potential_offset];
+
+			//get the adjacent tiles for the offset tile in the solution
+			solution_adjacent = adjacent_list[solution_offset];
+
+			//for all of the adjacent tiles call fit_potential again as needed
+			for (var j = 0; j < 6; j++) {
+
+				if (adjacent[j] == 0) {
+					//no need to do anything, this tile of the potential is out of bounds
+				} else if (adjacent[j] !== 0 && potential.charAt(adjacent[j]-1) == 0) {
+					//no need to do anything, there was a tile adjacent to this one but it was not selected in the potential
+				} else if (adjacent[j] !== 0 && potential.charAt(adjacent[j]-1) == 1) {
+					//there is a valid tile adjacent to the current tile and it is selected
+					//check to see if that tile of the potential was already put in the solution
+					if (used.includes(adjacent[j])) {
+						//no need to do anything, this tile in the potential was already placed in the solution
+					} else {
+						//if a tile is found in the potential that is selected and needs to be placed in the solution
+						//figure out which tile of the solution this should be placed at
+						temp_solution_offset = solution_adjacent[j];
+
+						//if the solution offset is 0 that means it would be out of bounds so the potential can't fit here in the solution
+						if(temp_solution_offset == 0) {
+							return false;
+						} else {
+							//place the adjacent tiles in the solution
+							result = fit_potential(index_of_potential, tempsolution, temp_solution_offset, adjacent[j], used);
+							if (result == false) {
+								return false;
+							}
+						}
+					}
+				}
+			} //end looping through the 6 adjacent tiles
+
+			//if all of the peices were placed with no errors, and this function wasn't returned earlier in the loop then the temp solution can be copied to the solution
+			//alert("end of solve: temp solution " + tempsolution);
+			solution.length = 0;
+			solution.push(...tempsolution);
+			return true;
+		}
+
+		//changes the source of an individual tile between the white and blue image
+		function toggle_image(id){
+			var image = document.getElementById(id);
+			if (image.getAttribute('src') === 'hex.png') {
+				image.src = "hex-blue.png";
+			} else if (image.getAttribute('src') === 'hex-blue.png') {
+				image.src = "hex.png";
+			}
+		}
+
+		//if 4 tiles are selected then save it in a list, otherwise error
+		function save_potential() {
+				let count = 0;
+				let result = "";
+
+				var image1 = document.getElementById('1');
+				var image2 = document.getElementById('2');
+				var image3 = document.getElementById('3');
+				var image4 = document.getElementById('4');
+				var image5 = document.getElementById('5');
+				var image6 = document.getElementById('6');
+				var image7 = document.getElementById('7');
+				var image8 = document.getElementById('8');
+				var image9 = document.getElementById('9');
+				var image10 = document.getElementById('10');
+				var image11 = document.getElementById('11');
+				var image12 = document.getElementById('12');
+				var image13 = document.getElementById('13');
+				var image14 = document.getElementById('14');
+				var image15 = document.getElementById('15');
+				var image16 = document.getElementById('16');
+				var image17 = document.getElementById('17');
+				var image18 = document.getElementById('18');
+				var image19 = document.getElementById('19');
+				var image20 = document.getElementById('20');
+				var image21 = document.getElementById('21');
+				var image22 = document.getElementById('22');
+				var image23 = document.getElementById('23');
+				var image24 = document.getElementById('24');
+
+				if (image1.getAttribute('src') === 'hex.png') { result += "0";} else { result += "1"; count++;}
+				if (image2.getAttribute('src') === 'hex.png') { result += "0";} else { result += "1"; count++;}
+				if (image3.getAttribute('src') === 'hex.png') { result += "0";} else { result += "1"; count++;}
+				if (image4.getAttribute('src') === 'hex.png') { result += "0";} else { result += "1"; count++;}
+				if (image5.getAttribute('src') === 'hex.png') { result += "0";} else { result += "1"; count++;}
+				if (image6.getAttribute('src') === 'hex.png') { result += "0";} else { result += "1"; count++;}
+				if (image7.getAttribute('src') === 'hex.png') { result += "0";} else { result += "1"; count++;}
+				if (image8.getAttribute('src') === 'hex.png') { result += "0";} else { result += "1"; count++;}
+				if (image9.getAttribute('src') === 'hex.png') { result += "0";} else { result += "1"; count++;}
+				if (image10.getAttribute('src') === 'hex.png') { result += "0";} else { result += "1"; count++;}
+				if (image11.getAttribute('src') === 'hex.png') { result += "0";} else { result += "1"; count++;}
+				if (image12.getAttribute('src') === 'hex.png') { result += "0";} else { result += "1"; count++;}
+				if (image13.getAttribute('src') === 'hex.png') { result += "0";} else { result += "1"; count++;}
+				if (image14.getAttribute('src') === 'hex.png') { result += "0";} else { result += "1"; count++;}
+				if (image15.getAttribute('src') === 'hex.png') { result += "0";} else { result += "1"; count++;}
+				if (image16.getAttribute('src') === 'hex.png') { result += "0";} else { result += "1"; count++;}
+				if (image17.getAttribute('src') === 'hex.png') { result += "0";} else { result += "1"; count++;}
+				if (image18.getAttribute('src') === 'hex.png') { result += "0";} else { result += "1"; count++;}
+				if (image19.getAttribute('src') === 'hex.png') { result += "0";} else { result += "1"; count++;}
+				if (image20.getAttribute('src') === 'hex.png') { result += "0";} else { result += "1"; count++;}
+				if (image21.getAttribute('src') === 'hex.png') { result += "0";} else { result += "1"; count++;}
+				if (image22.getAttribute('src') === 'hex.png') { result += "0";} else { result += "1"; count++;}
+				if (image23.getAttribute('src') === 'hex.png') { result += "0";} else { result += "1"; count++;}
+				if (image24.getAttribute('src') === 'hex.png') { result += "0";} else { result += "1"; count++;}
+
+				if (count != 4) {
+					alert("Must have 4 tiles selected to save");
+				} else if (check_potential(result) != 4) {
+					alert("All tiles must be connected");
+				} else {
+					list_of_potentials.push(result);
+					update_list();
+				}
+
+		}
+
+		//prints the list of potentials to the console log
+		function print_potentials() {
+			window.console.log("potentials:")
+			for (var i = 0; i < list_of_potentials.length; i++ ){
+				window.console.log(list_of_potentials[i]);
+			}
+		}
+
+		//updates the displayed HTML list of potentials
+		function update_list() {
+			let innerhtml = "";
+			for (var i = 0; i < list_of_potentials.length; i++) {
+				innerhtml += '<li>' + i + ': ' + list_of_potentials[i] + '</li>';
+			}
+			document.getElementById('list').innerHTML = innerhtml;
+		}
+
+		function update_best_solutions() {
+			let innerhtml = "";
+			let solution = "";
+
+			for (var i = 0; i < list_of_best_solutions.length; i++) {
+				solution = list_of_best_solutions[i];
+				//solution.shift(); //drop the leading -1 for tile 0 that doesn't exist
+				innerhtml += '<li>' + i + ': ' + solution + '</li>';
+			}
+			document.getElementById('list_of_best_solutions').innerHTML = innerhtml;
+
+			document.getElementById('total_solutions').innerHTML = list_of_solutions.length;
+			document.getElementById('best_solutions').innerHTML = list_of_best_solutions.length;
+		}
+
+		//verify that the 4 selected tiles are connected
+		//an individual tile can not be floating on its own
+		//returns the count of connected adjacent tiles
+		function check_potential(potential) {
+			let char = ""
+			let found = [];
+
+			//loop through each digit
+			for (var i = 0; i < potential.length; i++) {
+				char = potential.charAt(i);
+
+				//found a selected tile
+				if (char == "1") {
+					//alert("first selected tile found at " + (i+1));
+					found.push(i+1);
+					count_adjacent(i+1,found,potential);
+					break;
+				}
+			}
+
+			return found.length;
+		}
+
+
+		//recursive function
+		//check how many selected tiles are adjacent to this position
+		//tile is the specific tile to check
+		//potential is the 1's and 0's that represent wether each tile is selected or not
+		//found is an array of all adjacent tiles that have been found so far
+		function count_adjacent(tile,found,potential) {
+			let adjacent = [];
+
+			//figure out which tiles are adacent to the selected tile
+			adjacent = adjacent_list[tile];
+
+			//loop through which tiles are adjacent to the selected tile
+			for (var j = 0; j < adjacent.length; j++) {
+
+				//ignore any adjacent tiles for 0, those are empty
+				if (adjacent[j] != 0) {
+
+					//alert("tile " + (tile+1) + " is adjacent to: " + adjacent[j]);
+					//alert("tile at " + adjacent[j] + " is " + potential.charAt(adjacent[j]-1));
+
+					if (potential.charAt(adjacent[j]-1) == 1) {
+
+						//check to see if this tile was counted already
+						if (!found.includes(adjacent[j])) {
+							found.push(adjacent[j]);
+							count_adjacent(adjacent[j],found,potential);
+						}
+					}
+				}
+			} //end checking the adjacent tiles for a specific tile
+		}
+
+</script>
+
+
+<div class="container text-center">
+
+  <h2>Shape Doctor</h2>
+  <p>"Because aint nobody got time to do this manually" By OGWaffle</p>
+  <p>Special Thanks to OGWaffle for making this possible!</p>
+    <br/>
+
+  <h3>Instructions</h3>
+  <ul class="list-unstyled">
+    <li>**Important**:
+      <ul>
+        <li>Please provide at least 4 potentials before clicking "solve"</li>
+        <li>If you find any bugs, please report to me or OGWaffle</li>
+      </ul>
+    </li>
+    <li>Steps:
+      <ul>
+        <li>Draw out the potential that you want to use 1 by 1</li>
+        <li>Click "Save Potential" after you done drawing</li>
+        <li>Repeat steps 1 and 2 until you have at least 4 potential saved</li>
+        <li>Click "Solve" and wait</li>
+        <li>Webapp will solve the puzzle and give to possible solution</li>
+        <li>Use "Next Best Solution" and "Prev Best Solution" to view between each solution</li>
+        <li>Click "Restart" to start over</li>
+      </ul>
+    </li>
+  </ul>
+  <br/>
+
+  <div id="potentialbuilder" style="height:1130px; width:875px; position:relative; background-color:#e3e3e3">
+		<img id="1" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:0px;left:328px;" onclick="toggle_image('1');">
+		<img id="2" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:95px;left:164px;" onclick="toggle_image('2');">
+		<img id="3" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:95px;left:492px;" onclick="toggle_image('3');">
+		<img id="4" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:188px;left:0px;" onclick="toggle_image('4');">
+		<img id="5" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:188px;left:328px;" onclick="toggle_image('5');">
+		<img id="6" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:188px;left:655px;" onclick="toggle_image('6');">
+		<img id="7" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:281px;left:164px;" onclick="toggle_image('7');">
+		<img id="8" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:281px;left:492px;" onclick="toggle_image('8');">
+		<img id="9" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:376px;left:0px;" onclick="toggle_image('9');">
+		<img id="10" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:376px;left:328px;" onclick="toggle_image('10');">
+		<img id="11" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:376px;left:655px;" onclick="toggle_image('11');">
+		<img id="12" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:470px;left:164px;" onclick="toggle_image('12');">
+		<img id="13" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:470px;left:492px;" onclick="toggle_image('13');">
+		<img id="14" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:564px;left:0px;" onclick="toggle_image('14');">
+		<img id="15" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:564px;left:328px;" onclick="toggle_image('15');">
+		<img id="16" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:564px;left:655px;;" onclick="toggle_image('16');">
+		<img id="17" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:658px;left:164px;" onclick="toggle_image('17');">
+		<img id="18" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:658px;left:492px;" onclick="toggle_image('18');">
+		<img id="19" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:752px;left:0px;" onclick="toggle_image('19');">
+		<img id="20" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:752px;left:328px;" onclick="toggle_image('20');">
+		<img id="21" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:752px;left:655px;" onclick="toggle_image('21');">
+		<img id="22" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:846px;left:164px;" onclick="toggle_image('22');">
+		<img id="23" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:846px;left:492px;" onclick="toggle_image('23');">
+		<img id="24" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:940px;left:328px;" onclick="toggle_image('24');">
+	</div>
+
+	<div id="buttons" style="postion:relative; border-width:1px; border-style:solid; border-color:black; height:22px; width:873px; background-color:#d4d4d4;" />
+
+		<input id="clickMe" type="button" value="Save Potential" onclick="save_potential();">
+		<input id="clickMe" type="button" value="Solve" onclick="solve_button();">
+		<input id="clickMe" type="button" value="Deselect All Tiles" onclick="deselect_all();">
+
+		<div style="display:inline; float:right;">
+			Total Solutions: <div id="total_solutions" style="display:inline">0</div>&nbsp;&nbsp;
+			Best Solutions: <div id="best_solutions" style="display:inline">0</div>&nbsp;&nbsp;
+			<input style="float: right;" id="clickMe" type="button" value="Next Best Solution" onclick="next_solution();">
+			<input style="float: right;" id="clickMe" type="button" value="Prev Best Solution" onclick="prev_solution();">
+		</div>
+
+
+	<br><br>
+	Potentials:
+	<ul id="list"></ul>
+	<br>
+
+</div>
+{% endblock %}

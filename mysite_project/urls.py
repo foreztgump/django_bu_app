@@ -23,6 +23,7 @@ from myapp_bless.views import (
     RuneDreaming,
     BaseAtkCal,
     Timers,
+    ShapeDoctor,
 )
 
 urlpatterns = [
@@ -34,5 +35,5 @@ urlpatterns = [
     path("runes_dreaming", RuneDreaming.as_view(), name="runes_dreaming"),
     path("baseatkcal", BaseAtkCal.as_view(), name="baseatkcal"),
     path("timers", Timers.as_view(), name="timers"),
+    path("shapedoctor", ShapeDoctor.as_view(), name="shapedoctor"),
 ]
-
