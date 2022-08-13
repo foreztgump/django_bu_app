@@ -211,13 +211,17 @@ class SkillProgression(TemplateView):
     def get(self, request, *args, **kwargs):
         return render(request, "app/skill_pro.html")
 
-
 class Timers(TemplateView):
     template_name = "app/timers.html"
 
     def get(self, request, *args, **kwargs):
         return render(request, "app/timers.html")
 
+class ShapeDoctor(TemplateView):
+    template_name = "app/shapedoctor.html"
+
+    def get(self, request, *args, **kwargs):
+        return render(request, "app/shapedoctor.html")
 
 class RuneDreaming(TemplateView):
     template_name = "app/rune_dreaming.html"
