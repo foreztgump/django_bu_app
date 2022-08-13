@@ -552,7 +552,7 @@
   <br/>
 </div>
 
-<div class="container-fluid">
+<div class="container">
   <div id="potentialbuilder" style="height:1130px; width:925px; position:relative; background-color:#e3e3e3">
 		<img id="1" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:0px;left:328px;" onclick="toggle_image('1');">
 		<img id="2" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:95px;left:164px;" onclick="toggle_image('2');">
@@ -591,8 +591,8 @@
     </div>
 
 		<div style="display:inline; float:right;">
-			Total Solutions: <div id="total_solutions" style="display:inline">0</div>&nbsp;&nbsp;
-			Best Solutions: <div id="best_solutions" style="display:inline">0</div>&nbsp;&nbsp;
+			Total: <div id="total_solutions" style="display:inline">0</div>&nbsp;&nbsp;
+			Best: <div id="best_solutions" style="display:inline">0</div>&nbsp;&nbsp;
 			<input style="float: right;" id="clickMe" type="button" value="Next Best Solution" onclick="next_solution();">
 			<input style="float: right;" id="clickMe" type="button" value="Prev Best Solution" onclick="prev_solution();">
 		</div>
@@ -600,9 +600,11 @@
   <p></p>
 	Potentials:
 	<ul id="list"></ul>
-  <br>
+
 	Solutions:
 	<ul id="list_of_best_solutions"></ul>
+  <p></p>
+  <br>
 
 </div>
 {% endblock %}
