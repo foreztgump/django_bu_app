@@ -353,7 +353,7 @@
 		//changes the source of an individual tile between the white and blue image
 		function toggle_image(id){
 			var image = document.getElementById(id);
-			if (image.getAttribute('src') === 'hex.png') {
+			if (image.getAttribute('src') === '{% static 'img/hex.png' %}') {
 				image.src = "{% static 'img/hex-blue.png' %}";
 			} else if (image.getAttribute('src') === 'hex-blue.png') {
 				image.src = "{% static 'img/hex.png' %}";
@@ -552,7 +552,7 @@
   <br/>
 </div>
 
-<div class="container-fluid text-center">
+<div class="container-fluid">
   <div id="potentialbuilder" style="height:1130px; width:875px; position:relative; background-color:#e3e3e3">
 		<img id="1" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:0px;left:328px;" onclick="toggle_image('1');">
 		<img id="2" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:95px;left:164px;" onclick="toggle_image('2');">
@@ -580,12 +580,15 @@
 		<img id="24" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:940px;left:328px;" onclick="toggle_image('24');">
 	</div>
 
-	<div id="buttons" style="postion:relative; border-width:1px; border-style:solid; border-color:black; height:22px; width:873px; background-color:#d4d4d4;" />
+	<div id="buttons" style="postion:relative; border-width:1px; border-style:solid; border-color:black; height:38px; width:873px; background-color:#d4d4d4;" />
 
-		<input id="clickMe" type="button" value="Save Potential" onclick="save_potential();">
-		<input id="clickMe" type="button" value="Solve" onclick="solve_button();">
-		<input id="clickMe" type="button" value="Deselect All Tiles" onclick="deselect_all();">
-    <input id="clickMe" type="button" value="Restart" onclick="window.location.reload();">
+
+    <div style="display:inline; float:left;">
+  		<input id="clickMe" type="button" value="Save Potential" onclick="save_potential();">
+  		<input id="clickMe" type="button" value="Solve" onclick="solve_button();">
+  		<input id="clickMe" type="button" value="Deselect All Tiles" onclick="deselect_all();">
+      <input id="clickMe" type="button" value="Restart" onclick="window.location.reload();">
+    </div>
 
 		<div style="display:inline; float:right;">
 			Total Solutions: <div id="total_solutions" style="display:inline">0</div>&nbsp;&nbsp;
@@ -594,10 +597,11 @@
 			<input style="float: right;" id="clickMe" type="button" value="Prev Best Solution" onclick="prev_solution();">
 		</div>
 
-
+  <p></p>
 	<br><br>
 	Potentials:
 	<ul id="list"></ul>
+  <p></p>
 	<br>
 
 </div>
