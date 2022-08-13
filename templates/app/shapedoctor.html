@@ -157,7 +157,7 @@
 			for (var i = 1; i <= 24; i++ ) {
 				var image = document.getElementById(i);
 				//if (image.getAttribute('src') === 'hex-blue.png') {
-					image.src = "hex.png";
+					image.src = "{% static 'img/hex.png' %}";
 				//}
 			}
 		}
@@ -354,9 +354,9 @@
 		function toggle_image(id){
 			var image = document.getElementById(id);
 			if (image.getAttribute('src') === 'hex.png') {
-				image.src = "hex-blue.png";
+				image.src = "{% static 'img/hex-blue.png' %}";
 			} else if (image.getAttribute('src') === 'hex-blue.png') {
-				image.src = "hex.png";
+				image.src = "{% static 'img/hex.png' %}";
 			}
 		}
 
