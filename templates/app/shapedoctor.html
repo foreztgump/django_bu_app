@@ -516,36 +516,46 @@
 </script>
 
 
-<div class="container text-center">
+<div class="container">
 
-  <h2>Shape Doctor</h2>
-  <p>"Because aint nobody got time to do this manually" By OGWaffle</p>
-  <p>Special Thanks to OGWaffle for making this possible!</p>
-  <p>version: beta1.1</p>
-    <br/>
+  <div class="row">
+    <div class="col">
+      <h2>Shape Doctor</h2>
+      <p>"Because aint nobody got time to do this manually" By OGWaffle</p>
+      <p>Special Thanks to OGWaffle for making this possible!</p>
+      <p>version: beta1.1</p>
+        <br/>
+    </div>
+  </div>
 
-  <h3>Instructions</h3>
-  <ul class="list-unstyled">
-    <li>**Important**:
-      <ul>
-        <li>Please provide at least 4 potentials before clicking "solve"</li>
-        <li>If you find any bugs, please report to me or OGWaffle</li>
+  <div class="row">
+    <div class="col">
+      <h3>Instructions</h3>
+      <ul class="list-unstyled">
+        <li>**Important**:
+          <ul>
+            <li>Please provide at least 4 potentials before clicking "solve"</li>
+            <li>If you find any bugs, please report to me or OGWaffle</li>
+          </ul>
+        </li>
+        <li>Steps:
+          <ul>
+            <li>Draw out the potential that you want to use 1 by 1</li>
+            <li>Click "Save Potential" after you done drawing</li>
+            <li>Repeat steps 1 and 2 until you have at least 4 potential saved</li>
+            <li>Click "Solve" and wait</li>
+            <li>Webapp will solve the puzzle and give to possible solution</li>
+            <li>Use "Next Best Solution" and "Prev Best Solution" to view between each solution</li>
+            <li>Click "Restart" to start over</li>
+          </ul>
+        </li>
       </ul>
-    </li>
-    <li>Steps:
-      <ul>
-        <li>Draw out the potential that you want to use 1 by 1</li>
-        <li>Click "Save Potential" after you done drawing</li>
-        <li>Repeat steps 1 and 2 until you have at least 4 potential saved</li>
-        <li>Click "Solve" and wait</li>
-        <li>Webapp will solve the puzzle and give to possible solution</li>
-        <li>Use "Next Best Solution" and "Prev Best Solution" to view between each solution</li>
-        <li>Click "Restart" to start over</li>
-      </ul>
-    </li>
-  </ul>
+    </div>
+  </div>
   <br/>
+</div>
 
+<div class="container-fluid text-center">
   <div id="potentialbuilder" style="height:1130px; width:875px; position:relative; background-color:#e3e3e3">
 		<img id="1" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:0px;left:328px;" onclick="toggle_image('1');">
 		<img id="2" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:95px;left:164px;" onclick="toggle_image('2');">
