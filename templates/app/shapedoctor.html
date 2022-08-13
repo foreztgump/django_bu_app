@@ -355,7 +355,7 @@
 			var image = document.getElementById(id);
 			if (image.getAttribute('src') === '{% static 'img/hex.png' %}') {
 				image.src = "{% static 'img/hex-blue.png' %}";
-			} else if (image.getAttribute('src') === 'hex-blue.png') {
+			} else if (image.getAttribute('src') === '{% static 'img/hex-blue.png' %}') {
 				image.src = "{% static 'img/hex.png' %}";
 			}
 		}
@@ -553,7 +553,7 @@
 </div>
 
 <div class="container-fluid">
-  <div id="potentialbuilder" style="height:1130px; width:875px; position:relative; background-color:#e3e3e3">
+  <div id="potentialbuilder" style="height:1130px; width:925px; position:relative; background-color:#e3e3e3">
 		<img id="1" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:0px;left:328px;" onclick="toggle_image('1');">
 		<img id="2" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:95px;left:164px;" onclick="toggle_image('2');">
 		<img id="3" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:95px;left:492px;" onclick="toggle_image('3');">
@@ -580,7 +580,7 @@
 		<img id="24" src="{% static 'img/hex.png' %}" alt="hex" style="position:absolute;top:940px;left:328px;" onclick="toggle_image('24');">
 	</div>
 
-	<div id="buttons" style="postion:relative; border-width:1px; border-style:solid; border-color:black; height:38px; width:873px; background-color:#d4d4d4;" />
+	<div id="buttons" style="postion:relative; border-width:1px; border-style:solid; border-color:black; height:35px; width:923px; background-color:#d4d4d4;" />
 
 
     <div style="display:inline; float:left;">
@@ -598,11 +598,11 @@
 		</div>
 
   <p></p>
-	<br><br>
 	Potentials:
 	<ul id="list"></ul>
-  <p></p>
-	<br>
+  <br>
+	Solutions:
+	<ul id="list_of_best_solutions"></ul>
 
 </div>
 {% endblock %}
